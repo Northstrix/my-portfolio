@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# my-portfolio
+My portfolio built with Next.js and Perplexity. Feel free to use it as a template for your own!
 
-## Getting Started
+Check it out at: https://maxim-bortnikov.netlify.app/
 
-First, run the development server:
+# Credit
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The existence of this project (at least in its current form) wouldn't've been possible without the following:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[Text scroll and hover effect with GSAP and clip](https://codepen.io/Juxtopposed/pen/mdQaNbG) by [Juxtopposed](https://codepen.io/Juxtopposed)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+[Named scroll-timeline vertical](https://codepen.io/utilitybend/pen/VwBRNwm) by [utilitybend](https://codepen.io/utilitybend)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+[Animate.css](https://github.com/animate-css/animate.css) by [animate-css](https://github.com/animate-css)
 
-## Learn More
+[Fontsource Alef](https://www.npmjs.com/package/@fontsource/alef) by [fontsource](https://github.com/fontsource)
 
-To learn more about Next.js, take a look at the following resources:
+[Copyright (c) 2012, HaGilda & Mushon Zer-Aviv](http://alef.hagilda.com%7Calef@hagilda.com/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+[react-i18next](https://github.com/i18next/react-i18next) by [i18next](https://github.com/i18next)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+[Named scroll-timeline vertical](https://codepen.io/utilitybend/pen/VwBRNwm) by [utilitybend](https://codepen.io/utilitybend)
 
-## Deploy on Vercel
+[Vercel app border hover effect](https://codepen.io/Juxtopposed/pen/xxQNozB) by [Juxtopposed](https://codepen.io/Juxtopposed)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[Bento Grid](https://ui.aceternity.com/components/bento-grid) by [Aceternity](https://ui.aceternity.com/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[Neon Button](https://codepen.io/HighFlyer/pen/WNXRZBv) by [Thea](https://codepen.io/HighFlyer)
+
+[Eclipse Hero](https://codepen.io/RAFA3L/pen/RwOMEEa) by [Rafa](https://codepen.io/RAFA3L)
+
+[Sparkle Button ✨](https://codepen.io/jh3y/pen/LYJMPBL) by [Jhey](https://codepen.io/jh3y)
+
+# References
+
+This portfolio uses some of the components I made earlier (mostly from templates and using Perplexity):
+
+[Webflow-Style Cards That Glow on Hover](https://codepen.io/Northstrix/pen/dyxzjRO)
+
+[Splashed Push Notifications](https://codepen.io/Northstrix/pen/eYqjbvW)
+
+[Fancy Homomorphic Notifications](https://codepen.io/Northstrix/pen/jOgLBXV)
