@@ -31,6 +31,8 @@ The existence of this project (at least in its current form) wouldn't've been po
 
 [Sparkle Button ✨](https://codepen.io/jh3y/pen/LYJMPBL) by [Jhey](https://codepen.io/jh3y)
 
+[Glow Text](https://ui.3x.gl/docs/glow-text) by [x/ui](https://ui.3x.gl)
+
 # References
 
 This portfolio uses some of the components I made earlier (mostly from templates and using Perplexity):
