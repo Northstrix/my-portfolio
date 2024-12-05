@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --profile-image-rounding: 50%;
+  --profile-image-border-thickness: 3px;
+  --color-border: #abcaf5;
+  --color-header-text: #f0f0f1;
+  --color-primary: #5c3fcd;
+  --name-upper-tint: #f0f0f1;
+  --color-box-shadow: #f0f0f1;
+  --color-gradient-light: #f7f7ff;
+  --color-text-main: #f0f0f1;
+  --navbar-hovered-text-color: #f7f7ff;
+  --color-name-shadow: rgba(174,207,242,.24);
+  background: #05060f linear-gradient(0deg,rgba(216,236,248,.06),rgba(152,192,239,.06));
+  --navbar-glow-color-on-hover: #6c52d2;
+  --navbar-text-color-when-hovered: #191b24;
+  --inner-container-color: #545454;
+  --sectionmBorderRadius: 20.6px;
+  --flagRounding: 6px;
+  --name-color: #f7f7ff;
+
+  --_factor: min(600px, 80vh);
+  --_size: min(var(--_factor), 80vw);
+  
+  /* Font sizes */
+  --font-size-small: max(calc(var(--_size) * 0.02), 10px);
+  --font-size-medium: max(calc(var(--_size) * 0.039), 11px);
+  --font-size-medium-high: max(calc(var(--_size) * 0.064), 14px);
+  
+  /* Image size */
+  --image-size: max(calc(var(--_size) * 0.396), 100px);
+  font-family: Arial, "Alef", sans-serif;
+
+  --scrollbarHandleColorHovered: #6c52d2;
+
+  --generalBorderRadius: 20.6px;
+  --generalBorderRadiusInner: 0.41em;
+  --loginFormBackground: #020207;
+  --sharedFilesDefaultColor: #834cd0;
+  --sharedFilesSecondColor: #f0f0f1;
+  --generalErrorColor: #ff2026;
+
+  --ch1: #05478a;
+  --ch2: #0070e0;
+  --cs1: #005e38;
+  --cs2: #03a65a;
+  --cw1: #c24914;
+  --cw2: #fc8621;
+  --ce1: #851d41;
+  --ce2: #db3056;
+
+  --magic-button-shadow: hsl(260 97% 61% / 0.75);
+  --magic-button-border: hsl(260 97% 50% / 0.5);
+  --magic-button-top: 270;
+  --magic-button-bottom: 260;
+
+}
+
+:root {
+  --font-size-medium-medium-high: clamp(
+    12px,
+    calc(var(--_size) * 0.021),
+    calc(var(--_size) * 0.049)
+  );
+}
+
+@media (min-width: 896px) {
+  :root {
+    --font-size-medium-medium-high: calc(var(--_size) * 0.049);
+  }
+}
+
+@media (min-width: 796px) and (max-width: 895px) {
+  :root {
+    --font-size-medium-medium-high: calc(var(--_size) * 0.043);
+  }
+}
+
+@media (min-width: 696px) and (max-width: 795px) {
+  :root {
+    --font-size-medium-medium-high: calc(var(--_size) * 0.039);
+  }
+}
+
+@media (min-width: 596px) and (max-width: 695px) {
+  :root {
+    --font-size-medium-medium-high: calc(var(--_size) * 0.036);
+  }
+}
+
+@media (max-width: 595px) {
+  :root {
+    --font-size-medium-medium-high: calc(var(--_size) * 0.0282);
+  }
+}
+
+body {
+  margin: 0;
+  
+  font-size: var(--font-size-medium);
+  color: var(--foreground);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+html, body {
+  height: 100%;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body.gold .header h2,
+body.gold p,
+body.gold > * > * :not(.contact-btn) {
+  filter: invert(1) brightness(4.7);
+}
+
+body.gold .header h2 a {
+  filter: hue-rotate(0deg);
+}
+
+body.gold canvas {
+  filter: drop-shadow(2em 4em 0px #d8bd10) drop-shadow(-8em -14em 0px #d8bd10);
+}
+
+body.gold .header .spotlight {
+  filter: invert(1) brightness(4.7) opacity(0.5);
+}
+
+body.gold .mountains > div {
+  box-shadow: 
+    -1em -0.2em 0.4em -1.1em #c2ccff,
+    inset 0em 0em 0em 2px #d8a910,
+    inset 0.2em 0.3em 0.2em -0.2em #c2ccff,
+    inset 10.2em 10.3em 2em -10em #d4e6ff2f;
+}
+
+body.gold .content-section,
+body.gold .content-section ::before,
+body.gold .content-section ::after {
+  filter: invert(1) brightness(4.4) opacity(1);
+}
+
+/* Custom Scrollbar Styles */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--color-text-main);
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbarHandleColorHovered);
+}
