@@ -849,7 +849,7 @@ useEffect(() => {
                 ))}
               </nav>
               <a 
-                onClick={() => scrollToSection('username')} // Use click event for scrolling
+                href="/"  // Changed to use href for navigation
                 className={`text-${i18n.language === 'he' ? 'right' : 'left'}`} 
                 onMouseEnter={() => setHoveredLink('username')}
                 onMouseLeave={() => setHoveredLink(null)}
@@ -861,7 +861,7 @@ useEffect(() => {
           ) : (
             <>
               <a 
-                onClick={() => scrollToSection('username')} // Use click event for scrolling
+                href="/"  // Changed to use href for navigation
                 className={`text-${i18n.language === 'he' ? 'right' : 'left'}`} 
                 onMouseEnter={() => setHoveredLink('username')}
                 onMouseLeave={() => setHoveredLink(null)}
