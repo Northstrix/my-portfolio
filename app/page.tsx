@@ -13,6 +13,7 @@ import notificationStyles from '@/app/notification-styles.module.css';
 import LinkComponent from '@/app/LinkComponent';
 import ContactInfo from '@/app/ContactInfo';
 import LanguagePopup from '@/app/LanguagePopup';
+import Link from 'next/link';
 
 interface Container {
   id:string;
@@ -848,7 +849,7 @@ useEffect(() => {
                   </div>
                 ))}
               </nav>
-              <a 
+              <Link 
                 href="/"  // Changed to use href for navigation
                 className={`text-${i18n.language === 'he' ? 'right' : 'left'}`} 
                 onMouseEnter={() => setHoveredLink('username')}
@@ -856,11 +857,11 @@ useEffect(() => {
                 style={{ color: hoveredLink === 'username' ? 'var(--navbar-hovered-text-color)' : 'inherit', cursor: 'pointer' }}
               >
                 {t('username')}
-              </a>
+              </Link>
             </>
           ) : (
             <>
-              <a 
+              <Link 
                 href="/"  // Changed to use href for navigation
                 className={`text-${i18n.language === 'he' ? 'right' : 'left'}`} 
                 onMouseEnter={() => setHoveredLink('username')}
@@ -868,7 +869,7 @@ useEffect(() => {
                 style={{ color: hoveredLink === 'username' ? 'var(--navbar-hovered-text-color)' : 'inherit', cursor: 'pointer' }}
               >
                 {t('username')}
-              </a>
+              </Link>
               <nav className={`flex ${i18n.language === 'he' ? 'flex-row-reverse' : ''}`}>
                 {['bio', 'projects', 'playground', 'link', 'contact'].map((item) => (
                   <div key={item}
