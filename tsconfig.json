@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "ESNext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true, // Prevent type errors from dependencies like framer-motion
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node", // Critical for npm modules
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "paths": {
+      "@/*": ["./*"],
+      "@react-three/fiber": ["node_modules/@react-three/fiber"] // Path fallback
+    },
+    "plugins": [{ "name": "next" }],
+    "typeRoots": ["node_modules/@types", "./src"] // For custom declarations
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/@react-three-fiber.d.ts" // Include manual declarations
+  ],
+  "exclude": ["node_modules"]
+}
