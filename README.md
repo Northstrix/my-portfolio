@@ -1,42 +1,65 @@
-# Namer UI
-Namer UI is a collection of reusable components designed to empower developers in creating beautiful user interfaces.
-
-Check it out at https://namer-ui.netlify.app/
-
-![Alt Logo](https://raw.githubusercontent.com/Northstrix/namer-ui/refs/heads/main/screenshots/456x456px-logo.png)
-
-![Alt Home page](https://github.com/Northstrix/namer-ui/blob/main/screenshots/home-page.png?raw=true)
-
-![Alt Hero section](https://github.com/Northstrix/namer-ui/blob/main/screenshots/hero-section.png?raw=true)
-
-![Alt About Us Section](https://github.com/Northstrix/namer-ui/blob/main/screenshots/about-us-section.png?raw=true)
-
-![Alt Sequence Hero Section](https://github.com/Northstrix/namer-ui/blob/main/screenshots/sequence-hero-section.png?raw=true)
-
-![Alt Blog Post Header](https://github.com/Northstrix/namer-ui/blob/main/screenshots/blog-post-header.png?raw=true)
-
-![Alt Mobile view](https://github.com/Northstrix/namer-ui/blob/main/screenshots/Mobile%20View.png?raw=true)
+https://maxim-bortnikov.netlify.app/
 
 # Credit
 
-The existence of this project (at least in its current form) wouldn't've been possible without the following:
+The existence of this portfolio (at least in its current form) wouldn't've been possible without the following:
 
-[Text Reveal Animation](https://codepen.io/swatiparge/pen/LYVMEag) by [Swati Parge](https://codepen.io/swatiparge)
+[BUTTONS](https://codepen.io/uchihaclan/pen/NWOyRWy) by [TAYLOR](https://codepen.io/uchihaclan)
 
-[Text scroll and hover effect with GSAP and clip](https://codepen.io/Juxtopposed/pen/mdQaNbG) by [Juxtopposed](https://codepen.io/Juxtopposed)
+[Spotlight Card](https://hextaui.com/docs/animation/spotlight-card) by [HextaUI](https://hextaui.com/)
 
-[react-toastify](https://github.com/fkhadra/react-toastify) by [fkhadra](https://github.com/fkhadra)
+[tabler-icons](https://github.com/tabler/tabler-icons) by [tabler](https://github.com/tabler)
 
-[Chronicle Button](https://codepen.io/Haaguitos/pen/OJrVZdJ) by [Haaguitos](https://codepen.io/Haaguitos)
+[lucide](https://github.com/lucide-icons/lucide) by [lucide-icons](https://github.com/lucide-icons)
 
-[Code Block](https://ui.aceternity.com/components/code-block) by [Aceternity UI](https://ui.aceternity.com)
+[react-toastify](https://github.com/fkhadra/react-toastify) by [Fadi Khadra](https://github.com/fkhadra)
 
-[Named scroll-timeline vertical](https://codepen.io/utilitybend/pen/VwBRNwm) by [utilitybend](https://codepen.io/utilitybend)
+[react-i18next](https://github.com/i18next/react-i18next) by [i18next](https://github.com/i18next)
 
-[Cover](https://ui.aceternity.com/components/container-cover) by [Aceternity UI](https://ui.aceternity.com/components/container-cover)
+[firebase-js-sdk](https://github.com/firebase/firebase-js-sdk) by [firebase](https://github.com/firebase/firebase-js-sdk)
 
-</br>
+[Animated Tooltip](https://ui.aceternity.com/components/animated-tooltip) by [Aceternity UI](https://ui.aceternity.com/)
 
-Inspired by [x/ui](https://ui.3x.gl/)
+[すりガラスなプロフィールカード](https://codepen.io/ash_creator/pen/zYaPZLB) by [あしざわ - Webクリエイター](https://codepen.io/ash_creator)
 
-Namer UI utilizes the code from [HextaUI](https://github.com/preetsuthar17/HextaUI), a high-quality open-source project.
+[Signup Form](https://ui.aceternity.com/components/signup-form) from [Aceternity UI](https://ui.aceternity.com/)
+
+[motion](https://github.com/motiondivision/motion) by [motiondivision](https://github.com/motiondivision)
+
+[GSAP](https://github.com/greensock/GSAP) by [greensock](https://github.com/greensock)
+
+[Bouncing Cube Loader](https://codepen.io/haja-ran/pen/xxWRKNm) by [Haja Randriakoto](https://codepen.io/haja-ran)
+
+[JTB studios - Link](https://codepen.io/zzznicob/pen/GRPgKLM) by [Nico](https://codepen.io/zzznicob)
+
+[AI Image Generator](https://redpandaai.com/tools/ai-image-generator) by [Red Panda AI](https://redpandaai.com/)
+
+[Bento Grid](https://ui.aceternity.com/components/bento-grid) by [Aceternity UI](https://ui.aceternity.com/)
+
+[Lens](https://ui.aceternity.com/components/lens) by [Aceternity UI](https://ui.aceternity.com/)
+
+[Glowing Effect](https://ui.aceternity.com/components/glowing-effect) by [Aceternity UI](https://ui.aceternity.com/)
+
+[Draggable Card](https://ui.aceternity.com/components/draggable-card) by [Aceternity UI](https://ui.aceternity.com/)
+
+[Canvas Reveal Effect](https://ui.aceternity.com/components/canvas-reveal-effect) by [Aceternity UI](https://ui.aceternity.com/)
+
+[Blog Post Header](https://codepen.io/nodws/pen/GgKErep) by [Nodws](https://codepen.io/nodws/pen)
+
+[Confetti](https://hextaui.com/docs/animation/confetti) by [HextaUI](https://hextaui.com/)
+
+[Card hover effect](https://codepen.io/aaroniker/pen/yLEPJXj) by [Aaron Iker](https://codepen.io/aaroniker)
+
+[Perplexity](https://www.perplexity.ai/)
+
+[Mistral's Le Chat](https://chat.mistral.ai/chat)
+
+Used [Namer UI](https://namer-ui.netlify.app/) components:
+
+- Halomot Button
+
+- Structured Block
+
+- Unfolding Sidebar
+
+- Blog Post Header
