@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-open-sans), sans-serif;
+}
+
+html, body {
+  overflow: hidden;
+  height: 100%;
+}
+
+@layer base {
+  :root {
+    --background: #111014;
+    --background-adjacent-color: #33313d;
+    --lightened-background-adjacent-color: #403d4d;
+    --refresh-inscription-color: #9c98ac;
+    --navbar-background: #151419;
+    --foreground: #fff;
+    --secondary-foreground: #e1e1e1;
+    --first-theme-color: #A123F4;
+    --second-theme-color: #603DEC;
+    --card-background: #24222b;
+    --separator-color: #2b2933;
+    --flag-rounding: 5px;
+    --mild-rounding: 6px;
+    --outer-mild-rounding: 6.34px;
+    --moderate-rounding: 12px;
+    --outer-moderate-rounding: 12.56px;
+    --smooth-rounding: 18px;
+    --outer-smooth-rounding: 18.2px;
+    --theme-red-color: #F12B30;
+    --theme-blue-color: #3662f4;
+  }
+}
+
+.font-sans {
+  font-family: ui-sans-serif, system-ui, sans-serif, 
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* Apply to body or specific elements */
+body {
+  @apply font-sans;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-adjacent-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--second-theme-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--first-theme-color);
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--second-theme-color) var(--background-adjacent-color);
+}
