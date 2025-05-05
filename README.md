@@ -1,4 +1,121 @@
-https://maxim-bortnikov.netlify.app/
+# My Portfolio
+
+A statically-compiled web app built using Next.js 15, It utilizes the GSAP and Framer Motion, and employs components from [Aceternity UI](https://ui.aceternity.com/), [Namer UI](https://namer-ui.netlify.app/), and [Hexta UI](https://hextaui.com/).
+
+Check it out at https://maxim-bortnikov.netlify.app/
+
+Features:
+
+ - Like button
+
+ - Project link click count
+
+ - Playground section with draggable cards (desktop only)
+
+Playground Events:
+
+ - Change the active card
+
+ - Change the background of the wildcard
+
+ - Change the inscriptions on the penumbra card
+
+ - Show an animated rectangle notification
+
+ - Change the inscription in the playground area
+
+ - Change the style of the inscription in the playground area
+
+ - Display a notification with a random intro quote from the "Losing Alice" TV show
+
+# Firestore Rules:
+If you decide to use this as a template for your own portfolio and want the link/like counter to work, please follow these steps:
+
+ - Run Firestore in test mode.
+
+ - Create the necessary fields by modifying the relevant functions:
+
+   Before:
+   
+        const handleProjectClick = async (link: string) => {
+          incrementLinkCount(i18n.language, link);
+        };
+
+        async function incrementLinkCount(language: string, link: string) {
+          const cleanedLink = sanitizeLink(link);
+          const safeLink = encodeURIComponent(cleanedLink);
+          const fieldName = `${language}:${safeLink}`;
+          const docRef = doc(db, "data", "linkCounts");
+          try {
+            await updateDoc(docRef, { [fieldName]: increment(1) });
+          } catch (error: any) {
+            if (error.code === "not-found") {
+              await setDoc(docRef, { [fieldName]: 1 }, { merge: true });
+            } else {
+              //console.error("Error incrementing link count:", error);
+            }
+          }
+          return safeLink;
+        }
+   
+    After:
+
+       const handleProjectClick = async (link: string) => {
+          for (const lang of languages) {
+            incrementLinkCount(lang.code, link);
+          }
+        };
+   
+       async function incrementLinkCount(language: string, link: string) {
+          const cleanedLink = sanitizeLink(link);
+          const safeLink = encodeURIComponent(cleanedLink);
+          const fieldName = `${language}:${safeLink}`;
+          const docRef = doc(db, "data", "linkCounts");
+          try {
+            await updateDoc(docRef, { [fieldName]: increment(0) });
+          } catch (error: any) {
+            if (error.code === "not-found") {
+              await setDoc(docRef, { [fieldName]: 0 }, { merge: true });
+            } else {
+              //console.error("Error incrementing link count:", error);
+            }
+          }
+          return safeLink;
+        }
+   
+   And clicking on  each link-opening button to initialize the fields. Don’t forget to set up the fields for likes in a similar manner.
+
+ - Restore the original functions.
+
+ - Set the following rules for Firestore:
+
+        service cloud.firestore {
+          match /databases/{database}/documents {
+        
+            // LIKE COUNTS: Anyone can read and increment
+            match /data/likeCounts {
+              allow read: if true;
+              allow update: if isIncrement(resource, request);
+              allow create, delete: if false;
+            }
+        
+            // LINK COUNTS: Anyone can increment, no one can read
+            match /data/linkCounts {
+              allow read: if false;
+              allow update: if isIncrement(resource, request);
+              allow create, delete: if false;
+            }
+          }
+        
+          // Only allow updates that increment a single existing numeric field
+          function isIncrement(resource, request) {
+            return request.writeFields.size() == 1 &&
+              resource.data[request.writeFields[0]] is int &&
+              request.resource.data[request.writeFields[0]] > resource.data[request.writeFields[0]] &&
+              request.resource.data.keys().hasOnly(resource.data.keys());
+          }
+        }
+        
 
 # Credit
 
