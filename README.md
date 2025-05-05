@@ -1,6 +1,6 @@
 # My Portfolio
 
-A statically-compiled web app built using Next.js 15, It utilizes the GSAP and Framer Motion, and employs components from [Aceternity UI](https://ui.aceternity.com/), [Namer UI](https://namer-ui.netlify.app/), and [Hexta UI](https://hextaui.com/).
+A statically-compiled web app built using Next.js 15, It utilizes the GSAP and Framer Motion, and employs components from [Aceternity UI](https://ui.aceternity.com/), [Namer UI](https://namer-ui.netlify.app/), and [HextaUI](https://hextaui.com/).
 
 Check it out at https://maxim-bortnikov.netlify.app/
 
