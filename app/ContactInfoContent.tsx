@@ -2,9 +2,8 @@
 import React, { useRef, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import StructuredBlock from '@/components/StructuredBlock/StructuredBlock';
-import { addRTLProps, headlineProps, textProps, contentProps, maxSectionWidth } from './LandingPage.styles';
+import { addRTLProps, headlineProps, textProps, maxSectionWidth } from './LandingPage.styles';
 import ContactContainer from '@/components/ContactContainer/ContactContainer'
-import EmptyCard from '@/components/PlaygroundContainer/PlaygroundContainer';
 
 interface ContactInfoContentProps {
   isRTL: boolean;

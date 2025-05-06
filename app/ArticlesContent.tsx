@@ -12,6 +12,7 @@ import styled from 'styled-components';
 // Requirement for a custom Nuance "svg" icon
 interface ArticlesContentProps {
   isRTL: boolean;
+  onArticleClick?: (link: string) => void;
 }
 
 interface NuanceIconProps {
@@ -110,7 +111,7 @@ const TEXT_SIZES = {
   },
 };
 
-const ArticlesContent: React.FC<ArticlesContentProps> = ({ isRTL }) => {
+const ArticlesContent: React.FC<ArticlesContentProps> = ({ isRTL, onArticleClick }) => {
   const { t } = useTranslation();
   const [metaFontSizeFirst, setMetaFontSizeFirst] = useState(TEXT_SIZES[isRTL ? 'rtl' : 'ltr'].desktop.maxMetaFontSize);
   const [authorImageSizeFirst, setAuthorImageSizeFirst] = useState(TEXT_SIZES[isRTL ? 'rtl' : 'ltr'].desktop.maxAuthorImageSize);
@@ -200,6 +201,7 @@ const ArticlesContent: React.FC<ArticlesContentProps> = ({ isRTL }) => {
             isRTL={isRTL}
             metaFontSize={`${metaFontSizeFirst}px`}
             socialIconSize={`${socialIconSizeFirst}px`}
+            onSocialIconClick={onArticleClick}
           />
           <div style={{ height: '32px' }}></div>
           <BlogPostHeader
@@ -228,6 +230,7 @@ const ArticlesContent: React.FC<ArticlesContentProps> = ({ isRTL }) => {
             isRTL={isRTL}
             metaFontSize={`${metaFontSizeSecond}px`}
             socialIconSize={`${socialIconSizeSecond}px`}
+            onSocialIconClick={onArticleClick}
           />
         </div>
       </StructuredBlock>

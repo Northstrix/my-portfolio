@@ -138,6 +138,46 @@ const CreditModal: React.FC<CreditModalProps> = ({ isOpen, onClose }) => {
                 <a className="hover-link1" href="https://codepen.io/aaroniker/pen/yLEPJXj" target="_blank" rel="noopener noreferrer">Card hover effect</a> by <a className="hover-link2" href="https://codepen.io/aaroniker" target="_blank" rel="noopener noreferrer">Aaron Iker</a>
               </li>
               <li>
+                <a className="hover-link1" href="https://github.com/oframe/ogl" target="_blank" rel="noopener noreferrer">
+                  ogl
+                </a> by <a className="hover-link2" href="https://github.com/oframe" target="_blank" rel="noopener noreferrer">oframe</a>
+              </li>
+              <li>
+                <a className="hover-link1" href="https://www.reactbits.dev/backgrounds/balatro" target="_blank" rel="noopener noreferrer">
+                  Balatro
+                </a> by <a className="hover-link2" href="https://www.reactbits.dev/" target="_blank" rel="noopener noreferrer">React Bits</a>
+              </li>
+              <li>
+                <a className="hover-link1" href="https://www.reactbits.dev/backgrounds/aurora" target="_blank" rel="noopener noreferrer">
+                  Aurora
+                </a> by <a className="hover-link2" href="https://www.reactbits.dev/" target="_blank" rel="noopener noreferrer">React Bits</a>
+              </li>
+              <li>
+                <a className="hover-link1" href="https://www.reactbits.dev/backgrounds/letter-glitch" target="_blank" rel="noopener noreferrer">
+                  Letter Glitch
+                </a> by <a className="hover-link2" href="https://www.reactbits.dev/" target="_blank" rel="noopener noreferrer">React Bits</a>
+              </li>
+              <li>
+                <a className="hover-link1" href="https://www.reactbits.dev/text-animations/decrypted-text" target="_blank" rel="noopener noreferrer">
+                  Decrypted Text
+                </a> by <a className="hover-link2" href="https://www.reactbits.dev/" target="_blank" rel="noopener noreferrer">React Bits</a>
+              </li>
+              <li>
+                <a className="hover-link1" href="https://www.reactbits.dev/text-animations/blur-text" target="_blank" rel="noopener noreferrer">
+                  Blur Text
+                </a> by <a className="hover-link2" href="https://www.reactbits.dev/" target="_blank" rel="noopener noreferrer">React Bits</a>
+              </li>
+              <li>
+                <a className="hover-link1" href="https://github.com/animate-css/animate.css" target="_blank" rel="noopener noreferrer">
+                  animate-css
+                </a> by <a className="hover-link2" href="https://github.com/animate-css" target="_blank" rel="noopener noreferrer">animate-css</a>
+              </li>
+              <li>
+                <a className="hover-link1" href="https://www.reactbits.dev/text-animations/blur-text" target="_blank" rel="noopener noreferrer">
+                  Click Spark
+                </a> by <a className="hover-link2" href="https://www.reactbits.dev/" target="_blank" rel="noopener noreferrer">React Bits</a>
+              </li>
+              <li>
                 <a className="hover-link1 link-perplexity" href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer">Perplexity</a>
               </li>
               <li>

@@ -38,6 +38,7 @@ interface BlogPostHeaderProps {
   metaFontSize?: string; // New prop for meta info font size
   authorImageSize?: string; // New prop for author image size
   socialIconSize?: string; // New prop for social media icon size
+  onSocialIconClick?: (link: string) => void;
 }
 
 const isRTLCheck = (text: string): boolean => {
@@ -72,6 +73,7 @@ const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({
   metaFontSize = '16px', // Default font size for meta info
   authorImageSize = '50px', // Default author image size
   socialIconSize = '50px', // Default social media icon size
+  onSocialIconClick,
 }) => {
   const [isMobileView, setIsMobileView] = useState(false);
   const [isImageHovered, setIsImageHovered] = useState(false);
@@ -280,6 +282,12 @@ const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({
                         foregroundColor={icon.foregroundColor}
                         $isRTL={isRTL}
                         size={socialIconSize}
+                        onClick={e => {
+                          // Open the link (default behavior)
+                          // Call the callback right after
+                          if (onSocialIconClick) onSocialIconClick(icon.link);
+                          // Let the link open in a new tab as usual
+                        }}
                       >
                         {icon.icon}
                       </SocialLink>
@@ -359,6 +367,12 @@ const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({
                         foregroundColor={icon.foregroundColor}
                         $isRTL={isRTL}
                         size={socialIconSize}
+                        onClick={e => {
+                          // Open the link (default behavior)
+                          // Call the callback right after
+                          if (onSocialIconClick) onSocialIconClick(icon.link);
+                          // Let the link open in a new tab as usual
+                        }}
                       >
                         {icon.icon}
                       </SocialLink>

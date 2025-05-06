@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import LetterGlitch from '@/components/LetterGlitch/LetterGlitch';
+import DecryptedText from '@/components/DecryptedText/DecryptedText';
 
 interface ProfileCardProps {
   photo: string;
@@ -15,6 +17,7 @@ interface ProfileCardProps {
   containerStyle?: React.CSSProperties;
   textAlign?: "left" | "right";
   direction?: "ltr" | "rtl";
+  bioFontSize?: number;
 }
 
 const ProfileCard: React.FC<ProfileCardProps> = ({
@@ -29,6 +32,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   containerStyle = {},
   textAlign = "left",
   direction = "ltr",
+  bioFontSize = 16,
 }) => {
   const [isCardHovered, setIsCardHovered] = useState(false);
   const [isImageHovered, setIsImageHovered] = useState(false);
@@ -44,7 +48,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   ) {
     containerHeightPx = parseFloat(containerStyle.height);
   }
-  // Mobile: width 100%, desktop: width = height * aspectRatio
   const isMobile = containerStyle.width === "100%";
   const calculatedWidth = isMobile
     ? "100%"
@@ -94,16 +97,16 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
           minHeight: 0,
         }}
       >
-        {/* Image Section with outline */}
+        {/* Image & Glitch Section with proper border radius clipping */}
         <div
           style={{
             position: "relative",
             width: "100%",
-            height: "auto",
             aspectRatio: `${aspectRatio}`,
             borderRadius: "var(--mild-rounding)",
-            overflow: "hidden",
+            overflow: "hidden", // Ensures glitch and image are clipped
             border: isImageHovered ? hoverOutline : outline,
+            direction: "ltr",
             background: isImageHovered
               ? "var(--lightened-background-adjacent-color)"
               : "var(--background-adjacent-color)",
@@ -113,6 +116,14 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
           onMouseEnter={() => setIsImageHovered(true)}
           onMouseLeave={() => setIsImageHovered(false)}
         >
+          {/* Glitch effect (now clipped by border radius via parent) */}
+          <LetterGlitch
+            glitchSpeed={44}
+            centerVignette={true}
+            outerVignette={false}
+            smooth={true}
+          />
+          {/* Image */}
           <Image
             src={photo}
             alt={name}
@@ -122,6 +133,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
               borderRadius: "var(--mild-rounding)",
               transition: "filter 0.3s",
               filter: isImageHovered ? "brightness(0.95)" : "none",
+              zIndex: 1,
             }}
             priority
           />
@@ -156,7 +168,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
             {name}
           </div>
           <div
-            className="font-sans text-[var(--secondary-foreground)] text-[16px]"
+            className="font-sans text-[var(--secondary-foreground)]"
             style={{
               textAlign,
               wordBreak: "break-word",
@@ -164,10 +176,15 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
               flex: 1,
               overflow: "hidden",
               textOverflow: "ellipsis",
+              fontSize: `${bioFontSize}px`,
             }}
-            title={bio}
           >
-            {bio}
+            <DecryptedText
+              maxIterations={18}
+              speed={76}
+              animateOn="view"
+              text={bio}
+            />
           </div>
         </div>
       </div>

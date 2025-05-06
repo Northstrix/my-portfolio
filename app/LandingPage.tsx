@@ -17,7 +17,6 @@ import ContactInfoContent from "./ContactInfoContent";
 import EducationContent from "./EducationContent";
 import WorkExperienceContent from "./WorkExperienceContent";
 import { Container, ContentArea, Section } from "./LandingPage.styles";
-import { gsap } from "gsap";
 import BioSection from "./BioSection";
 import { setDoc, doc, increment, updateDoc } from "firebase/firestore";
 import { db } from "@/app/lib/firebase";
@@ -56,32 +55,28 @@ const LandingPage: React.FC<LandingPageProps> = ({ isMobile, className }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-      gsap.fromTo(
-        `.${className}`,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.3, ease: "power2.inOut" }
-      );
       setIsLanguageInfoOpen(true); // Open the new modal after 1 second
-    }, 1000);
+    }, 3000);
     return () => clearTimeout(timer);
   }, [className]);
 
   const handleProjectClick = async (link: string) => {
-    incrementLinkCount(i18n.language, link);
+    incrementLinkCount(i18n.language, link, "linkCounts");
   };
 
-  function sanitizeLink(link: string): string {
-    let cleaned = link.replace(/^https?:\/\//, "");
-    cleaned = cleaned.replace(/^www\./, "");
-    cleaned = cleaned.replace(/\./g, "-"); // Replace all "." with "-"
-    return cleaned;
-  }
+  const handleSocialMediaClick = async (link: string) => {
+    incrementLinkCount(i18n.language, link, "socialCounts");
+  };
 
-  async function incrementLinkCount(language: string, link: string) {
+  const handleArticleClick = async (link: string) => {
+    incrementLinkCount(i18n.language, link, "articleCounts");
+  };  
+
+  async function incrementLinkCount(language: string, link: string, bucket: string) {
     const cleanedLink = sanitizeLink(link);
     const safeLink = encodeURIComponent(cleanedLink);
     const fieldName = `${language}:${safeLink}`;
-    const docRef = doc(db, "data", "linkCounts");
+    const docRef = doc(db, "data", bucket);
     try {
       await updateDoc(docRef, { [fieldName]: increment(1) });
     } catch (error: any) {
@@ -92,6 +87,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ isMobile, className }) => {
       }
     }
     return safeLink;
+  }
+
+  function sanitizeLink(link: string): string {
+    let cleaned = link.replace(/^https?:\/\//, "");
+    cleaned = cleaned.replace(/^www\./, "");
+    cleaned = cleaned.replace(/\./g, "-"); // Replace all "." with "-"
+    return cleaned;
   }
 
   const openCreditModal = () => setIsCreditModalOpen(true);
@@ -176,6 +178,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ isMobile, className }) => {
               bio={t("my-bio")}
               contactInfoCallback={() => scrollToSection("contact-info")}
               downloadCVLink="https://github.com/Northstrix/my-portfolio/blob/main/public/Maxim%20Bortnikov's%20CV.pdf"
+              onLinkClick={handleSocialMediaClick}
               isRTL={isRTL}
             />
           </Section>
@@ -195,7 +198,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ isMobile, className }) => {
             <EmbeddedProjectsContent isRTL={isRTL} onProjectClick={handleProjectClick} />
           </Section>
           <Section id="articles">
-            <ArticlesContent isRTL={isRTL} />
+            <ArticlesContent isRTL={isRTL} onArticleClick={handleArticleClick} />
           </Section>
           <Section id="playground">
             <PlaygroundContent isRTL={isRTL} />

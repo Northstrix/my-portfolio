@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from "styled-components";
 
 export const maxSectionWidth = '1536px';
 
@@ -8,13 +8,18 @@ export const Container = styled.div<{ isRTL: boolean }>`
   height: 100vh;
 `;
 
-export const ContentArea = styled.div<{ isRTL: boolean, isMobile: boolean }>`
+export const ContentArea = styled.div<{ isRTL: boolean; isMobile: boolean }>`
   flex: 1;
   height: ${props => (props.isMobile ? 'calc(100vh - 56px)' : '100vh')};
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
+  ${({ isRTL }) =>
+    isRTL
+      ? css`direction: rtl;`
+      : css`direction: ltr;`
+  }
 `;
 
 export const Section1 = styled.div<{}>`

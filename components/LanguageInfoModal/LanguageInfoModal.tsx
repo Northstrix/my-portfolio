@@ -2,6 +2,7 @@ import React from "react";
 import HalomotButton from "@/components/HalomotButton/HalomotButton";
 import LanguageIcon from "@/components/LanguageIcon";
 import { useTranslation } from "react-i18next";
+import 'animate.css';
 
 // Types
 interface Language {
@@ -153,7 +154,7 @@ const LanguageInfoModal: React.FC<LanguageInfoModalProps> = ({
   fontSizeMobile = "9.6px",
   fontSizeDesktop = "18px",
   modalWidthMobile = 336,
-  modalWidthDesktop = 542,
+  modalWidthDesktop = 544,
   inlineIconSizeMobile = INLINE_ICON_SIZE_MOBILE,
   inlineIconSizeDesktop = INLINE_ICON_SIZE_DESKTOP,
 }) => {
@@ -188,7 +189,7 @@ const LanguageInfoModal: React.FC<LanguageInfoModalProps> = ({
   return (
     <div className="language-info-modal-overlay">
       <div
-        className="language-info-modal-grid"
+        className="language-info-modal-grid animate__animated animate__jackInTheBox"
         style={{
           width: modalWidth,
           maxWidth: "96vw",

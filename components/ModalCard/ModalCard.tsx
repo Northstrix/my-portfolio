@@ -1,43 +1,47 @@
-'use client';
+"use client";
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import Aurora from '@/components/Aurora/Aurora';
+import { CanvasRevealEffect } from "./CanvasRevealEffect";
 
-interface ContactCardProps {
+interface ModalCardProps {
   isRTL: boolean;
   outerRounding: string;
   innerRounding: string;
-  onCardClick: (index: number) => void;
-  activeCard: number;
+  onCardClick: () => void;
   firstCardRevealCanvas: boolean;
   secondCardText: string[];
-  emails: string[]; // Add emails prop
+  firstArray: string[];
+  secondArray: string[];
+  isHovered: boolean; // Ensure this prop is passed correctly
 }
 
-const ContactCard: React.FC<ContactCardProps> = ({
+const ModalCard: React.FC<ModalCardProps> = ({
   isRTL,
   outerRounding,
   innerRounding,
   onCardClick,
-  activeCard,
   firstCardRevealCanvas,
   secondCardText,
-  emails, // Destructure emails prop
+  firstArray,
+  secondArray,
+  isHovered: isHoveredProp // Rename to avoid conflict with local state
 }) => {
   const [isCardHovered, setIsCardHovered] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const [textSize, setTextSize] = useState(24);
+  const [mirrorTextSize, setMirrorTextSize] = useState(24);
+  const [firstArrayTextSize, setFirstArrayTextSize] = useState(24);
+  const [secondArrayTextSize, setSecondArrayTextSize] = useState(24);
   const [letterSpacing, setLetterSpacing] = useState(0.32);
-  const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const updateLayout = () => {
       if (containerRef.current) {
-        setIsMobile(containerRef.current.offsetWidth < 580);
+        setIsMobile(containerRef.current.offsetWidth < 624);
       }
     };
 
@@ -45,15 +49,15 @@ const ContactCard: React.FC<ContactCardProps> = ({
       if (cardRef.current) {
         const width = cardRef.current.offsetWidth;
         const minWidth = 200;
-        const maxWidth = isMobile ? 580 : 600;
-        const minTextSize = isMobile ? 8 : 8;
-        const maxTextSize = isMobile ? 24 : 18;
-        const calculatedTextSize =
-          ((maxTextSize - minTextSize) / (maxWidth - minWidth)) *
-            (width - minWidth) +
-          minTextSize;
+        const maxWidth = isMobile ? 580 : 624;
+        const minTextSize = isMobile ? 8 : 7;
+        const maxTextSize = isMobile ? 24 : 14;
+        const calculatedTextSize = ((maxTextSize - minTextSize) / (maxWidth - minWidth)) * (width - minWidth) + minTextSize;
         const cappedTextSize = Math.min(calculatedTextSize, maxTextSize);
         setTextSize(cappedTextSize);
+        setMirrorTextSize(cappedTextSize);
+        setFirstArrayTextSize(cappedTextSize);
+        setSecondArrayTextSize(cappedTextSize * 1.2);
       }
     };
 
@@ -66,6 +70,7 @@ const ContactCard: React.FC<ContactCardProps> = ({
     if (containerRef.current) {
       resizeObserver.observe(containerRef.current);
     }
+
     updateLayout();
     updateTextSize();
 
@@ -81,42 +86,24 @@ const ContactCard: React.FC<ContactCardProps> = ({
   return (
     <motion.div
       ref={containerRef}
-      style={{
-        backgroundColor: isCardHovered
-          ? 'var(--lightened-background-adjacent-color)'
-          : 'var(--background-adjacent-color)',
-        padding: '1px',
-        borderRadius: outerRounding,
-        transition: 'background-color 0.3s ease-in-out, border 0.3s ease-in-out',
-        width: '100%',
-        height: '100%',
-        boxSizing: 'border-box',
-        overflow: 'hidden', // Ensure the container hides overflow
-        position: 'relative', // Ensure the container can position absolutely
-      }}
-      onMouseEnter={() => setIsCardHovered(true)}
-      onMouseLeave={() => setIsCardHovered(false)}
+      style={{ width: '100%', height: '100%', boxSizing: 'border-box' }}
     >
       <div
         className="flex flex-col h-full"
         style={{
           borderRadius: innerRounding,
-          backgroundColor: 'var(--card-background)',
-          padding: '2rem',
+          backgroundColor: 'transparent',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          width: '100%',
           height: '100%',
-          boxSizing: 'border-box',
-          position: 'relative', // Ensure content is above the Aurora
-          zIndex: 1, // Ensure content is above the Aurora
+          boxSizing: 'border-box'
         }}
       >
         <div className="flex flex-col items-center w-full" style={{ maxWidth: '600px' }}>
           <div
             className="relative w-full mx-auto"
-            style={{ aspectRatio: isMobile ? '412/640' : '16/9' }}
+            style={{ aspectRatio: isMobile ? '412/600' : '16/9' }}
           >
             <AnimatePresence>
               <motion.div
@@ -126,8 +113,12 @@ const ContactCard: React.FC<ContactCardProps> = ({
                 exit={{ opacity: 0, scale: 0.84, rotate: randomRotateY() }}
                 transition={{ duration: 0.4, ease: 'easeInOut' }}
                 className="absolute inset-0 origin-center cursor-pointer"
-                onHoverStart={() => setHoveredCard(1)}
-                onHoverEnd={() => setHoveredCard(null)}
+                onMouseEnter={() => {
+                  setIsCardHovered(true);
+                }}
+                onMouseLeave={() => {
+                  setIsCardHovered(false);
+                }}
               >
                 <div className="absolute inset-0 w-full h-full">
                   <div className="absolute inset-0 overflow-hidden">
@@ -135,82 +126,64 @@ const ContactCard: React.FC<ContactCardProps> = ({
                       ref={cardRef}
                       style={{ maxWidth: '100%', width: '100%' }}
                       data-component-id="card-2"
-                      onClick={() => onCardClick(1)}
+                      onClick={onCardClick}
                     >
                       <div
                         style={{
-                          borderRadius: outerRounding,
+                          borderRadius: isCardHovered ? '0' : outerRounding,
                           padding: '1px',
-                          background: isHovered
-                            ? 'var(--background-adjacent-color)'
-                            : 'var(--refresh-inscription-color)',
+                          background: isCardHovered ? 'var(--background-adjacent-color)' : 'white',
                           display: 'inline-block',
                           width: '100%',
-                          aspectRatio: isMobile ? '412/640' : '16/9',
-                          transition: 'background 0.3s ease-in-out',
+                          aspectRatio: isMobile ? '412/600' : '16/9',
+                          transition: 'background 0.3s ease-in-out, border-radius 0.3s ease-in-out',
+                          position: 'relative'
                         }}
-                        onMouseEnter={() => setIsHovered(true)}
-                        onMouseLeave={() => setIsHovered(false)}
                       >
+                        {isCardHovered && firstCardRevealCanvas && (
+                          <CanvasRevealEffect
+                            animationSpeed={5.1}
+                            containerClassName="absolute inset-0"
+                            colors={[[236, 72, 153], [232, 121, 249]]}
+                            dotSize={7}
+                            replaceBackground
+                          />
+                        )}
                         <div
                           style={{
-                            backgroundColor: isHovered
-                              ? 'var(--background)'
-                              : 'var(--foreground)',
-                            padding: '16px',
-                            borderRadius: innerRounding,
+                            padding: '29px',
+                            borderRadius: isCardHovered ? '0' : innerRounding,
                             width: '100%',
                             height: '100%',
                             display: 'flex',
                             flexDirection: isMobile ? 'column' : 'row',
                             color: 'var(--foreground)',
                             position: 'relative',
-                            overflow: 'hidden',
-                            transition: 'background-color 0.3s ease-in-out',
+                            overflow: 'hidden'
                           }}
                         >
-                          {(
-                            <div
-                              className={`absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none transition-opacity duration-3000 ${
-                                isHovered ? 'opacity-100' : 'opacity-0'
-                              }`}
-                              style={{
-                                borderRadius: innerRounding,
-                              }}
-                            >
-                              <Aurora />
-                            </div>
-                          )}
                           <div
                             id="card-2-text"
                             style={{
                               position: 'absolute',
-                              top: '10px',
-                              right: '17px',
+                              top: '9px',
+                              right: '16px',
                               display: 'flex',
                               flexDirection: 'row',
                               zIndex: 2,
-                              color: isHovered
-                                ? 'var(--foreground)'
-                                : 'var(--background)',
+                              color: isCardHovered ? 'var(--foreground)' : 'var(--background)',
                               fontWeight: 'bold',
                               fontSize: `${textSize}px`,
-                              transition: 'color 0.3s ease-in-out',
+                              transition: 'color 0.3s ease-in-out'
                             }}
                           >
                             {secondCardText.map((letter, index) => (
                               <div
                                 key={`card-2-letter-${index}`}
                                 style={{
-                                  transform:
-                                    letterSpacing < 0 && index > 0
-                                      ? `translateX(${letterSpacing * index}px)`
-                                      : 'none',
-                                  marginLeft:
-                                    letterSpacing >= 0
-                                      ? `${Math.abs(letterSpacing)}px`
-                                      : '0',
-                                  letterSpacing: `${letterSpacing}px`,
+                                  transform: letterSpacing < 0 && index > 0 ? `translateX(${letterSpacing * index}px)` : 'none',
+                                  marginLeft: letterSpacing >= 0 ? `${Math.abs(letterSpacing)}px` : '0',
+                                  letterSpacing: `${letterSpacing}px`
                                 }}
                               >
                                 {letter}
@@ -221,33 +194,25 @@ const ContactCard: React.FC<ContactCardProps> = ({
                             id="card-2-mirror"
                             style={{
                               position: 'absolute',
-                              bottom: '10px',
-                              left: '17px',
+                              bottom: '9px',
+                              left: '16px',
                               display: 'flex',
                               flexDirection: 'row',
                               transform: 'scale(-1, -1)',
                               zIndex: 2,
-                              color: isHovered
-                                ? 'var(--foreground)'
-                                : 'var(--background)',
+                              color: isCardHovered ? 'var(--foreground)' : 'var(--background)',
                               fontWeight: 'bold',
-                              fontSize: `${textSize}px`,
-                              transition: 'color 0.3s ease-in-out',
+                              fontSize: `${mirrorTextSize}px`,
+                              transition: 'color 0.3s ease-in-out'
                             }}
                           >
                             {secondCardText.map((letter, index) => (
                               <div
                                 key={`card-2-mirror-letter-${index}`}
                                 style={{
-                                  transform:
-                                    letterSpacing < 0 && index > 0
-                                      ? `translateX(${letterSpacing * index}px)`
-                                      : 'none',
-                                  marginLeft:
-                                    letterSpacing >= 0
-                                      ? `${Math.abs(letterSpacing)}px`
-                                      : '0',
-                                  letterSpacing: `${letterSpacing}px`,
+                                  transform: letterSpacing < 0 && index > 0 ? `translateX(${letterSpacing * index}px)` : 'none',
+                                  marginLeft: letterSpacing >= 0 ? `${Math.abs(letterSpacing)}px` : '0',
+                                  letterSpacing: `${letterSpacing}px`
                                 }}
                               >
                                 {letter}
@@ -262,58 +227,67 @@ const ContactCard: React.FC<ContactCardProps> = ({
                               alignItems: 'center',
                               position: 'relative',
                               width: '100%',
+                              gap: isMobile ? '48px' : ''
                             }}
                           >
                             <div
                               style={{
-                                transform: !isMobile
-                                  ? 'translateX(-23px)'
-                                  : 'none',
+                                transform: !isMobile ? 'translateX(-23px)' : 'translateY(20px)',
                                 position: 'relative',
                                 height: isMobile ? 'auto' : '100%',
                                 width: isMobile ? '100%' : '50%',
                                 aspectRatio: '1/1',
-                                padding: '15px',
+                                padding: '15px'
                               }}
                             >
                               <Image
-                                src="/second-playground-card-image.webp"
+                                src="/modal-card-image.webp"
                                 alt=""
                                 fill
-                                style={{
-                                  objectFit: 'contain',
-                                  objectPosition: 'center',
-                                }}
+                                style={{ objectFit: 'contain', objectPosition: 'center' }}
                                 priority
                                 sizes="412px 16 9"
                               />
                             </div>
                             <div
                               style={{
-                                transform: !isMobile
-                                  ? 'translateX(-52px)'
-                                  : 'none',
+                                transform: !isMobile ? 'translateX(-20px)' : 'none',
                                 display: isMobile ? '' : 'flex',
                                 textAlign: isMobile ? 'center' : 'left',
                                 flexDirection: 'column',
                                 alignItems: 'flex-start',
                                 width: isMobile ? '100%' : '50%',
-                                padding: '15px',
+                                padding: '0px'
                               }}
                             >
-                              {emails.map((email, index) => (
+                              {firstArray.map((item, index) => (
                                 <div
-                                  key={`email-${index}`}
+                                  key={`first-array-${index}`}
                                   style={{
-                                    marginBottom: '9px',
-                                    fontSize: `${textSize}px`,
+                                    marginBottom: '5px',
+                                    fontSize: `${firstArrayTextSize}px`,
                                     fontWeight: 'bold',
-                                    color: isHovered
-                                      ? 'var(--foreground)'
-                                      : 'var(--background)',
+                                    color: isCardHovered ? 'var(--foreground)' : 'var(--background)',
+                                    textAlign: 'left',
+                                    transition: 'color 0.3s ease-in-out'
                                   }}
                                 >
-                                  {email}
+                                  {item}
+                                </div>
+                              ))}
+                              {secondArray.map((item, index) => (
+                                <div
+                                  key={`second-array-${index}`}
+                                  style={{
+                                    marginTop: '12px',
+                                    fontSize: `${secondArrayTextSize}px`,
+                                    fontWeight: 'bold',
+                                    color: isCardHovered ? 'var(--foreground)' : 'var(--background)',
+                                    textAlign: 'right',
+                                    transition: 'color 0.3s ease-in-out'
+                                  }}
+                                >
+                                  {item}
                                 </div>
                               ))}
                             </div>
@@ -332,4 +306,4 @@ const ContactCard: React.FC<ContactCardProps> = ({
   );
 };
 
-export default ContactCard;
+export default ModalCard;

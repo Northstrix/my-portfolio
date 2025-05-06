@@ -4,12 +4,13 @@ import { useTranslation } from 'react-i18next';
 import StructuredBlock from '@/components/StructuredBlock/StructuredBlock';
 import { addRTLProps, headlineProps, textProps, contentProps, maxSectionWidth } from './LandingPage.styles';
 import PlaygroundContainer from '@/components/PlaygroundContainer/PlaygroundContainer';
-import { quotes, INSCRIPTION, INSCRIPTION2, INSCRIPTION3, INSCRIPTION4 } from '@/app/playgroundConstants';
+import { quotes, INSCRIPTION, INSCRIPTION2, INSCRIPTION3, INSCRIPTION4, textOptions, items } from '@/app/playgroundConstants';
 import useMobileCheckForPlayground from '@/hooks/useMobileCheckForPlayground';
 import { DraggableCardBody, DraggableCardContainer } from "@/components/DraggableCard/DraggableCard";
 import HalomotButton from '@/components/HalomotButton/HalomotButton';
 import { ToastContainer, toast } from "react-toastify";
 import RectangleNotification from '@/components/RectangleNotification/RectangleNotification';
+import ModalContainer from '@/components/ModalCard/ModalContainer'; // Import the ModalContainer
 
 interface PlaygroundContentProps {
   isRTL: boolean;
@@ -28,29 +29,21 @@ const PlaygroundContent: React.FC<PlaygroundContentProps> = ({ isRTL }) => {
   const [activeNotification, setActiveNotification] = useState<{ type: 'success' | 'error'; message: string; message1?: string } | null>(null);
   const [isToastRTL, setIsToastRTL] = useState(false);
   const [shouldShowDesktopButton, setShouldShowDesktopButton] = useState(false);
+  const [showModalCard, setShowModalCard] = useState(false);
 
   useEffect(() => {
     const checkButtonVisibility = () => {
       const isDesktopHeight = window.innerHeight > 896;
       setShouldShowDesktopButton(isDesktopHeight);
     };
-    // Initial check
     checkButtonVisibility();
-    // 1-second delayed check
     const stabilizationTimer = setTimeout(checkButtonVisibility, 1000);
-    // Raw height tracking
     window.addEventListener('resize', checkButtonVisibility);
     return () => {
       clearTimeout(stabilizationTimer);
       window.removeEventListener('resize', checkButtonVisibility);
     };
   }, []);
-
-  const textOptions = [
-    ['H', 'a', 'l', 'b', 's', 'c', 'h', 'a', 't', 't', 'e', 'n'],
-    ['P', 'e', 'n', 'u', 'm', 'b', 'r', 'a'],
-    ['半', '影']
-  ];
 
   const reversedTextOptions = textOptions.map(option => [...option].reverse());
 
@@ -59,12 +52,8 @@ const PlaygroundContent: React.FC<PlaygroundContentProps> = ({ isRTL }) => {
       const isHebrew = i18n.language === 'he';
       setSecondCardText(isHebrew ? reversedTextOptions[activeCard] : textOptions[activeCard]);
     };
-
     updateText();
-
-    // Overwrite the text within the card 0.1s after the language change
     const timeout = setTimeout(updateText, 100);
-
     return () => clearTimeout(timeout);
   }, [i18n.language, activeCard]);
 
@@ -84,18 +73,15 @@ const PlaygroundContent: React.FC<PlaygroundContentProps> = ({ isRTL }) => {
     window.crypto.getRandomValues(randomValues);
     const randomNumber = randomValues[0];
     const action = randomNumber % 1000;
-    // 7.5% probability for card swap (0-74)
+
     if (action <= 74) {
       setActiveCard(activeCard === 0 ? 1 : 0);
-    }
-    // 9% probability for canvas reveal toggle (75-164)
-    else if (action <= 164) {
+    } else if (action <= 164) {
       if (activeCard === 0) {
         revealLock.current = true;
         setTimeout(() => {
           setFirstCardRevealCanvas(prev => !prev);
           revealLock.current = false;
-          // Unlock after 0.5s
         }, 500);
       } else {
         const currentIndex = textOptions.findIndex(opt => JSON.stringify(opt) === JSON.stringify(secondCardText));
@@ -105,9 +91,7 @@ const PlaygroundContent: React.FC<PlaygroundContentProps> = ({ isRTL }) => {
         } while (newIndex === currentIndex);
         setSecondCardText(i18n.language === 'he' ? reversedTextOptions[newIndex] : textOptions[newIndex]);
       }
-    }
-    // 4.4% probability for text change (165-208)
-    else if (action <= 208) {
+    } else if (action <= 208) {
       const currentIndex = textOptions.findIndex(opt => JSON.stringify(opt) === JSON.stringify(secondCardText));
       let newIndex;
       do {
@@ -115,34 +99,26 @@ const PlaygroundContent: React.FC<PlaygroundContentProps> = ({ isRTL }) => {
       } while (newIndex === currentIndex);
       setSecondCardText(i18n.language === 'he' ? reversedTextOptions[newIndex] : textOptions[newIndex]);
       setActiveCard(1);
-    }
-    // 1% probability for rectangle notification (209-218)
-    else if (action <= 218) {
+    } else if (action <= 218) {
       toast.dismiss();
       showRectangleNotification('success', 'This notification appears', 'with 1% probability.');
-    }
-    // 10% probability for inscription change (219-318)
-    else if (action <= 318) {
+    } else if (action <= 318) {
       let newInscription;
       do {
         newInscription = [INSCRIPTION, INSCRIPTION2, INSCRIPTION3, INSCRIPTION4][Math.floor(Math.random() * 4)];
       } while (newInscription === activeInscription);
       setActiveInscription(newInscription);
-    }
-    // 10% probability for color swap (319-418)
-    else if (action <= 418) {
+    } else if (action <= 418) {
       setSwapColors(!swapColors);
-    }
-    // Remaining 58.1% (419-999) distributed to quotes
-    else {
+    } else if (action <= 438) {
+      setShowModalCard(true);
+    } else {
       const quote = quotes[Math.floor(Math.random() * quotes.length)];
       const randomLang = Math.floor(Math.random() * 2);
       const randomToastType = Math.floor(Math.random() * 4);
       const toastTypes = [toast.success, toast.info, toast.warn, toast.error];
       const toastMessage = randomLang === 0 ? `${quote.quote} - ${quote.author}` : `${quote.hebrewQuote} - ${quote.hebrewAuthor}`;
-      // Set the RTL value based on the quote language
       setIsToastRTL(randomLang === 1);
-      // Delay the toast notification by 4ms
       setTimeout(() => {
         toastTypes[randomToastType](toastMessage);
       }, 4);
@@ -164,18 +140,6 @@ const PlaygroundContent: React.FC<PlaygroundContentProps> = ({ isRTL }) => {
   }, [activeInscription]);
 
   const textShadow = swapColors ? `-1px -1px 0 var(--card-background), 1px -1px 0 var(--card-background), -1px 1px 0 var(--card-background), 1px 1px 0 var(--card-background)` : `-1px -1px 0 var(--refresh-inscription-color), 1px -1px 0 var(--refresh-inscription-color), -1px 1px 0 var(--refresh-inscription-color), 1px 1px 0 var(--refresh-inscription-color)`;
-
-  const items = [
-    { title: "Plum Cave", image: "/plum-cave.webp", className: "absolute top-10 left-[10%] rotate-[-5deg]" },
-    { title: "שחור", image: "/shakhor.webp", className: "absolute top-40 left-[25%] rotate-[-7deg]" },
-    { title: "Lantern", image: "/lantern.webp", className: "absolute top-5 left-[40%] rotate-[8deg]" },
-    { title: "Midbar | מדבר", image: "/midbar.webp", className: "absolute top-32 left-[64%] rotate-[10deg]" },
-    { title: "Namer UI", image: "/namer-ui.webp", className: "absolute top-20 right-[35%] rotate-[2deg]" },
-    { title: "שיינין ים", image: "/shining-yam.webp", className: "absolute top-24 left-[45%] rotate-[-7deg]" },
-    { title: "PHA5E-Inspired Hero Section", image: "/pha5e-inspired-hero-section.webp", className: "absolute top-8 left-[30%] rotate-[4deg]" },
-    { title: "פלאם קייב", image: "/plum-cave-hebrew.webp", className: "absolute top-34 left-[50%] rotate-[-2deg]" },
-  ];
-
   const oneOfThree = [INSCRIPTION, INSCRIPTION2, INSCRIPTION3].includes(activeInscription);
 
   return (
@@ -225,24 +189,17 @@ const PlaygroundContent: React.FC<PlaygroundContentProps> = ({ isRTL }) => {
             />
             {!isMobileDevice && shouldShowDesktopButton && (
               <div style={{ position: "absolute", bottom: "16px", left: "50%", transform: "translateX(-50%)", zIndex: 3 }}>
-                <HalomotButton
-                  text={"Click Me"}
-                  fixedWidth="164px"
-                  onClick={() => handleCardClick(2)}
-                  gradient={isRTL ? 'linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))' : 'linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))'}
-                />
+                <HalomotButton text={"Click Me"} fixedWidth="164px" onClick={() => handleCardClick(2)} gradient={isRTL ? 'linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))' : 'linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))'} />
               </div>
             )}
           </div>
         </StructuredBlock>
       </div>
       {activeNotification && (
-        <RectangleNotification
-          type={activeNotification.type}
-          message={activeNotification.message}
-          message1={activeNotification.message1}
-          onClose={closeRectangleNotification}
-        />
+        <RectangleNotification type={activeNotification.type} message={activeNotification.message} message1={activeNotification.message1} onClose={closeRectangleNotification} />
+      )}
+      {showModalCard && (
+        <ModalContainer onClose={() => setShowModalCard(false)} />
       )}
       <ToastContainer
         position={isRTL ? "bottom-left" : "bottom-right"}
