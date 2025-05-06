@@ -1,182 +1,42 @@
-# My Portfolio
+# Namer UI
+Namer UI is a collection of reusable components designed to empower developers in creating beautiful user interfaces.
 
-A statically-compiled web app built using Next.js 15, It utilizes the GSAP and Framer Motion, and employs components from [Aceternity UI](https://ui.aceternity.com/), [Namer UI](https://namer-ui.netlify.app/), and [HextaUI](https://hextaui.com/).
+Check it out at https://namer-ui.netlify.app/
 
-Check it out at https://maxim-bortnikov.netlify.app/
+![Alt Logo](https://raw.githubusercontent.com/Northstrix/namer-ui/refs/heads/main/screenshots/456x456px-logo.png)
 
-Features:
+![Alt Home page](https://github.com/Northstrix/namer-ui/blob/main/screenshots/home-page.png?raw=true)
 
- - Like button
+![Alt Hero section](https://github.com/Northstrix/namer-ui/blob/main/screenshots/hero-section.png?raw=true)
 
- - Project link click count
+![Alt About Us Section](https://github.com/Northstrix/namer-ui/blob/main/screenshots/about-us-section.png?raw=true)
 
- - Playground section with draggable cards (desktop only)
+![Alt Sequence Hero Section](https://github.com/Northstrix/namer-ui/blob/main/screenshots/sequence-hero-section.png?raw=true)
 
-Playground Events:
+![Alt Blog Post Header](https://github.com/Northstrix/namer-ui/blob/main/screenshots/blog-post-header.png?raw=true)
 
- - Change the active card
-
- - Change the background of the wildcard
-
- - Change the inscriptions on the penumbra card
-
- - Show an animated rectangle notification
-
- - Change the inscription in the playground area
-
- - Change the style of the inscription in the playground area
-
- - Display a notification with a random intro quote from the "Losing Alice" TV show
-
-# Firestore Rules:
-If you decide to use this as a template for your own portfolio and want the link/like counter to work, please follow these steps:
-
- - Run Firestore in test mode.
-
- - Create the necessary fields by modifying the relevant functions:
-
-   Before:
-   
-        const handleProjectClick = async (link: string) => {
-          incrementLinkCount(i18n.language, link);
-        };
-
-        async function incrementLinkCount(language: string, link: string) {
-          const cleanedLink = sanitizeLink(link);
-          const safeLink = encodeURIComponent(cleanedLink);
-          const fieldName = `${language}:${safeLink}`;
-          const docRef = doc(db, "data", "linkCounts");
-          try {
-            await updateDoc(docRef, { [fieldName]: increment(1) });
-          } catch (error: any) {
-            if (error.code === "not-found") {
-              await setDoc(docRef, { [fieldName]: 1 }, { merge: true });
-            } else {
-              //console.error("Error incrementing link count:", error);
-            }
-          }
-          return safeLink;
-        }
-   
-    After:
-
-       const handleProjectClick = async (link: string) => {
-          for (const lang of languages) {
-            incrementLinkCount(lang.code, link);
-          }
-        };
-   
-       async function incrementLinkCount(language: string, link: string) {
-          const cleanedLink = sanitizeLink(link);
-          const safeLink = encodeURIComponent(cleanedLink);
-          const fieldName = `${language}:${safeLink}`;
-          const docRef = doc(db, "data", "linkCounts");
-          try {
-            await updateDoc(docRef, { [fieldName]: increment(0) });
-          } catch (error: any) {
-            if (error.code === "not-found") {
-              await setDoc(docRef, { [fieldName]: 0 }, { merge: true });
-            } else {
-              //console.error("Error incrementing link count:", error);
-            }
-          }
-          return safeLink;
-        }
-   
-   And clicking on  each link-opening button to initialize the fields. Don’t forget to set up the fields for likes in a similar manner.
-
- - Restore the original functions.
-
- - Set the following rules for Firestore:
-
-        service cloud.firestore {
-          match /databases/{database}/documents {
-        
-            // LIKE COUNTS: Anyone can read and increment
-            match /data/likeCounts {
-              allow read: if true;
-              allow update: if isIncrement(resource, request);
-              allow create, delete: if false;
-            }
-        
-            // LINK COUNTS: Anyone can increment, no one can read
-            match /data/linkCounts {
-              allow read: if false;
-              allow update: if isIncrement(resource, request);
-              allow create, delete: if false;
-            }
-          }
-        
-          // Only allow updates that increment a single existing numeric field
-          function isIncrement(resource, request) {
-            return request.writeFields.size() == 1 &&
-              resource.data[request.writeFields[0]] is int &&
-              request.resource.data[request.writeFields[0]] > resource.data[request.writeFields[0]] &&
-              request.resource.data.keys().hasOnly(resource.data.keys());
-          }
-        }
-        
+![Alt Mobile view](https://github.com/Northstrix/namer-ui/blob/main/screenshots/Mobile%20View.png?raw=true)
 
 # Credit
 
-The existence of this portfolio (at least in its current form) wouldn't've been possible without the following:
+The existence of this project (at least in its current form) wouldn't've been possible without the following:
 
-[BUTTONS](https://codepen.io/uchihaclan/pen/NWOyRWy) by [TAYLOR](https://codepen.io/uchihaclan)
+[Text Reveal Animation](https://codepen.io/swatiparge/pen/LYVMEag) by [Swati Parge](https://codepen.io/swatiparge)
 
-[Spotlight Card](https://hextaui.com/docs/animation/spotlight-card) by [HextaUI](https://hextaui.com/)
+[Text scroll and hover effect with GSAP and clip](https://codepen.io/Juxtopposed/pen/mdQaNbG) by [Juxtopposed](https://codepen.io/Juxtopposed)
 
-[tabler-icons](https://github.com/tabler/tabler-icons) by [tabler](https://github.com/tabler)
+[react-toastify](https://github.com/fkhadra/react-toastify) by [fkhadra](https://github.com/fkhadra)
 
-[lucide](https://github.com/lucide-icons/lucide) by [lucide-icons](https://github.com/lucide-icons)
+[Chronicle Button](https://codepen.io/Haaguitos/pen/OJrVZdJ) by [Haaguitos](https://codepen.io/Haaguitos)
 
-[react-toastify](https://github.com/fkhadra/react-toastify) by [Fadi Khadra](https://github.com/fkhadra)
+[Code Block](https://ui.aceternity.com/components/code-block) by [Aceternity UI](https://ui.aceternity.com)
 
-[react-i18next](https://github.com/i18next/react-i18next) by [i18next](https://github.com/i18next)
+[Named scroll-timeline vertical](https://codepen.io/utilitybend/pen/VwBRNwm) by [utilitybend](https://codepen.io/utilitybend)
 
-[firebase-js-sdk](https://github.com/firebase/firebase-js-sdk) by [firebase](https://github.com/firebase/firebase-js-sdk)
+[Cover](https://ui.aceternity.com/components/container-cover) by [Aceternity UI](https://ui.aceternity.com/components/container-cover)
 
-[Animated Tooltip](https://ui.aceternity.com/components/animated-tooltip) by [Aceternity UI](https://ui.aceternity.com/)
+</br>
 
-[すりガラスなプロフィールカード](https://codepen.io/ash_creator/pen/zYaPZLB) by [あしざわ - Webクリエイター](https://codepen.io/ash_creator)
+Inspired by [x/ui](https://ui.3x.gl/)
 
-[Signup Form](https://ui.aceternity.com/components/signup-form) from [Aceternity UI](https://ui.aceternity.com/)
-
-[motion](https://github.com/motiondivision/motion) by [motiondivision](https://github.com/motiondivision)
-
-[GSAP](https://github.com/greensock/GSAP) by [greensock](https://github.com/greensock)
-
-[Bouncing Cube Loader](https://codepen.io/haja-ran/pen/xxWRKNm) by [Haja Randriakoto](https://codepen.io/haja-ran)
-
-[JTB studios - Link](https://codepen.io/zzznicob/pen/GRPgKLM) by [Nico](https://codepen.io/zzznicob)
-
-[AI Image Generator](https://redpandaai.com/tools/ai-image-generator) by [Red Panda AI](https://redpandaai.com/)
-
-[Bento Grid](https://ui.aceternity.com/components/bento-grid) by [Aceternity UI](https://ui.aceternity.com/)
-
-[Lens](https://ui.aceternity.com/components/lens) by [Aceternity UI](https://ui.aceternity.com/)
-
-[Glowing Effect](https://ui.aceternity.com/components/glowing-effect) by [Aceternity UI](https://ui.aceternity.com/)
-
-[Draggable Card](https://ui.aceternity.com/components/draggable-card) by [Aceternity UI](https://ui.aceternity.com/)
-
-[Canvas Reveal Effect](https://ui.aceternity.com/components/canvas-reveal-effect) by [Aceternity UI](https://ui.aceternity.com/)
-
-[Blog Post Header](https://codepen.io/nodws/pen/GgKErep) by [Nodws](https://codepen.io/nodws/pen)
-
-[Confetti](https://hextaui.com/docs/animation/confetti) by [HextaUI](https://hextaui.com/)
-
-[Card hover effect](https://codepen.io/aaroniker/pen/yLEPJXj) by [Aaron Iker](https://codepen.io/aaroniker)
-
-[Perplexity](https://www.perplexity.ai/)
-
-[Mistral's Le Chat](https://chat.mistral.ai/chat)
-
-Used [Namer UI](https://namer-ui.netlify.app/) components:
-
-- Halomot Button
-
-- Structured Block
-
-- Unfolding Sidebar
-
-- Blog Post Header
+Namer UI utilizes the code from [HextaUI](https://github.com/preetsuthar17/HextaUI), a high-quality open-source project.
