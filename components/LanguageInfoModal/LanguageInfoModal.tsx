@@ -260,7 +260,7 @@ const LanguageInfoModal: React.FC<LanguageInfoModalProps> = ({
                         width: inlineIconSize,
                         height: "auto",
                         maxHeight: inlineIconSize,
-                        borderRadius: "3px",
+                        borderRadius: isMobile ? "none" : "3px",
                         objectFit: "contain",
                         boxShadow: "0 1px 3px rgba(0,0,0,0.14)",
                         cursor: "pointer",
@@ -308,9 +308,9 @@ const LanguageInfoModal: React.FC<LanguageInfoModalProps> = ({
       {/* Style block remains unchanged */}
       <style jsx>{`
         .language-info-modal-overlay { position: fixed; inset: 0; z-index: 10000; display: flex; justify-content: center; align-items: flex-end; pointer-events: none; background: transparent; }
-        .language-info-modal-grid { display: grid; grid-template-columns: 1fr; gap: 0; margin-bottom: 1em; z-index: 10100; pointer-events: auto; }
+        .language-info-modal-grid { display: grid; border-radius: 15px; grid-template-columns: 1fr; gap: 0; margin-bottom: 1em; z-index: 10100; pointer-events: auto; }
         .language-info-modal-card { position: relative; border-radius: 15px; padding: 28px 18px 20px 18px; background: var(--background, #111014); box-shadow: 0 3px 12px rgba(0,0,0,0.11), 0 0 0 1px var(--background-adjacent-color, #33313d); outline: 1px solid var(--background-adjacent-color, #33313d); margin: 0 auto; overflow: hidden; width: 100%; }
-        .language-info-modal-foreground { position: relative; z-index: 3; }
+        .language-info-modal-foreground { border-radius: 15px; position: relative; z-index: 3; }
         .language-info-modal-card .inscriptions { margin-bottom: 2em; }
         .ok-btn-row { display: flex; justify-content: center; align-items: center; margin-top: 12px; gap: 0.5em; }
         .language-icon-top :global(svg) { width: 100%; height: 100%; display: block; }

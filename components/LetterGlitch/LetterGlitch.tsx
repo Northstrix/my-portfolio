@@ -231,10 +231,10 @@ const LetterGlitch = ({
             }}
           />
         )}
-        {/* Blurring overlay */}
+        {/* Overlay */}
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ backdropFilter: "blur(1px)", borderRadius: "inherit" }}
+          style={{ borderRadius: "inherit" }}
         />
       </div>
       {/* Other content can go here, and will NOT be blurred */}
