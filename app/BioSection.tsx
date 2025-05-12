@@ -141,7 +141,12 @@ const BioSection: React.FC<BioSectionProps> = ({
   } as const;
 
   // Determine bioFontSize
-  const bioFontSize = i18n.language === "de" && !isMobile ? 14 : undefined;
+  const bioFontSize =
+  i18n.language === "de" && !isMobile
+    ? 14
+    : i18n.language === "en" && !isMobile
+    ? 15
+    : undefined;
 
   // Set direction: rtl only for desktop RTL
   const flexContainerDirection =
