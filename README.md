@@ -217,3 +217,5 @@ Used [Namer UI](https://namer-ui.netlify.app/) components:
 - Unfolding Sidebar
 
 - Blog Post Header
+
+- Fancy Notification
