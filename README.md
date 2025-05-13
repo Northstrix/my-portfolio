@@ -154,7 +154,11 @@ The existence of this portfolio (at least in its current form) wouldn't've been 
 
 [Animated Tooltip](https://ui.aceternity.com/components/animated-tooltip) by [Aceternity UI](https://ui.aceternity.com/)
 
+[Daily UI#011 | Flash Message (Error/Success)](https://codepen.io/juliepark/pen/vjMOKQ) by [Julie Park](https://codepen.io/juliepark)
+
 [すりガラスなプロフィールカード](https://codepen.io/ash_creator/pen/zYaPZLB) by [あしざわ - Webクリエイター](https://codepen.io/ash_creator)
+
+[Neon Button](https://codepen.io/HighFlyer) by [Thea](https://codepen.io/HighFlyer/pen/WNXRZBv)
 
 [Signup Form](https://ui.aceternity.com/components/signup-form) from [Aceternity UI](https://ui.aceternity.com/)
 
