@@ -10,9 +10,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         Maxim Bortnikov
       </nav>
       {/* Main Content */}
-      <main className="flex-1 container mx-auto px-4 py-8">
-        {children}
-      </main>
+      <main className="flex-1 container mx-auto px-4 py-8">{children}</main>
     </div>
   );
 }

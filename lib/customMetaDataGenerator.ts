@@ -43,7 +43,7 @@ export function customMetaDataGenerator({
     "Software Engineer",
     "Projects",
     "Technical Blog",
-    "Personal Website"
+    "Personal Website",
   ],
   ogImage = "/logo.webp", // Replace with your actual image URL
   twitterCard = "summary_large_image",

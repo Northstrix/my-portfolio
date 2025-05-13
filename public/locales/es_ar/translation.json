@@ -3,7 +3,7 @@
   "my-bio": "Desarrollador web orientado a la ciberseguridad con experiencia en sistemas embebidos.",
   "sales-pitch-card-translation-title": "Transformar ideas en realidad mediante maestría técnica",
   "sales-pitch-card-translation-description": "Hola, soy Maxim. Desarrollo soluciones variadas, desde scripts de automatización en Python hasta sistemas embebidos avanzados y aplicaciones web.",
-  "short-contact-info-inscription": "Contacto",  
+  "short-contact-info-inscription": "Contacto",
   "download-cv": "Bajar CV",
   "ok_button": "Aceptar",
   "previous-button-inscription": "Ant.",
@@ -78,7 +78,7 @@
   "web-project-6-designation": "Proyecto HTML/CSS/JS puro",
   "web-project-6-image": "/in-browser-file-encrypter.webp",
   "web-project-6-link": "https://codepen.io/Northstrix/full/xxvXvJL",
-  
+
   "nextjs-templates-block": "Plantillas Next.js",
   "nextjs-templates-section-text": "Estas no son aplicaciones web llamativas, sino sitios simples pensados para brindar soluciones prácticas a empresas.",
 

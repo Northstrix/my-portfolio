@@ -2,48 +2,53 @@
 
 export const siteMeta = {
   siteTitle: "Maxim Bortnikov",
-  description: "Cybersecurity-oriented web developer with embedded systems expertise.",
+  description:
+    "Cybersecurity-oriented web developer with embedded systems expertise.",
   keywords: [
-    "Portfolio", "Cybersecurity", "Web Developer", "Embedded Systems", "Projects"
-  ]
+    "Portfolio",
+    "Cybersecurity",
+    "Web Developer",
+    "Embedded Systems",
+    "Projects",
+  ],
 };
 
 // Example navigation structure (if you want to generate menus dynamically)
 export const sections = [
   {
     id: "bio",
-    title: "About Me"
+    title: "About Me",
   },
   {
     id: "education",
-    title: "Education"
+    title: "Education",
   },
   {
     id: "work-experience",
-    title: "Work Experience"
+    title: "Work Experience",
   },
   {
     id: "web-projects",
-    title: "Web Projects"
+    title: "Web Projects",
   },
   {
     id: "nextjs-templates",
-    title: "Next.js Templates"
+    title: "Next.js Templates",
   },
   {
     id: "embedded-projects",
-    title: "Embedded Projects"
+    title: "Embedded Projects",
   },
   {
     id: "articles",
-    title: "Articles"
+    title: "Articles",
   },
   {
     id: "playground",
-    title: "Playground"
+    title: "Playground",
   },
   {
     id: "contact-info",
-    title: "Contact"
-  }
+    title: "Contact",
+  },
 ];
