@@ -44,7 +44,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ isMobile, className }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isLanguageInfoOpen, setIsLanguageInfoOpen] = useState(false);
 
-
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -70,9 +69,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ isMobile, className }) => {
 
   const handleArticleClick = async (link: string) => {
     incrementLinkCount(i18n.language, link, "articleCounts");
-  };  
+  };
 
-  async function incrementLinkCount(language: string, link: string, bucket: string) {
+  async function incrementLinkCount(
+    language: string,
+    link: string,
+    bucket: string,
+  ) {
     const cleanedLink = sanitizeLink(link);
     const safeLink = encodeURIComponent(cleanedLink);
     const fieldName = `${language}:${safeLink}`;
@@ -103,7 +106,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ isMobile, className }) => {
     <I18nextProvider i18n={i18nConf}>
       {isMobile && (
         <>
-          <div style={{ position: "fixed", top: 0, width: "100%", zIndex: 1000 }}>
+          <div
+            style={{ position: "fixed", top: 0, width: "100%", zIndex: 1000 }}
+          >
             <SimpleNavbar
               logo="/logo.webp"
               appName={t("my-name")}
@@ -114,7 +119,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ isMobile, className }) => {
           <div className="h-14" />
         </>
       )}
-      <Container isRTL={isRTL} className={className} style={{ opacity: isVisible ? 1 : 0 }}>
+      <Container
+        isRTL={isRTL}
+        className={className}
+        style={{ opacity: isVisible ? 1 : 0 }}
+      >
         {!isMobile && (
           <UnfoldingSidebar
             logo="/logo.webp"
@@ -133,7 +142,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ isMobile, className }) => {
                 components: [
                   { id: "web-projects", name: t("web-projects-block") },
                   { id: "nextjs-templates", name: t("nextjs-templates-block") },
-                  { id: "embedded-projects", name: t("embedded-projects-block") },
+                  {
+                    id: "embedded-projects",
+                    name: t("embedded-projects-block"),
+                  },
                 ],
               },
               {
@@ -146,7 +158,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ isMobile, className }) => {
               },
             ]}
             onComponentClick={(componentId) => scrollToSection(componentId)}
-            onAppNameClick={() => scrollToSection('bio')}
+            onAppNameClick={() => scrollToSection("bio")}
             onLanguageIconClick={() => setIsLanguageSelectorOpen(true)}
             unfoldIcon={<IconBorderRightPlus />}
             foldIcon={<IconFoldDown />}
@@ -189,16 +201,28 @@ const LandingPage: React.FC<LandingPageProps> = ({ isMobile, className }) => {
             <WorkExperienceContent isRTL={isRTL} />
           </Section>
           <Section id="web-projects">
-            <WebProjectsContent isRTL={isRTL} onProjectClick={handleProjectClick} />
+            <WebProjectsContent
+              isRTL={isRTL}
+              onProjectClick={handleProjectClick}
+            />
           </Section>
           <Section id="nextjs-templates">
-            <NextJSTemplatesContent isRTL={isRTL} onProjectClick={handleProjectClick} />
+            <NextJSTemplatesContent
+              isRTL={isRTL}
+              onProjectClick={handleProjectClick}
+            />
           </Section>
           <Section id="embedded-projects">
-            <EmbeddedProjectsContent isRTL={isRTL} onProjectClick={handleProjectClick} />
+            <EmbeddedProjectsContent
+              isRTL={isRTL}
+              onProjectClick={handleProjectClick}
+            />
           </Section>
           <Section id="articles">
-            <ArticlesContent isRTL={isRTL} onArticleClick={handleArticleClick} />
+            <ArticlesContent
+              isRTL={isRTL}
+              onArticleClick={handleArticleClick}
+            />
           </Section>
           <Section id="playground">
             <PlaygroundContent isRTL={isRTL} />
@@ -206,7 +230,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ isMobile, className }) => {
           <Section id="contact-info">
             <ContactInfoContent isRTL={isRTL} />
           </Section>
-          <Footer isRTL={isRTL} languages={languages} onOpenCreditModal={openCreditModal} />
+          <Footer
+            isRTL={isRTL}
+            languages={languages}
+            onOpenCreditModal={openCreditModal}
+          />
           <LanguageInfoModal
             isOpen={isLanguageInfoOpen}
             onClose={() => setIsLanguageInfoOpen(false)}

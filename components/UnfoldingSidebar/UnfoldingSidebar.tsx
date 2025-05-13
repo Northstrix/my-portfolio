@@ -1,8 +1,8 @@
 "use client";
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import LanguageIcon from '@/components/LanguageIcon';
-import { AnimatedTooltip } from '@/components/AnimatedTooltip/AnimatedTooltip';
+import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import LanguageIcon from "@/components/LanguageIcon";
+import { AnimatedTooltip } from "@/components/AnimatedTooltip/AnimatedTooltip";
 import { isRTLCheck } from "@/components/utils";
 
 interface ComponentItem {
@@ -82,8 +82,8 @@ const UnfoldingSidebar: React.FC<UnfoldingSidebarProps> = ({
   itemBorderRadius = "8px",
   appNameColor = "#ffffff",
   sectionTitleColor = "var(--secondary-foreground)",
-  componentHeight = '33px',
-  appNameYOffset = '1px',
+  componentHeight = "33px",
+  appNameYOffset = "1px",
   isRTL = false,
 }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(initialOpenState);
@@ -93,7 +93,9 @@ const UnfoldingSidebar: React.FC<UnfoldingSidebarProps> = ({
   const [isAppNameHovered, setIsAppNameHovered] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
 
-  const handleComponentClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+  const handleComponentClick: React.MouseEventHandler<HTMLButtonElement> = (
+    event,
+  ) => {
     const componentId = event.currentTarget.dataset.id;
     if (componentId) {
       onComponentClick(componentId);
@@ -115,7 +117,7 @@ const UnfoldingSidebar: React.FC<UnfoldingSidebarProps> = ({
   };
 
   const [windowHeight, setWindowHeight] = useState<number>(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       return window.innerHeight;
     }
     return 0;
@@ -123,15 +125,15 @@ const UnfoldingSidebar: React.FC<UnfoldingSidebarProps> = ({
 
   useEffect(() => {
     const handleResize = () => {
-      if (typeof window !== 'undefined') {
+      if (typeof window !== "undefined") {
         setWindowHeight(window.innerHeight);
       }
     };
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', handleResize);
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize);
       return () => {
-        window.removeEventListener('resize', handleResize);
+        window.removeEventListener("resize", handleResize);
       };
     }
   }, []);
@@ -143,23 +145,32 @@ const UnfoldingSidebar: React.FC<UnfoldingSidebarProps> = ({
       animate={{ width: isSidebarOpen ? sidebarWidth : collapsedWidth }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className="flex flex-col flex-shrink-0 relative h-screen"
-      style={{ backgroundColor, [isRTL ? 'right' : 'left']: 0 }}
+      style={{ backgroundColor, [isRTL ? "right" : "left"]: 0 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <nav
-        className={`flex items-center p-4 relative ${isSidebarOpen ? 'justify-between' : 'justify-center'}`}
+        className={`flex items-center p-4 relative ${isSidebarOpen ? "justify-between" : "justify-center"}`}
         style={{ backgroundColor: headerBackgroundColor, height: headerHeight }}
       >
         {isRTL ? (
           <button
             onClick={toggleSidebar}
             className="transition-colors duration-200"
-            style={{ color: isHovered ? iconHoverColor : iconColor, transform: isRTL ? 'scaleX(-1)' : 'none' }}
+            style={{
+              color: isHovered ? iconHoverColor : iconColor,
+              transform: isRTL ? "scaleX(-1)" : "none",
+            }}
           >
             {isSidebarOpen
-              ? React.cloneElement(foldIcon, { size: iconSize, style: { transform: `rotate(${foldIconRotation}deg)` } })
-              : React.cloneElement(unfoldIcon, { size: iconSize, style: { transform: `rotate(${unfoldIconRotation}deg)` } })}
+              ? React.cloneElement(foldIcon, {
+                  size: iconSize,
+                  style: { transform: `rotate(${foldIconRotation}deg)` },
+                })
+              : React.cloneElement(unfoldIcon, {
+                  size: iconSize,
+                  style: { transform: `rotate(${unfoldIconRotation}deg)` },
+                })}
           </button>
         ) : (
           <></>
@@ -194,24 +205,36 @@ const UnfoldingSidebar: React.FC<UnfoldingSidebarProps> = ({
                         className="font-bold"
                         style={{
                           fontSize: appNameFontSize,
-                          color: isAppNameHovered ? 'var(--first-theme-color)' : appNameColor,
-                          transition: 'color 0.3s',
+                          color: isAppNameHovered
+                            ? "var(--first-theme-color)"
+                            : appNameColor,
+                          transition: "color 0.3s",
                           transform: `translateY(${appNameYOffset})`,
                         }}
                       >
                         {appName}
                       </span>
-                      <img src={logo} alt={`${appName} logo`} className="w-[24px] h-[24px] ml-[10px]" />
+                      <img
+                        src={logo}
+                        alt={`${appName} logo`}
+                        className="w-[24px] h-[24px] ml-[10px]"
+                      />
                     </>
                   ) : (
                     <>
-                      <img src={logo} alt={`${appName} logo`} className="w-[24px] h-[24px] mr-[10px]" />
+                      <img
+                        src={logo}
+                        alt={`${appName} logo`}
+                        className="w-[24px] h-[24px] mr-[10px]"
+                      />
                       <span
                         className="font-bold"
                         style={{
                           fontSize: appNameFontSize,
-                          color: isAppNameHovered ? 'var(--first-theme-color)' : appNameColor,
-                          transition: 'color 0.3s',
+                          color: isAppNameHovered
+                            ? "var(--first-theme-color)"
+                            : appNameColor,
+                          transition: "color 0.3s",
                           transform: `translateY(${appNameYOffset})`,
                         }}
                       >
@@ -228,17 +251,35 @@ const UnfoldingSidebar: React.FC<UnfoldingSidebarProps> = ({
           <button
             onClick={toggleSidebar}
             className="transition-colors duration-200"
-            style={{ color: isHovered ? iconHoverColor : iconColor, transform: isRTL ? 'scaleX(-1)' : 'none' }}
+            style={{
+              color: isHovered ? iconHoverColor : iconColor,
+              transform: isRTL ? "scaleX(-1)" : "none",
+            }}
           >
             {isSidebarOpen
-              ? React.cloneElement(foldIcon, { size: iconSize, style: { transform: `rotate(${foldIconRotation}deg)` } })
-              : React.cloneElement(unfoldIcon, { size: iconSize, style: { transform: `rotate(${unfoldIconRotation}deg)` } })}
+              ? React.cloneElement(foldIcon, {
+                  size: iconSize,
+                  style: { transform: `rotate(${foldIconRotation}deg)` },
+                })
+              : React.cloneElement(unfoldIcon, {
+                  size: iconSize,
+                  style: { transform: `rotate(${unfoldIconRotation}deg)` },
+                })}
           </button>
         ) : (
           <></>
         )}
         {isSidebarOpen && (
-          <div style={{ position: 'absolute', bottom: '-1px', left: '5%', width: '90%', height: '1px', backgroundColor: 'var(--separator-color)', }} />
+          <div
+            style={{
+              position: "absolute",
+              bottom: "-1px",
+              left: "5%",
+              width: "90%",
+              height: "1px",
+              backgroundColor: "var(--separator-color)",
+            }}
+          />
         )}
       </nav>
       <AnimatePresence>
@@ -248,8 +289,10 @@ const UnfoldingSidebar: React.FC<UnfoldingSidebarProps> = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className={`p-4 flex-grow overflow-y-auto ${isRTL ? 'text-right' : ''}`}
-            style={{ maxHeight: `calc(100vh - ${parseInt(headerHeight) + 64}px)` }}
+            className={`p-4 flex-grow overflow-y-auto ${isRTL ? "text-right" : ""}`}
+            style={{
+              maxHeight: `calc(100vh - ${parseInt(headerHeight) + 64}px)`,
+            }}
           >
             {windowHeight < 680 ? (
               <>
@@ -261,21 +304,30 @@ const UnfoldingSidebar: React.FC<UnfoldingSidebarProps> = ({
                         onClick={handleComponentClick}
                         onMouseEnter={() => setHoveredComponent(component.id)}
                         onMouseLeave={() => setHoveredComponent(null)}
-                        className={`w-full px-4 transition-all duration-200 ease-in-out flex items-center ${isRTL ? '' : 'text-left'}`}
+                        className={`w-full px-4 transition-all duration-200 ease-in-out flex items-center ${isRTL ? "" : "text-left"}`}
                         style={{
                           fontSize: componentFontSize,
                           height: componentHeight,
-                          color: hoveredComponent === component.id ? iconHoverColor : component.integrity === false ? 'var(--theme-red-color)' : textColor,
-                          backgroundColor: hoveredComponent === component.id ? hoverBackgroundColor : 'transparent',
+                          color:
+                            hoveredComponent === component.id
+                              ? iconHoverColor
+                              : component.integrity === false
+                                ? "var(--theme-red-color)"
+                                : textColor,
+                          backgroundColor:
+                            hoveredComponent === component.id
+                              ? hoverBackgroundColor
+                              : "transparent",
                           borderRadius: itemBorderRadius,
-                          fontStyle: component.integrity === false ? 'italic' : 'normal',
-                          direction: isRTLCheck(component.name) ? 'rtl' : 'ltr'
+                          fontStyle:
+                            component.integrity === false ? "italic" : "normal",
+                          direction: isRTLCheck(component.name) ? "rtl" : "ltr",
                         }}
                       >
                         {component.name}
                       </button>
                     </div>
-                  ))
+                  )),
                 )}
               </>
             ) : (
@@ -285,9 +337,9 @@ const UnfoldingSidebar: React.FC<UnfoldingSidebarProps> = ({
                     <h2
                       className="text-1xl mb-3 block"
                       style={{
-                        direction: isRTLCheck(section.title) ? 'rtl' : 'ltr',
+                        direction: isRTLCheck(section.title) ? "rtl" : "ltr",
                         fontSize: sectionTitleFontSize,
-                        color: sectionTitleColor
+                        color: sectionTitleColor,
                       }}
                     >
                       {section.title}
@@ -298,17 +350,32 @@ const UnfoldingSidebar: React.FC<UnfoldingSidebarProps> = ({
                           <button
                             data-id={component.id}
                             onClick={handleComponentClick}
-                            onMouseEnter={() => setHoveredComponent(component.id)}
+                            onMouseEnter={() =>
+                              setHoveredComponent(component.id)
+                            }
                             onMouseLeave={() => setHoveredComponent(null)}
-                            className={`w-full px-4 transition-all duration-200 ease-in-out flex items-center ${isRTL ? '' : 'text-left'}`}
+                            className={`w-full px-4 transition-all duration-200 ease-in-out flex items-center ${isRTL ? "" : "text-left"}`}
                             style={{
                               fontSize: componentFontSize,
                               height: componentHeight,
-                              color: hoveredComponent === component.id ? iconHoverColor : component.integrity === false ? 'var(--theme-red-color)' : textColor,
-                              backgroundColor: hoveredComponent === component.id ? hoverBackgroundColor : 'transparent',
+                              color:
+                                hoveredComponent === component.id
+                                  ? iconHoverColor
+                                  : component.integrity === false
+                                    ? "var(--theme-red-color)"
+                                    : textColor,
+                              backgroundColor:
+                                hoveredComponent === component.id
+                                  ? hoverBackgroundColor
+                                  : "transparent",
                               borderRadius: itemBorderRadius,
-                              fontStyle: component.integrity === false ? 'italic' : 'normal',
-                              direction: isRTLCheck(component.name) ? 'rtl' : 'ltr',
+                              fontStyle:
+                                component.integrity === false
+                                  ? "italic"
+                                  : "normal",
+                              direction: isRTLCheck(component.name)
+                                ? "rtl"
+                                : "ltr",
                             }}
                           >
                             {component.name}
@@ -328,16 +395,25 @@ const UnfoldingSidebar: React.FC<UnfoldingSidebarProps> = ({
         style={{ backgroundColor: headerBackgroundColor, height: headerHeight }}
       >
         <AnimatedTooltip
-          items={[{ id: 1, name: "Language", icon: <LanguageIcon />, onClick: onLanguageIconClick }]}
+          items={[
+            {
+              id: 1,
+              name: "Language",
+              icon: <LanguageIcon />,
+              onClick: onLanguageIconClick,
+            },
+          ]}
           isRTL={isRTL}
           showTooltip={isSidebarOpen}
         />
       </motion.div>
       <motion.div
         className="absolute top-0 bottom-0 w-[1px]"
-        style={{ [isRTL ? 'left' : 'right']: 0 }}
+        style={{ [isRTL ? "left" : "right"]: 0 }}
         initial={{ backgroundColor: rightStripeColor }}
-        animate={{ backgroundColor: isHovered ? rightStripeHoverColor : rightStripeColor }}
+        animate={{
+          backgroundColor: isHovered ? rightStripeHoverColor : rightStripeColor,
+        }}
         transition={{ duration: 0.2 }}
       />
     </motion.aside>

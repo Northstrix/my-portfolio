@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import LetterGlitch from '@/components/LetterGlitch/LetterGlitch';
-import DecryptedText from '@/components/DecryptedText/DecryptedText';
+import LetterGlitch from "@/components/LetterGlitch/LetterGlitch";
+import DecryptedText from "@/components/DecryptedText/DecryptedText";
 
 interface ProfileCardProps {
   photo: string;
@@ -52,8 +52,8 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   const calculatedWidth = isMobile
     ? "100%"
     : containerHeightPx
-    ? `${containerHeightPx * aspectRatio}px`
-    : "auto";
+      ? `${containerHeightPx * aspectRatio}px`
+      : "auto";
 
   return (
     <motion.div
@@ -71,7 +71,8 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
           ? "var(--lightened-background-adjacent-color)"
           : "var(--background-adjacent-color)",
         border: isCardHovered ? hoverOutline : outline,
-        transition: "background-color 0.3s ease-in-out, border 0.3s ease-in-out",
+        transition:
+          "background-color 0.3s ease-in-out, border 0.3s ease-in-out",
         width: calculatedWidth,
         maxWidth: calculatedWidth,
       }}
@@ -110,7 +111,8 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
             background: isImageHovered
               ? "var(--lightened-background-adjacent-color)"
               : "var(--background-adjacent-color)",
-            transition: "background-color 0.3s ease-in-out, border 0.3s ease-in-out",
+            transition:
+              "background-color 0.3s ease-in-out, border 0.3s ease-in-out",
             flexShrink: 0,
           }}
           onMouseEnter={() => setIsImageHovered(true)}

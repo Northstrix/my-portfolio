@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from 'react';
-import { Renderer, Program, Mesh, Triangle } from 'ogl';
-import styled from 'styled-components';
+import React, { useRef, useEffect } from "react";
+import { Renderer, Program, Mesh, Triangle } from "ogl";
+import styled from "styled-components";
 
 const vertexShader = `
   attribute vec2 uv;
@@ -71,8 +71,11 @@ const fragmentShader = `
 `;
 
 function hexToVec4(hex: string) {
-  let hexStr = hex.replace('#', '');
-  let r = 0, g = 0, b = 0, a = 1;
+  let hexStr = hex.replace("#", "");
+  let r = 0,
+    g = 0,
+    b = 0,
+    a = 1;
   if (hexStr.length === 6) {
     r = parseInt(hexStr.slice(0, 2), 16) / 255;
     g = parseInt(hexStr.slice(2, 4), 16) / 255;
@@ -90,9 +93,9 @@ export const Balatro = ({
   spinRotation = -3.0,
   spinSpeed = 7.0,
   offset = [0.0, 0.0],
-  color1 = '#A43BEC',
-  color2 = '#603DEC',
-  color3 = '#151419',
+  color1 = "#A43BEC",
+  color2 = "#603DEC",
+  color3 = "#151419",
   contrast = 4,
   lighting = 0.4,
   spinAmount = 0.25,
@@ -123,7 +126,7 @@ export const Balatro = ({
       }
     }
 
-    window.addEventListener('resize', resize);
+    window.addEventListener("resize", resize);
     resize();
 
     const geometry = new Triangle(gl);
@@ -132,7 +135,13 @@ export const Balatro = ({
       fragment: fragmentShader,
       uniforms: {
         iTime: { value: 0 },
-        iResolution: { value: [gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height] },
+        iResolution: {
+          value: [
+            gl.canvas.width,
+            gl.canvas.height,
+            gl.canvas.width / gl.canvas.height,
+          ],
+        },
         uSpinRotation: { value: spinRotation },
         uSpinSpeed: { value: spinSpeed },
         uOffset: { value: offset },
@@ -164,9 +173,9 @@ export const Balatro = ({
 
     return () => {
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener('resize', resize);
+      window.removeEventListener("resize", resize);
       container.removeChild(gl.canvas);
-      gl.getExtension('WEBGL_lose_context')?.loseContext();
+      gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
   }, [
     spinRotation,
@@ -184,5 +193,13 @@ export const Balatro = ({
     mouseInteraction,
   ]);
 
-  return <div ref={containerRef} className="absolute inset-0" style={{ outline: '1px solid var(--lightened-background-adjacent-color)' }} />;
+  return (
+    <div
+      ref={containerRef}
+      className="absolute inset-0"
+      style={{
+        outline: "1px solid var(--lightened-background-adjacent-color)",
+      }}
+    />
+  );
 };

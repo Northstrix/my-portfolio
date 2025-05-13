@@ -1,26 +1,71 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faMedium, faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { faTools } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faGithub,
+  faMedium,
+  faFacebook,
+} from "@fortawesome/free-brands-svg-icons";
+import { faTools } from "@fortawesome/free-solid-svg-icons";
 import HalomotButton from "@/components/HalomotButton/HalomotButton";
-import { useTranslation } from 'react-i18next';
-import BlurText from '@/components/BlurText/BlurText';
-import 'animate.css';
+import { useTranslation } from "react-i18next";
+import BlurText from "@/components/BlurText/BlurText";
+import "animate.css";
 
 const TEXT_SIZES = {
-  en: { minWidth: 402, maxWidth: 1132, minTitleSize: 42, maxTitleSize: 64, minDescriptionSize: 14, maxDescriptionSize: 20 },
-  he: { minWidth: 402, maxWidth: 1132, minTitleSize: 38, maxTitleSize: 76, minDescriptionSize: 14, maxDescriptionSize: 20 },
-  es_ar: { minWidth: 402, maxWidth: 1132, minTitleSize: 40, maxTitleSize: 72, minDescriptionSize: 14, maxDescriptionSize: 20 },
-  de: { minWidth: 402, maxWidth: 1132, minTitleSize: 38, maxTitleSize: 64, minDescriptionSize: 12, maxDescriptionSize: 20 },
-  ru: { minWidth: 402, maxWidth: 1132, minTitleSize: 42, maxTitleSize: 82, minDescriptionSize: 16, maxDescriptionSize: 20 },
+  en: {
+    minWidth: 402,
+    maxWidth: 1132,
+    minTitleSize: 42,
+    maxTitleSize: 64,
+    minDescriptionSize: 14,
+    maxDescriptionSize: 20,
+  },
+  he: {
+    minWidth: 402,
+    maxWidth: 1132,
+    minTitleSize: 38,
+    maxTitleSize: 76,
+    minDescriptionSize: 14,
+    maxDescriptionSize: 20,
+  },
+  es_ar: {
+    minWidth: 402,
+    maxWidth: 1132,
+    minTitleSize: 40,
+    maxTitleSize: 72,
+    minDescriptionSize: 14,
+    maxDescriptionSize: 20,
+  },
+  de: {
+    minWidth: 402,
+    maxWidth: 1132,
+    minTitleSize: 38,
+    maxTitleSize: 64,
+    minDescriptionSize: 12,
+    maxDescriptionSize: 20,
+  },
+  ru: {
+    minWidth: 402,
+    maxWidth: 1132,
+    minTitleSize: 42,
+    maxTitleSize: 82,
+    minDescriptionSize: 16,
+    maxDescriptionSize: 20,
+  },
 };
 
 const SOCIAL_LINKS = [
   { url: "https://github.com/Northstrix", icon: faGithub },
   { url: "https://medium.com/@Northstrix", icon: faMedium },
-  { url: "https://www.instructables.com/member/Northstrix/instructables/", icon: faTools },
-  { url: "https://www.facebook.com/profile.php?id=61550751306759", icon: faFacebook },
+  {
+    url: "https://www.instructables.com/member/Northstrix/instructables/",
+    icon: faTools,
+  },
+  {
+    url: "https://www.facebook.com/profile.php?id=61550751306759",
+    icon: faFacebook,
+  },
 ];
 
 interface SalesPitchCardContentProps {
@@ -46,7 +91,9 @@ const SalesPitchCardContent: React.FC<SalesPitchCardContentProps> = ({
   const language = (i18n.language as keyof typeof TEXT_SIZES) || "en";
   const containerRef = useRef<HTMLDivElement>(null);
   const [titleSize, setTitleSize] = useState(TEXT_SIZES[language].maxTitleSize);
-  const [descriptionSize, setDescriptionSize] = useState(TEXT_SIZES[language].maxDescriptionSize);
+  const [descriptionSize, setDescriptionSize] = useState(
+    TEXT_SIZES[language].maxDescriptionSize,
+  );
   const [showDescriptionText, setShowDescriptionText] = useState(false);
   const [showSocialMediaButtons, setShowSocialMediaButtons] = useState(false);
 
@@ -70,11 +117,30 @@ const SalesPitchCardContent: React.FC<SalesPitchCardContentProps> = ({
       if (containerRef.current) {
         const width = containerRef.current.offsetWidth;
         setContainerWidth(width); // update width state for key
-        const { minWidth, maxWidth, minTitleSize, maxTitleSize, minDescriptionSize, maxDescriptionSize } = TEXT_SIZES[language];
-        const calculatedTitleSize = ((maxTitleSize - minTitleSize) / (maxWidth - minWidth)) * (width - minWidth) + minTitleSize;
-        const calculatedDescriptionSize = ((maxDescriptionSize - minDescriptionSize) / (maxWidth - minWidth)) * (width - minWidth) + minDescriptionSize;
-        const cappedTitleSize = Math.min(Math.max(calculatedTitleSize, minTitleSize), maxTitleSize);
-        const cappedDescriptionSize = Math.min(Math.max(calculatedDescriptionSize, minDescriptionSize), maxDescriptionSize);
+        const {
+          minWidth,
+          maxWidth,
+          minTitleSize,
+          maxTitleSize,
+          minDescriptionSize,
+          maxDescriptionSize,
+        } = TEXT_SIZES[language];
+        const calculatedTitleSize =
+          ((maxTitleSize - minTitleSize) / (maxWidth - minWidth)) *
+            (width - minWidth) +
+          minTitleSize;
+        const calculatedDescriptionSize =
+          ((maxDescriptionSize - minDescriptionSize) / (maxWidth - minWidth)) *
+            (width - minWidth) +
+          minDescriptionSize;
+        const cappedTitleSize = Math.min(
+          Math.max(calculatedTitleSize, minTitleSize),
+          maxTitleSize,
+        );
+        const cappedDescriptionSize = Math.min(
+          Math.max(calculatedDescriptionSize, minDescriptionSize),
+          maxDescriptionSize,
+        );
         setTitleSize(cappedTitleSize);
         setDescriptionSize(cappedDescriptionSize);
       }
@@ -109,7 +175,7 @@ const SalesPitchCardContent: React.FC<SalesPitchCardContentProps> = ({
       : "linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))";
 
   const handleSocialClick = (url: string) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
+    window.open(url, "_blank", "noopener,noreferrer");
     if (onLinkClick) onLinkClick(url);
   };
 
@@ -128,7 +194,7 @@ const SalesPitchCardContent: React.FC<SalesPitchCardContentProps> = ({
         }}
       >
         <BlurText
-          text={t('sales-pitch-card-translation-title')}
+          text={t("sales-pitch-card-translation-title")}
           delay={200}
           animateBy="words"
           direction="top"
@@ -151,7 +217,7 @@ const SalesPitchCardContent: React.FC<SalesPitchCardContentProps> = ({
             fontSize: `${descriptionSize}px`,
           }}
         >
-          {t('sales-pitch-card-translation-description')}
+          {t("sales-pitch-card-translation-description")}
         </div>
       )}
       {/* Social Buttons */}

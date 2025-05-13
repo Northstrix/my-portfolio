@@ -3,7 +3,11 @@ import React, { useRef, useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import StructuredBlock from "@/components/StructuredBlock/StructuredBlock";
 import ProfileCard from "@/components/ProfileCard/ProfileCard";
-import { addRTLProps, contentProps, maxSectionWidth } from "./LandingPage.styles";
+import {
+  addRTLProps,
+  contentProps,
+  maxSectionWidth,
+} from "./LandingPage.styles";
 import SalesPitchCard from "@/components/SalesPitchCard/SalesPitchCard";
 
 interface BioSectionProps {
@@ -67,7 +71,9 @@ const BioSection: React.FC<BioSectionProps> = ({
   // Responsive logic
   const handleResize = useCallback(() => {
     if (wrapperRef.current) {
-      setIsMobile(wrapperRef.current.offsetWidth < desktopVersionBottomThreshold);
+      setIsMobile(
+        wrapperRef.current.offsetWidth < desktopVersionBottomThreshold,
+      );
     }
   }, []);
 
@@ -91,7 +97,7 @@ const BioSection: React.FC<BioSectionProps> = ({
 
   // ORDER LOGIC: This is correct!
   const profileOrder = isMobile ? 1 : isRTL ? 2 : 1;
-  const pitchOrder   = isMobile ? 2 : isRTL ? 1 : 2;
+  const pitchOrder = isMobile ? 2 : isRTL ? 1 : 2;
 
   // Card styles
   const cardBase = {
@@ -142,15 +148,14 @@ const BioSection: React.FC<BioSectionProps> = ({
 
   // Determine bioFontSize
   const bioFontSize =
-  i18n.language === "de" && !isMobile
-    ? 14
-    : i18n.language === "en" && !isMobile
-    ? 15
-    : undefined;
+    i18n.language === "de" && !isMobile
+      ? 14
+      : i18n.language === "en" && !isMobile
+        ? 15
+        : undefined;
 
   // Set direction: rtl only for desktop RTL
-  const flexContainerDirection =
-    !isMobile && isRTL ? "rtl" : "ltr";
+  const flexContainerDirection = !isMobile && isRTL ? "rtl" : "ltr";
 
   return (
     <div
@@ -176,30 +181,8 @@ const BioSection: React.FC<BioSectionProps> = ({
             direction: flexContainerDirection, // <--- THIS IS THE FIX
           }}
         >
-          {isMobile && <ProfileCard
-            photo={photo}
-            name={name}
-            bio={bio}
-            aspectRatio={imageAspectRatio}
-            onHoverStart={() => setHovered("bio")}
-            onHoverEnd={() => setHovered(null)}
-            outline={OUTLINE}
-            hoverOutline={HOVER_OUTLINE}
-            containerStyle={imageCardStyle}
-            textAlign={textAlign as "left" | "right"}
-            direction={textDirection as "ltr" | "rtl"}
-            {...(bioFontSize ? { bioFontSize } : {})}
-          /> }
-          {/* Profile Card */}
-          <div
-            style={{
-              ...profileCardWrapperStyle,
-              order: profileOrder,
-              display: "flex",
-              alignItems: "stretch",
-            }}
-          >
-            {!isMobile && <ProfileCard
+          {isMobile && (
+            <ProfileCard
               photo={photo}
               name={name}
               bio={bio}
@@ -212,7 +195,33 @@ const BioSection: React.FC<BioSectionProps> = ({
               textAlign={textAlign as "left" | "right"}
               direction={textDirection as "ltr" | "rtl"}
               {...(bioFontSize ? { bioFontSize } : {})}
-            /> }
+            />
+          )}
+          {/* Profile Card */}
+          <div
+            style={{
+              ...profileCardWrapperStyle,
+              order: profileOrder,
+              display: "flex",
+              alignItems: "stretch",
+            }}
+          >
+            {!isMobile && (
+              <ProfileCard
+                photo={photo}
+                name={name}
+                bio={bio}
+                aspectRatio={imageAspectRatio}
+                onHoverStart={() => setHovered("bio")}
+                onHoverEnd={() => setHovered(null)}
+                outline={OUTLINE}
+                hoverOutline={HOVER_OUTLINE}
+                containerStyle={imageCardStyle}
+                textAlign={textAlign as "left" | "right"}
+                direction={textDirection as "ltr" | "rtl"}
+                {...(bioFontSize ? { bioFontSize } : {})}
+              />
+            )}
           </div>
           {/* Sales Pitch Card */}
           <SalesPitchCard

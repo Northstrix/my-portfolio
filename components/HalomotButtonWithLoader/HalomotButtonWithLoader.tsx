@@ -1,7 +1,7 @@
-'use client';
-import React, { useState } from 'react';
-import styled, { keyframes, css } from 'styled-components';
-import { useTranslation } from 'react-i18next';
+"use client";
+import React, { useState } from "react";
+import styled, { keyframes, css } from "styled-components";
+import { useTranslation } from "react-i18next";
 
 interface HalomotButtonProps {
   gradient?: string;
@@ -133,7 +133,14 @@ const LoaderContainer = styled.div<{ isRTL: boolean }>`
   display: flex;
   align-items: center;
   padding: 0 8px;
-  ${(props) => (props.isRTL ? css`flex-direction: row;` : css`flex-direction: row-reverse;`)}
+  ${(props) =>
+    props.isRTL
+      ? css`
+          flex-direction: row;
+        `
+      : css`
+          flex-direction: row-reverse;
+        `}
 `;
 
 const Overlay = styled.div`
@@ -152,11 +159,11 @@ const Overlay = styled.div`
 const TextSpan = styled.span<{ isRTL: boolean }>`
   color: #fff;
   font-weight: bold;
-  transform: translateX(${(props) => (props.isRTL ? '14px' : '-14px')});
+  transform: translateX(${(props) => (props.isRTL ? "14px" : "-14px")});
 `;
 
 const HalomotButtonWithLoader: React.FC<HalomotButtonProps> = ({
-  gradient = 'linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))',
+  gradient = "linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))",
   text,
   onClick,
   fillWidth = false,
@@ -169,51 +176,51 @@ const HalomotButtonWithLoader: React.FC<HalomotButtonProps> = ({
   const { t } = useTranslation();
 
   const buttonStyle: React.CSSProperties = {
-    margin: fillWidth ? '0' : 'auto',
-    padding: '1px',
-    alignItems: 'center',
-    textAlign: 'center',
-    background: 'none',
-    border: '0',
-    borderRadius: 'var(--outer-mild-rounding)',
-    color: '#fff',
-    fontWeight: 'bold',
-    display: 'flex',
-    justifyContent: 'center',
-    textDecoration: 'none',
-    userSelect: 'none',
-    WebkitUserSelect: 'none',
-    whiteSpace: 'nowrap',
-    transition: 'all .3s',
-    width: fillWidth ? '100%' : '50%',
+    margin: fillWidth ? "0" : "auto",
+    padding: "1px",
+    alignItems: "center",
+    textAlign: "center",
+    background: "none",
+    border: "0",
+    borderRadius: "var(--outer-mild-rounding)",
+    color: "#fff",
+    fontWeight: "bold",
+    display: "flex",
+    justifyContent: "center",
+    textDecoration: "none",
+    userSelect: "none",
+    WebkitUserSelect: "none",
+    whiteSpace: "nowrap",
+    transition: "all .3s",
+    width: fillWidth ? "100%" : "50%",
     backgroundImage: gradient,
-    cursor: isLoading ? 'not-allowed' : 'pointer',
-    pointerEvents: isLoading ? 'none' : 'auto',
-    position: 'relative',
-    flexDirection: 'row', // Ensure flex direction is row
+    cursor: isLoading ? "not-allowed" : "pointer",
+    pointerEvents: isLoading ? "none" : "auto",
+    position: "relative",
+    flexDirection: "row", // Ensure flex direction is row
   };
 
   const spanStyle: React.CSSProperties = {
-    background: isHovered ? 'none' : bgColor || 'var(--background)',
-    padding: fillWidth ? '1rem 0' : '1rem 2.2rem',
-    border: '0',
-    borderRadius: 'var(--mild-rounding)',
-    width: '100%',
-    height: '100%',
-    transition: 'background 300ms',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: icon ? '0.5em' : 0, // Only add gap if icon is present
+    background: isHovered ? "none" : bgColor || "var(--background)",
+    padding: fillWidth ? "1rem 0" : "1rem 2.2rem",
+    border: "0",
+    borderRadius: "var(--mild-rounding)",
+    width: "100%",
+    height: "100%",
+    transition: "background 300ms",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: icon ? "0.5em" : 0, // Only add gap if icon is present
   };
 
   const iconStyle: React.CSSProperties = {
-    display: 'inline-flex',
-    alignItems: 'center',
-    height: '1em', // match font size
-    width: '1em',
-    fontSize: '1.1em',
-    verticalAlign: 'middle',
+    display: "inline-flex",
+    alignItems: "center",
+    height: "1em", // match font size
+    width: "1em",
+    fontSize: "1.1em",
+    verticalAlign: "middle",
     flexShrink: 0,
   };
 
@@ -228,7 +235,9 @@ const HalomotButtonWithLoader: React.FC<HalomotButtonProps> = ({
       onMouseLeave={() => setIsHovered(false)}
     >
       <span style={spanStyle}>
-        {isLoading ? "⠀" : (
+        {isLoading ? (
+          "⠀"
+        ) : (
           <>
             {icon && React.cloneElement(icon, { style: iconStyle })}
             {t(text)}
@@ -239,7 +248,7 @@ const HalomotButtonWithLoader: React.FC<HalomotButtonProps> = ({
         <Overlay>
           <LoaderContainer isRTL={isRTL}>
             {isRTL && (
-              <Scene style={{ transform: 'scale(0.25)' }}>
+              <Scene style={{ transform: "scale(0.25)" }}>
                 <CubeWrapper>
                   <Cube>
                     <CubeFaces>
@@ -257,7 +266,7 @@ const HalomotButtonWithLoader: React.FC<HalomotButtonProps> = ({
             )}
             <TextSpan isRTL={isRTL}>{text}</TextSpan>
             {!isRTL && (
-              <Scene style={{ transform: 'scale(0.25)' }}>
+              <Scene style={{ transform: "scale(0.25)" }}>
                 <CubeWrapper>
                   <Cube>
                     <CubeFaces>

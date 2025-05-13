@@ -1,7 +1,7 @@
 "use client";
-import React, { useRef, useEffect, useState } from 'react';
-import Image from 'next/image';
-import { CanvasRevealEffect } from './CanvasReveal'; // Adjust the import path as necessary
+import React, { useRef, useEffect, useState } from "react";
+import Image from "next/image";
+import { CanvasRevealEffect } from "./CanvasReveal"; // Adjust the import path as necessary
 
 interface PlaygroundCardProps {
   componentWidth?: string;
@@ -31,26 +31,26 @@ interface PlaygroundCardProps {
 
 const PlaygroundCard: React.FC<PlaygroundCardProps> = ({
   componentWidth = "412px",
-  aspectRatio = '9/16',
-  outerRounding = 'var(--outer-moderate-rounding)',
-  innerRounding = 'var(--moderate-rounding)',
-  backgroundColor = '#FFF',
-  adjacentColor = 'var(--refresh-inscription-color)',
-  foregroundColor = '#000',
+  aspectRatio = "9/16",
+  outerRounding = "var(--outer-moderate-rounding)",
+  innerRounding = "var(--moderate-rounding)",
+  backgroundColor = "#FFF",
+  adjacentColor = "var(--refresh-inscription-color)",
+  foregroundColor = "#000",
   imageHeightPercentage = 70,
   imageSrc,
-  imageAlt = '',
-  outlineColor = 'var(--refresh-inscription-color)',
-  hoverOutlineColor = 'var(--secondary-foreground)',
+  imageAlt = "",
+  outlineColor = "var(--refresh-inscription-color)",
+  hoverOutlineColor = "var(--secondary-foreground)",
   textArray,
   minWidth,
   maxWidth,
   minTextSize,
   maxTextSize,
-  verticalPadding = '20px',
-  horizontalPadding = '20px',
+  verticalPadding = "20px",
+  horizontalPadding = "20px",
   manualLetterSpacing,
-  componentId = 'card-1',
+  componentId = "card-1",
   swapCard,
   revealCanvas = false, // Default to false
 }) => {
@@ -63,7 +63,10 @@ const PlaygroundCard: React.FC<PlaygroundCardProps> = ({
     const updateTextSize = () => {
       if (containerRef.current) {
         const width = containerRef.current.offsetWidth;
-        const calculatedTextSize = ((maxTextSize - minTextSize) / (maxWidth - minWidth)) * (width - minWidth) + minTextSize;
+        const calculatedTextSize =
+          ((maxTextSize - minTextSize) / (maxWidth - minWidth)) *
+            (width - minWidth) +
+          minTextSize;
         const cappedTextSize = Math.min(calculatedTextSize, maxTextSize);
         setTextSize(cappedTextSize);
       }
@@ -91,23 +94,32 @@ const PlaygroundCard: React.FC<PlaygroundCardProps> = ({
       setLetterSpacing(manualLetterSpacing);
       return;
     }
-    const textElement = containerRef.current?.querySelector(`#${componentId}-text`);
+    const textElement = containerRef.current?.querySelector(
+      `#${componentId}-text`,
+    );
     if (!textElement) return;
     const letterHeight = textElement.clientHeight / textArray.length;
     setLetterSpacing(letterHeight);
   }, [textArray, textSize, manualLetterSpacing, componentId]);
 
   return (
-    <div ref={containerRef} style={{ maxWidth: componentWidth, width: '100%' }} data-component-id={componentId} onClick={swapCard}>
+    <div
+      ref={containerRef}
+      style={{ maxWidth: componentWidth, width: "100%" }}
+      data-component-id={componentId}
+      onClick={swapCard}
+    >
       <div
         style={{
           borderRadius: outerRounding,
-          padding: '1px',
-          background: isHovered ? hoverOutlineColor || outlineColor : adjacentColor,
-          display: 'inline-block',
-          width: '100%',
+          padding: "1px",
+          background: isHovered
+            ? hoverOutlineColor || outlineColor
+            : adjacentColor,
+          display: "inline-block",
+          width: "100%",
           aspectRatio: aspectRatio,
-          transition: 'background 2s ease-in-out 0.7s',
+          transition: "background 2s ease-in-out 0.7s",
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -117,13 +129,13 @@ const PlaygroundCard: React.FC<PlaygroundCardProps> = ({
             backgroundColor: backgroundColor,
             padding: `${verticalPadding} ${horizontalPadding}`,
             borderRadius: innerRounding,
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
             color: foregroundColor,
-            position: 'relative',
-            overflow: 'hidden',
+            position: "relative",
+            overflow: "hidden",
           }}
         >
           {revealCanvas && (
@@ -145,24 +157,30 @@ const PlaygroundCard: React.FC<PlaygroundCardProps> = ({
           <div
             id={`${componentId}-text`}
             style={{
-              position: 'absolute',
+              position: "absolute",
               top: verticalPadding,
               left: horizontalPadding,
-              display: 'flex',
-              flexDirection: 'column',
+              display: "flex",
+              flexDirection: "column",
               zIndex: 2,
-              color: isHovered ? 'var(--theme-red-color)' : 'var(--theme-blue-color)',
-              fontWeight: 'bold',
+              color: isHovered
+                ? "var(--theme-red-color)"
+                : "var(--theme-blue-color)",
+              fontWeight: "bold",
               fontSize: `${textSize}px`,
-              transition: 'color 2s ease-in-out 0.7s',
+              transition: "color 2s ease-in-out 0.7s",
             }}
           >
             {textArray.map((letter, index) => (
               <div
                 key={`${componentId}-letter-${index}`}
                 style={{
-                  transform: letterSpacing < 0 && index > 0 ? `translateY(${letterSpacing * index}px)` : 'none',
-                  marginBottom: letterSpacing >= 0 ? `${Math.abs(letterSpacing)}px` : '0',
+                  transform:
+                    letterSpacing < 0 && index > 0
+                      ? `translateY(${letterSpacing * index}px)`
+                      : "none",
+                  marginBottom:
+                    letterSpacing >= 0 ? `${Math.abs(letterSpacing)}px` : "0",
                   letterSpacing: `${letterSpacing}px`,
                 }}
               >
@@ -174,25 +192,31 @@ const PlaygroundCard: React.FC<PlaygroundCardProps> = ({
           <div
             id={`${componentId}-mirror`}
             style={{
-              position: 'absolute',
+              position: "absolute",
               bottom: verticalPadding,
               right: horizontalPadding,
-              display: 'flex',
-              flexDirection: 'column',
-              transform: 'scale(-1)',
+              display: "flex",
+              flexDirection: "column",
+              transform: "scale(-1)",
               zIndex: 2,
-              color: isHovered ? 'var(--theme-red-color)' : 'var(--theme-blue-color)',
-              fontWeight: 'bold',
+              color: isHovered
+                ? "var(--theme-red-color)"
+                : "var(--theme-blue-color)",
+              fontWeight: "bold",
               fontSize: `${textSize}px`,
-              transition: 'color 2s ease-in-out 0.7s',
+              transition: "color 2s ease-in-out 0.7s",
             }}
           >
             {textArray.map((letter, index) => (
               <div
                 key={`${componentId}-mirror-letter-${index}`}
                 style={{
-                  transform: letterSpacing < 0 && index > 0 ? `translateY(${letterSpacing * index}px)` : 'none',
-                  marginBottom: letterSpacing >= 0 ? `${Math.abs(letterSpacing)}px` : '0',
+                  transform:
+                    letterSpacing < 0 && index > 0
+                      ? `translateY(${letterSpacing * index}px)`
+                      : "none",
+                  marginBottom:
+                    letterSpacing >= 0 ? `${Math.abs(letterSpacing)}px` : "0",
                   letterSpacing: `${letterSpacing}px`,
                 }}
               >
@@ -200,9 +224,32 @@ const PlaygroundCard: React.FC<PlaygroundCardProps> = ({
               </div>
             ))}
           </div>
-          <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', width: '100%' }}>
-            <div style={{ position: 'relative', height: `${imageHeightPercentage}%`, width: 'auto', aspectRatio: '1/1' }}>
-              <Image src={imageSrc} alt={imageAlt} fill style={{ objectFit: 'contain', objectPosition: 'center' }} priority sizes={`${componentWidth} ${aspectRatio.replace('/', ' ')}`} />
+          <div
+            style={{
+              flex: 1,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "relative",
+              width: "100%",
+            }}
+          >
+            <div
+              style={{
+                position: "relative",
+                height: `${imageHeightPercentage}%`,
+                width: "auto",
+                aspectRatio: "1/1",
+              }}
+            >
+              <Image
+                src={imageSrc}
+                alt={imageAlt}
+                fill
+                style={{ objectFit: "contain", objectPosition: "center" }}
+                priority
+                sizes={`${componentWidth} ${aspectRatio.replace("/", " ")}`}
+              />
             </div>
           </div>
         </div>

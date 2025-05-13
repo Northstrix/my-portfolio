@@ -5,8 +5,8 @@ import HalomotButton from "@/components/HalomotButton/HalomotButton";
 import { Mail, FileDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SalesPitchCardContent from "./SalesPitchCardContent";
-import { useTranslation } from 'react-i18next';
-import ClickSpark from '@/components/ClickSpark/ClickSpark'
+import { useTranslation } from "react-i18next";
+import ClickSpark from "@/components/ClickSpark/ClickSpark";
 
 interface SalesPitchCardProps {
   align: "flex-start" | "flex-end";
@@ -59,7 +59,13 @@ const SalesPitchCard: React.FC<SalesPitchCardProps> = ({
   //   ...etc
 
   return (
-    <ClickSpark sparkColor='#fff' sparkSize={16} sparkRadius={22} sparkCount={6} duration={596}>
+    <ClickSpark
+      sparkColor="#fff"
+      sparkSize={16}
+      sparkRadius={22}
+      sparkCount={6}
+      duration={596}
+    >
       <motion.div
         className={cn("transition-all duration-200")}
         style={{

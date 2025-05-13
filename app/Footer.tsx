@@ -1,14 +1,18 @@
-'use client';
-import React, { useState, useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import { IconThumbUp } from '@tabler/icons-react';
-import HalomotButton from '@/components/HalomotButtonWithLoader/HalomotButtonWithLoader';
-import styled from 'styled-components';
-import { setDoc, doc, increment, updateDoc, getDoc } from 'firebase/firestore';
-import { db } from '@/app/lib/firebase';
-import confetti from 'canvas-confetti';
-import { addRTLProps, footerContentProps, maxSectionWidth } from './LandingPage.styles';
-import StructuredBlock from '@/components/StructuredBlock/StructuredBlock';
+"use client";
+import React, { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
+import { IconThumbUp } from "@tabler/icons-react";
+import HalomotButton from "@/components/HalomotButtonWithLoader/HalomotButtonWithLoader";
+import styled from "styled-components";
+import { setDoc, doc, increment, updateDoc, getDoc } from "firebase/firestore";
+import { db } from "@/app/lib/firebase";
+import confetti from "canvas-confetti";
+import {
+  addRTLProps,
+  footerContentProps,
+  maxSectionWidth,
+} from "./LandingPage.styles";
+import StructuredBlock from "@/components/StructuredBlock/StructuredBlock";
 
 interface FooterProps {
   isRTL: boolean;
@@ -16,7 +20,11 @@ interface FooterProps {
   onOpenCreditModal: () => void; // Add this prop
 }
 
-const Footer: React.FC<FooterProps> = ({ isRTL, languages, onOpenCreditModal }) => {
+const Footer: React.FC<FooterProps> = ({
+  isRTL,
+  languages,
+  onOpenCreditModal,
+}) => {
   const { t, i18n } = useTranslation();
   const [likeCount, setLikeCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +37,7 @@ const Footer: React.FC<FooterProps> = ({ isRTL, languages, onOpenCreditModal }) 
     const fetchLikeCount = async () => {
       let totalLikes = 0;
       for (const language of languages) {
-        const docRef = doc(db, 'data', 'likeCounts');
+        const docRef = doc(db, "data", "likeCounts");
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           const fieldName = `${language.code}:like`;
@@ -44,7 +52,9 @@ const Footer: React.FC<FooterProps> = ({ isRTL, languages, onOpenCreditModal }) 
   useEffect(() => {
     const handleResize = () => {
       if (containerRef.current) {
-        setIsMobileView(containerRef.current.offsetWidth < desktopVersionBottomThreshold);
+        setIsMobileView(
+          containerRef.current.offsetWidth < desktopVersionBottomThreshold,
+        );
       }
     };
     const resizeObserver = new ResizeObserver(handleResize);
@@ -72,18 +82,18 @@ const Footer: React.FC<FooterProps> = ({ isRTL, languages, onOpenCreditModal }) 
 
   async function incrementLikeCount(language: string): Promise<boolean> {
     const fieldName = `${language}:like`;
-    const docRef = doc(db, 'data', 'likeCounts');
+    const docRef = doc(db, "data", "likeCounts");
     try {
       await updateDoc(docRef, { [fieldName]: increment(1) });
       setLikeCount((prevCount) => prevCount + 1);
       return true;
     } catch (error: any) {
-      if (error.code === 'not-found') {
+      if (error.code === "not-found") {
         await setDoc(docRef, { [fieldName]: 1 }, { merge: true });
         setLikeCount(1);
         return true;
       } else {
-        console.error('Error incrementing like count:', error);
+        console.error("Error incrementing like count:", error);
         return false;
       }
     }
@@ -91,7 +101,18 @@ const Footer: React.FC<FooterProps> = ({ isRTL, languages, onOpenCreditModal }) 
 
   return (
     <div ref={containerRef}>
-      <div style={{ display: "flex", flexDirection: "column", gap: "0px", justifyContent: "flex-start", alignItems: "stretch", width: "100%", maxWidth: maxSectionWidth, margin: "0 auto" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "0px",
+          justifyContent: "flex-start",
+          alignItems: "stretch",
+          width: "100%",
+          maxWidth: maxSectionWidth,
+          margin: "0 auto",
+        }}
+      >
         <FooterContainer isRTL={isRTL}>
           <StructuredBlock {...addRTLProps(footerContentProps, isRTL)}>
             <FooterContent isRTL={isRTL} isMobile={isMobileView}>
@@ -99,16 +120,28 @@ const Footer: React.FC<FooterProps> = ({ isRTL, languages, onOpenCreditModal }) 
                 // Mobile: stack vertically, both full width
                 <>
                   <HalomotButton
-                    text={isLoading ? t("liking-portfolio") : `${likeCount} ${t("likes")}`}
+                    text={
+                      isLoading
+                        ? t("liking-portfolio")
+                        : `${likeCount} ${t("likes")}`
+                    }
                     onClick={handleLikeClick}
                     icon={<IconThumbUp stroke={2.25} />}
                     bgColor={isLiked ? "none" : "var(--background)"}
                     fillWidth={true}
                     isLoading={isLoading}
                     isRTL={isRTL}
-                    gradient={i18n.language === 'he' ? 'linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))' : 'linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))'}
+                    gradient={
+                      i18n.language === "he"
+                        ? "linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))"
+                        : "linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))"
+                    }
                   />
-                  <CreditInscription isRTL={isRTL} isMobile={isMobileView} onClick={onOpenCreditModal}>
+                  <CreditInscription
+                    isRTL={isRTL}
+                    isMobile={isMobileView}
+                    onClick={onOpenCreditModal}
+                  >
                     {t("credit-inscription")}
                   </CreditInscription>
                 </>
@@ -118,19 +151,31 @@ const Footer: React.FC<FooterProps> = ({ isRTL, languages, onOpenCreditModal }) 
                   {/* LTR: button left, credit right. RTL: credit left, button right */}
                   {isRTL ? (
                     <>
-                      <CreditInscription isRTL={isRTL} isMobile={isMobileView} onClick={onOpenCreditModal}>
+                      <CreditInscription
+                        isRTL={isRTL}
+                        isMobile={isMobileView}
+                        onClick={onOpenCreditModal}
+                      >
                         {t("credit-inscription")}
                       </CreditInscription>
                       <HalomotButtonContainer>
                         <HalomotButton
-                          text={isLoading ? t("liking-portfolio") : `${likeCount} ${t("likes")}`}
+                          text={
+                            isLoading
+                              ? t("liking-portfolio")
+                              : `${likeCount} ${t("likes")}`
+                          }
                           onClick={handleLikeClick}
                           icon={<IconThumbUp stroke={2.25} />}
                           bgColor={isLiked ? "none" : "var(--background)"}
                           fillWidth={true}
                           isLoading={isLoading}
                           isRTL={isRTL}
-                          gradient={i18n.language === 'he' ? 'linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))' : 'linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))'}
+                          gradient={
+                            i18n.language === "he"
+                              ? "linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))"
+                              : "linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))"
+                          }
                         />
                       </HalomotButtonContainer>
                     </>
@@ -138,17 +183,29 @@ const Footer: React.FC<FooterProps> = ({ isRTL, languages, onOpenCreditModal }) 
                     <>
                       <HalomotButtonContainer>
                         <HalomotButton
-                          text={isLoading ? t("liking-portfolio") : `${likeCount} ${t("likes")}`}
+                          text={
+                            isLoading
+                              ? t("liking-portfolio")
+                              : `${likeCount} ${t("likes")}`
+                          }
                           onClick={handleLikeClick}
                           icon={<IconThumbUp stroke={2.25} />}
                           bgColor={isLiked ? "none" : "var(--background)"}
                           fillWidth={true}
                           isLoading={isLoading}
                           isRTL={isRTL}
-                          gradient={i18n.language === 'he' ? 'linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))' : 'linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))'}
+                          gradient={
+                            i18n.language === "he"
+                              ? "linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))"
+                              : "linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))"
+                          }
                         />
                       </HalomotButtonContainer>
-                      <CreditInscription isRTL={isRTL} isMobile={isMobileView} onClick={onOpenCreditModal}>
+                      <CreditInscription
+                        isRTL={isRTL}
+                        isMobile={isMobileView}
+                        onClick={onOpenCreditModal}
+                      >
                         {t("credit-inscription")}
                       </CreditInscription>
                     </>
@@ -187,9 +244,11 @@ const HalomotButtonContainer = styled.div`
 `;
 
 const CreditInscription = styled.p<{ isRTL: boolean; isMobile: boolean }>`
-  margin-top: ${({ isRTL, isMobile }) => (isMobile ? "12px" : isRTL ? "0" : "12px")};
+  margin-top: ${({ isRTL, isMobile }) =>
+    isMobile ? "12px" : isRTL ? "0" : "12px"};
   color: var(--refresh-inscription-color);
-  text-align: ${({ isMobile, isRTL }) => isMobile ? "center" : isRTL ? "left" : "right"};
+  text-align: ${({ isMobile, isRTL }) =>
+    isMobile ? "center" : isRTL ? "left" : "right"};
   width: ${({ isMobile }) => (isMobile ? "100%" : "40%")};
   cursor: pointer;
   order: 2;

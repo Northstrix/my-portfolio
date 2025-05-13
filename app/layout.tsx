@@ -23,9 +23,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/logo.webp" type="image/webp" sizes="any" />
       </head>
-      <body className="bg-[var(--background)] antialiased">
-        {children}
-      </body>
+      <body className="bg-[var(--background)] antialiased">{children}</body>
     </html>
   );
 }

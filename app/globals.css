@@ -12,7 +12,8 @@ body {
   font-family: var(--font-open-sans), sans-serif;
 }
 
-html, body {
+html,
+body {
   overflow: hidden;
   height: 100%;
 }
@@ -26,8 +27,8 @@ html, body {
     --navbar-background: #151419;
     --foreground: #fff;
     --secondary-foreground: #e1e1e1;
-    --first-theme-color: #A123F4;
-    --second-theme-color: #603DEC;
+    --first-theme-color: #a123f4;
+    --second-theme-color: #603dec;
     --card-background: #24222b;
     --separator-color: #2b2933;
     --flag-rounding: 5px;
@@ -37,14 +38,15 @@ html, body {
     --outer-moderate-rounding: 12.56px;
     --smooth-rounding: 18px;
     --outer-smooth-rounding: 18.2px;
-    --theme-red-color: #F12B30;
+    --theme-red-color: #f12b30;
     --theme-blue-color: #3662f4;
   }
 }
 
 .font-sans {
-  font-family: ui-sans-serif, system-ui, sans-serif, 
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family:
+    ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 /* Apply to body or specific elements */

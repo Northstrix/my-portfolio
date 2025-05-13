@@ -1,24 +1,24 @@
 "use client";
-import Image from 'next/image';
+import Image from "next/image";
 import { cn } from "@/lib/utils";
-import HalomotButton from '@/components/HalomotButton/HalomotButton';
-import { Lens } from './Lens';
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import HalomotButton from "@/components/HalomotButton/HalomotButton";
+import { Lens } from "./Lens";
+import { useState } from "react";
+import { motion } from "framer-motion";
 
 interface ProjectCardProps {
-    name: string;
-    description: string;
-    image: string;
-    link: string;
-    imageAspectRatio: number;
-    buttonInscriptions: { openWebAppButton: string; };
-    onItemClick: (link: string) => void;
-    outerRounding: string; // Add this line
-    innerRounding: string; // Add this line
-    outlineColor: string; // Add this line
-    hoverOutlineColor: string; // Add this line
-    isRTL: boolean; // Add this line
+  name: string;
+  description: string;
+  image: string;
+  link: string;
+  imageAspectRatio: number;
+  buttonInscriptions: { openWebAppButton: string };
+  onItemClick: (link: string) => void;
+  outerRounding: string; // Add this line
+  innerRounding: string; // Add this line
+  outlineColor: string; // Add this line
+  hoverOutlineColor: string; // Add this line
+  isRTL: boolean; // Add this line
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -29,28 +29,59 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   imageAspectRatio,
   buttonInscriptions,
   onItemClick,
-  isRTL // Add this line
+  isRTL, // Add this line
 }) => {
   const [isCardHovered, setIsCardHovered] = useState(false);
   const [isImageHovered, setIsImageHovered] = useState(false);
 
   return (
     <motion.div
-      className={cn("group/bento hover:shadow-xl transition duration-200 flex flex-col h-full relative")}
+      className={cn(
+        "group/bento hover:shadow-xl transition duration-200 flex flex-col h-full relative",
+      )}
       style={{
-        backgroundColor: isCardHovered ? 'var(--lightened-background-adjacent-color)' : 'var(--background-adjacent-color)',
-        padding: '1px',
-        borderRadius: 'var(--outer-mild-rounding)',
-        transition: 'background-color 0.3s ease-in-out',
+        backgroundColor: isCardHovered
+          ? "var(--lightened-background-adjacent-color)"
+          : "var(--background-adjacent-color)",
+        padding: "1px",
+        borderRadius: "var(--outer-mild-rounding)",
+        transition: "background-color 0.3s ease-in-out",
       }}
       onMouseEnter={() => setIsCardHovered(true)}
       onMouseLeave={() => setIsCardHovered(false)}
     >
-      <div className="flex flex-col h-full" style={{ borderRadius: 'var(--mild-rounding)', backgroundColor: 'var(--card-background)', padding: '1rem' }}>
-        <Lens zoomFactor={1.61} lensSize={176} onHoverChange={setIsImageHovered}>
-          <div className="relative w-full overflow-hidden" style={{ paddingTop: `${(1 / imageAspectRatio) * 100}%` }}>
-            <div className="absolute inset-0" style={{ padding: '1px', background: isImageHovered ? 'var(--lightened-background-adjacent-color)' : 'var(--background-adjacent-color)', borderRadius: 'var(--mild-rounding)', transition: 'background-color 0.3s ease-in-out' }}>
-              <div className="relative h-full w-full overflow-hidden" style={{ borderRadius: 'var(--mild-rounding)' }}>
+      <div
+        className="flex flex-col h-full"
+        style={{
+          borderRadius: "var(--mild-rounding)",
+          backgroundColor: "var(--card-background)",
+          padding: "1rem",
+        }}
+      >
+        <Lens
+          zoomFactor={1.61}
+          lensSize={176}
+          onHoverChange={setIsImageHovered}
+        >
+          <div
+            className="relative w-full overflow-hidden"
+            style={{ paddingTop: `${(1 / imageAspectRatio) * 100}%` }}
+          >
+            <div
+              className="absolute inset-0"
+              style={{
+                padding: "1px",
+                background: isImageHovered
+                  ? "var(--lightened-background-adjacent-color)"
+                  : "var(--background-adjacent-color)",
+                borderRadius: "var(--mild-rounding)",
+                transition: "background-color 0.3s ease-in-out",
+              }}
+            >
+              <div
+                className="relative h-full w-full overflow-hidden"
+                style={{ borderRadius: "var(--mild-rounding)" }}
+              >
                 <Image src={image} alt={name} fill className="object-cover" />
               </div>
             </div>
@@ -69,7 +100,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             text={buttonInscriptions.openWebAppButton}
             onClick={() => onItemClick(link)}
             fillWidth
-            gradient={isRTL ? 'linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))' : 'linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))'}
+            gradient={
+              isRTL
+                ? "linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))"
+                : "linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))"
+            }
             href={link}
           />
         </div>

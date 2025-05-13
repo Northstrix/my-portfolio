@@ -14,10 +14,10 @@ import {
 export const DraggableCardBody = ({
   className,
   children,
-  outerRounding = 'var(--outer-smooth-rounding)',
-  innerRounding = 'var(--smooth-rounding)',
-  outlineColor = 'var(--refresh-inscription-color)',
-  hoverOutlineColor = 'var(--secondary-foreground)',
+  outerRounding = "var(--outer-smooth-rounding)",
+  innerRounding = "var(--smooth-rounding)",
+  outlineColor = "var(--refresh-inscription-color)",
+  hoverOutlineColor = "var(--secondary-foreground)",
 }: {
   className?: string;
   children?: React.ReactNode;
@@ -30,7 +30,12 @@ export const DraggableCardBody = ({
   const mouseY = useMotionValue(0);
   const cardRef = useRef<HTMLDivElement>(null);
   const controls = useAnimationControls();
-  const [constraints, setConstraints] = useState({ top: 0, left: 0, right: 0, bottom: 0 });
+  const [constraints, setConstraints] = useState({
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  });
 
   // physics
   const velocityX = useVelocity(mouseX);
@@ -38,19 +43,19 @@ export const DraggableCardBody = ({
   const springConfig = { stiffness: 100, damping: 20, mass: 0.5 };
   const rotateX = useSpring(
     useTransform(mouseY, [-300, 300], [25, -25]),
-    springConfig
+    springConfig,
   );
   const rotateY = useSpring(
     useTransform(mouseX, [-300, 300], [-25, 25]),
-    springConfig
+    springConfig,
   );
   const opacity = useSpring(
     useTransform(mouseX, [-300, 0, 300], [0.8, 1, 0.8]),
-    springConfig
+    springConfig,
   );
   const glareOpacity = useSpring(
     useTransform(mouseX, [-300, 0, 300], [0.2, 0, 0.2]),
-    springConfig
+    springConfig,
   );
 
   useEffect(() => {
@@ -77,7 +82,12 @@ export const DraggableCardBody = ({
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const { clientX, clientY } = e;
     const { width, height, left, top } =
-      cardRef.current?.getBoundingClientRect() ?? { width: 0, height: 0, left: 0, top: 0 };
+      cardRef.current?.getBoundingClientRect() ?? {
+        width: 0,
+        height: 0,
+        left: 0,
+        top: 0,
+      };
     const centerX = left + width / 2;
     const centerY = top + height / 2;
     const deltaX = clientX - centerX;
@@ -109,7 +119,8 @@ export const DraggableCardBody = ({
         const currentVelocityX = velocityX.get();
         const currentVelocityY = velocityY.get();
         const velocityMagnitude = Math.sqrt(
-          currentVelocityX * currentVelocityX + currentVelocityY * currentVelocityY
+          currentVelocityX * currentVelocityX +
+            currentVelocityY * currentVelocityY,
         );
         const bounce = Math.min(0.8, velocityMagnitude / 1000);
         animate(info.point.x, info.point.x + currentVelocityX * 0.3, {
@@ -138,31 +149,31 @@ export const DraggableCardBody = ({
       onMouseLeave={handleMouseLeave}
       className={cn(
         "relative min-h-[300px] w-[452px] overflow-hidden bg-[transparent] rounded-[var(--outer-moderate-rounding)] shadow-2xl transform-3d",
-        className
+        className,
       )}
     >
       <div
         style={{
           borderRadius: outerRounding,
-          padding: '1px',
+          padding: "1px",
           background: hoverOutlineColor,
-          display: 'inline-block',
-          width: '100%',
-          height: '100%',
-          transition: 'background 0.3s ease-in-out',
+          display: "inline-block",
+          width: "100%",
+          height: "100%",
+          transition: "background 0.3s ease-in-out",
         }}
       >
         <div
           style={{
-            backgroundColor: 'white',
-            padding: '20px',
+            backgroundColor: "white",
+            padding: "20px",
             borderRadius: innerRounding,
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            position: 'relative',
-            overflow: 'hidden',
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            position: "relative",
+            overflow: "hidden",
           }}
         >
           {children}

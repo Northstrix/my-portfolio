@@ -1,9 +1,14 @@
 "use client";
-import React, { useRef, useEffect, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
-import StructuredBlock from '@/components/StructuredBlock/StructuredBlock';
-import { addRTLProps, headlineProps, textProps, maxSectionWidth } from './LandingPage.styles';
-import ContactContainer from '@/components/ContactContainer/ContactContainer'
+import React, { useRef, useEffect, useCallback } from "react";
+import { useTranslation } from "react-i18next";
+import StructuredBlock from "@/components/StructuredBlock/StructuredBlock";
+import {
+  addRTLProps,
+  headlineProps,
+  textProps,
+  maxSectionWidth,
+} from "./LandingPage.styles";
+import ContactContainer from "@/components/ContactContainer/ContactContainer";
 
 interface ContactInfoContentProps {
   isRTL: boolean;
@@ -33,14 +38,24 @@ const ContactInfoContent: React.FC<ContactInfoContentProps> = ({ isRTL }) => {
   }, [handleResize]);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0px', justifyContent: 'flex-start', alignItems: 'stretch', width: '100%', maxWidth: maxSectionWidth }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "0px",
+        justifyContent: "flex-start",
+        alignItems: "stretch",
+        width: "100%",
+        maxWidth: maxSectionWidth,
+      }}
+    >
       <StructuredBlock {...addRTLProps(headlineProps, isRTL)}>
         {t("contact-info-block")}
       </StructuredBlock>
       <StructuredBlock {...addRTLProps(textProps, isRTL)}>
         {t("contact-info-section-text")}
       </StructuredBlock>
-      <ContactContainer/>
+      <ContactContainer />
     </div>
   );
 };

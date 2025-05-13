@@ -1,16 +1,21 @@
 "use client";
-import React, { useState, useRef, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import StructuredBlock from '@/components/StructuredBlock/StructuredBlock';
-import { addRTLProps, headlineProps, textProps, contentProps, maxSectionWidth } from '@/app/LandingPage.styles';
-import ContactCard from './ContactCard';
-
+import React, { useState, useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import StructuredBlock from "@/components/StructuredBlock/StructuredBlock";
+import {
+  addRTLProps,
+  headlineProps,
+  textProps,
+  contentProps,
+  maxSectionWidth,
+} from "@/app/LandingPage.styles";
+import ContactCard from "./ContactCard";
 
 const ContactContainer = () => {
   const { t, i18n } = useTranslation();
   const isRTL = false;
-  const [dynamicHeight, setDynamicHeight] = useState('auto');
-  const [dynamicPadding, setDynamicPadding] = useState('24px');
+  const [dynamicHeight, setDynamicHeight] = useState("auto");
+  const [dynamicPadding, setDynamicPadding] = useState("24px");
   const [isMobile, setIsMobile] = useState(false);
   const tagRef = useRef<HTMLInputElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -24,17 +29,25 @@ const ContactContainer = () => {
       setIsMobile(sectionRef.current.offsetWidth < 768); // Mobile threshold
     }
     if (headlineRef.current && textRef.current && balatroContainerRef.current) {
-      const headlineHeight = headlineRef.current.getBoundingClientRect().height || 0;
+      const headlineHeight =
+        headlineRef.current.getBoundingClientRect().height || 0;
       const textHeight = textRef.current.getBoundingClientRect().height || 0;
-      const balatroContentHeight = balatroContainerRef.current.getBoundingClientRect().height || 0;
+      const balatroContentHeight =
+        balatroContainerRef.current.getBoundingClientRect().height || 0;
       const spacerHeight = isMobile ? 14 : 27;
-      const availableHeight = window.innerHeight - (69 + headlineHeight + textHeight + spacerHeight);
+      const availableHeight =
+        window.innerHeight - (69 + headlineHeight + textHeight + spacerHeight);
       setDynamicHeight(`${availableHeight}px`);
-      const calculatedPaddingTopBottom = Math.max((availableHeight - balatroContentHeight) / 2, 24);
+      const calculatedPaddingTopBottom = Math.max(
+        (availableHeight - balatroContentHeight) / 2,
+        24,
+      );
       const calculatedPadding = `${Math.max(calculatedPaddingTopBottom, 24)}px 24px`;
       setDynamicPadding(calculatedPadding);
     } else {
-      console.warn('One or more refs are null. Ensure all elements are rendered before calculations.');
+      console.warn(
+        "One or more refs are null. Ensure all elements are rendered before calculations.",
+      );
     }
   };
 
@@ -47,33 +60,53 @@ const ContactContainer = () => {
     const handleResize = () => {
       calculateDimensions();
     };
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
       clearTimeout(timeoutId);
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   const gradientStyle = isRTL
-    ? 'linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))'
-    : 'linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))';
+    ? "linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))"
+    : "linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))";
 
   return (
     <>
       <StructuredBlock {...addRTLProps(contentProps, isRTL)}>
-        <div style={{ borderRadius: 'var(--outer-moderate-rounding)', padding: '1px', background: 'var(--background-adjacent-color)', width: '100%', display: 'inline-block' }}>
-          <div style={{ backgroundColor: 'var(--card-background)', borderRadius: 'var(--moderate-rounding)', display: 'flex', flexDirection: 'column', color: 'var(--foreground)' }}>
-              <ContactCard
-                isRTL={isRTL}
-                outerRounding="var(--outer-moderate-rounding)"
-                innerRounding="var(--moderate-rounding)"
-                onCardClick={() => {}}
-                activeCard={0}
-                firstCardRevealCanvas={false}
-                secondCardText = {['ר', 'ש', 'ק']}
-                emails = {["maxim.bortnikov_fvrr@outlook.com", "maxim.bort.devel@gmail.com", "Northstrix@emailthing.xyz", "Telegram: @maxim_brt" ]}
-              />
-
+        <div
+          style={{
+            borderRadius: "var(--outer-moderate-rounding)",
+            padding: "1px",
+            background: "var(--background-adjacent-color)",
+            width: "100%",
+            display: "inline-block",
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: "var(--card-background)",
+              borderRadius: "var(--moderate-rounding)",
+              display: "flex",
+              flexDirection: "column",
+              color: "var(--foreground)",
+            }}
+          >
+            <ContactCard
+              isRTL={isRTL}
+              outerRounding="var(--outer-moderate-rounding)"
+              innerRounding="var(--moderate-rounding)"
+              onCardClick={() => {}}
+              activeCard={0}
+              firstCardRevealCanvas={false}
+              secondCardText={["ר", "ש", "ק"]}
+              emails={[
+                "maxim.bortnikov_fvrr@outlook.com",
+                "maxim.bort.devel@gmail.com",
+                "Northstrix@emailthing.xyz",
+                "Telegram: @maxim_brt",
+              ]}
+            />
           </div>
         </div>
       </StructuredBlock>

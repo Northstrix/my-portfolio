@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import LandingPage from './LandingPage';
-import useMobileCheck from '@/hooks/useMobileCheck';
+import LandingPage from "./LandingPage";
+import useMobileCheck from "@/hooks/useMobileCheck";
 import { gsap } from "gsap";
 
 const imageUrls = [
@@ -22,7 +22,7 @@ const imageUrls = [
   "/midbar.webp",
   "/eslms.webp",
   "/eslfb.webp",
-  "/lantern.webp"
+  "/lantern.webp",
 ];
 
 const BootlegComponentSwitcher: React.FC = () => {
@@ -35,7 +35,7 @@ const BootlegComponentSwitcher: React.FC = () => {
     setIsMobile(isMobileDevice);
 
     const preloadImages = (urls: string[]) => {
-      urls.forEach(url => {
+      urls.forEach((url) => {
         const img = new Image();
         img.src = url;
       });
@@ -52,24 +52,30 @@ const BootlegComponentSwitcher: React.FC = () => {
 
   useEffect(() => {
     if (!loading) {
-      gsap.fromTo(".landing-page", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.inOut" });
+      gsap.fromTo(
+        ".landing-page",
+        { opacity: 0 },
+        { opacity: 1, duration: 0.3, ease: "power2.inOut" },
+      );
     }
   }, [loading]);
 
   return (
     <>
       {loading ? (
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100vh',
-          backgroundColor: 'var(--background)',
-          color: 'var(--foreground)'
-        }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+            backgroundColor: "var(--background)",
+            color: "var(--foreground)",
+          }}
+        >
           <p>Loading...</p>
-          <p style={{ marginTop: '2px' }}>Please wait for a while.</p>
+          <p style={{ marginTop: "2px" }}>Please wait for a while.</p>
         </div>
       ) : (
         <LandingPage isMobile={isMobile} className="landing-page" />

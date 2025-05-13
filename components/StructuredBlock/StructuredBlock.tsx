@@ -6,8 +6,8 @@ import styled from "styled-components";
 interface StructuredBlockProps {
   children: ReactNode;
   textColor?: string;
-  desktopPadding?: { left: string; right: string; top: string; bottom: string; };
-  mobilePadding?: { left: string; right: string; top: string; bottom: string; };
+  desktopPadding?: { left: string; right: string; top: string; bottom: string };
+  mobilePadding?: { left: string; right: string; top: string; bottom: string };
   desktopFontSize?: string;
   mobileFontSize?: string;
   desktopVersionBottomThreshold?: number;
@@ -42,7 +42,9 @@ const StructuredBlock: React.FC<StructuredBlockProps> = ({
       if (overrideInternalCheck) {
         setIsMobileView(externalMobileViewValue);
       } else if (containerRef.current) {
-        setIsMobileView(containerRef.current.offsetWidth < desktopVersionBottomThreshold);
+        setIsMobileView(
+          containerRef.current.offsetWidth < desktopVersionBottomThreshold,
+        );
       }
     };
 
@@ -63,7 +65,11 @@ const StructuredBlock: React.FC<StructuredBlockProps> = ({
         resizeObserver.unobserve(containerRef.current);
       }
     };
-  }, [desktopVersionBottomThreshold, overrideInternalCheck, externalMobileViewValue]);
+  }, [
+    desktopVersionBottomThreshold,
+    overrideInternalCheck,
+    externalMobileViewValue,
+  ]);
 
   return (
     <BlockContainer
@@ -97,11 +103,14 @@ const BlockContainer = styled.div<{
   $textDirection: "ltr" | "rtl";
 }>`
   color: ${(props) => props.$textColor};
-  font-size: ${(props) => props.$isMobileView ? props.$mobileFontSize : props.$desktopFontSize};
-  padding: ${(props) => props.$isMobileView
-    ? `${props.$mobilePadding.top} ${props.$mobilePadding.right} ${props.$mobilePadding.bottom} ${props.$mobilePadding.left}`
-    : `${props.$desktopPadding.top} ${props.$desktopPadding.right} ${props.$desktopPadding.bottom} ${props.$desktopPadding.left}`};
-  text-align: ${(props) => props.$isMobileView ? props.$mobileTextAlign : props.$desktopTextAlign};
+  font-size: ${(props) =>
+    props.$isMobileView ? props.$mobileFontSize : props.$desktopFontSize};
+  padding: ${(props) =>
+    props.$isMobileView
+      ? `${props.$mobilePadding.top} ${props.$mobilePadding.right} ${props.$mobilePadding.bottom} ${props.$mobilePadding.left}`
+      : `${props.$desktopPadding.top} ${props.$desktopPadding.right} ${props.$desktopPadding.bottom} ${props.$desktopPadding.left}`};
+  text-align: ${(props) =>
+    props.$isMobileView ? props.$mobileTextAlign : props.$desktopTextAlign};
   font-weight: ${(props) => (props.$isBold ? "bold" : "normal")};
   direction: ${(props) => props.$textDirection};
 `;

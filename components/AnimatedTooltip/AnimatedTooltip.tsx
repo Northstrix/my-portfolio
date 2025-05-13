@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -15,7 +15,11 @@ interface AnimatedTooltipProps {
   showTooltip: boolean; // New prop to control tooltip visibility
 }
 
-export const AnimatedTooltip: React.FC<AnimatedTooltipProps> = ({ items, isRTL, showTooltip }) => {
+export const AnimatedTooltip: React.FC<AnimatedTooltipProps> = ({
+  items,
+  isRTL,
+  showTooltip,
+}) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
@@ -43,9 +47,7 @@ export const AnimatedTooltip: React.FC<AnimatedTooltipProps> = ({ items, isRTL, 
                 }}
                 className="z-50 flex flex-col items-center justify-center px-4 py-2 text-sm"
               >
-                <div
-                  className="relative z-30 text-base font-bold text-[var(--foreground)] bg-[var(--background)] border border-[var(--lightened-background-adjacent-color)] px-5 py-3"
-                >
+                <div className="relative z-30 text-base font-bold text-[var(--foreground)] bg-[var(--background)] border border-[var(--lightened-background-adjacent-color)] px-5 py-3">
                   Language
                 </div>
               </motion.div>

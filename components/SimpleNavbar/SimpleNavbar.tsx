@@ -30,7 +30,7 @@ const SimpleNavbar: React.FC<SimpleNavbarProps> = ({
     const handleResize = () => {
       if (navbarRef.current) {
         setIsMobileView(
-          navbarRef.current.offsetWidth < desktopVersionBottomThreshold
+          navbarRef.current.offsetWidth < desktopVersionBottomThreshold,
         );
       }
     };

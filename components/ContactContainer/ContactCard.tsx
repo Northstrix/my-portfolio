@@ -1,8 +1,8 @@
-'use client';
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
-import Aurora from '@/components/Aurora/Aurora';
+"use client";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import Aurora from "@/components/Aurora/Aurora";
 
 interface ContactCardProps {
   isRTL: boolean;
@@ -83,16 +83,17 @@ const ContactCard: React.FC<ContactCardProps> = ({
       ref={containerRef}
       style={{
         backgroundColor: isCardHovered
-          ? 'var(--lightened-background-adjacent-color)'
-          : 'var(--background-adjacent-color)',
-        padding: '1px',
+          ? "var(--lightened-background-adjacent-color)"
+          : "var(--background-adjacent-color)",
+        padding: "1px",
         borderRadius: outerRounding,
-        transition: 'background-color 0.3s ease-in-out, border 0.3s ease-in-out',
-        width: '100%',
-        height: '100%',
-        boxSizing: 'border-box',
-        overflow: 'hidden', // Ensure the container hides overflow
-        position: 'relative', // Ensure the container can position absolutely
+        transition:
+          "background-color 0.3s ease-in-out, border 0.3s ease-in-out",
+        width: "100%",
+        height: "100%",
+        boxSizing: "border-box",
+        overflow: "hidden", // Ensure the container hides overflow
+        position: "relative", // Ensure the container can position absolutely
       }}
       onMouseEnter={() => setIsCardHovered(true)}
       onMouseLeave={() => setIsCardHovered(false)}
@@ -101,22 +102,25 @@ const ContactCard: React.FC<ContactCardProps> = ({
         className="flex flex-col h-full"
         style={{
           borderRadius: innerRounding,
-          backgroundColor: 'var(--card-background)',
-          padding: '2rem',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '100%',
-          height: '100%',
-          boxSizing: 'border-box',
-          position: 'relative', // Ensure content is above the Aurora
+          backgroundColor: "var(--card-background)",
+          padding: "2rem",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          height: "100%",
+          boxSizing: "border-box",
+          position: "relative", // Ensure content is above the Aurora
           zIndex: 1, // Ensure content is above the Aurora
         }}
       >
-        <div className="flex flex-col items-center w-full" style={{ maxWidth: '600px' }}>
+        <div
+          className="flex flex-col items-center w-full"
+          style={{ maxWidth: "600px" }}
+        >
           <div
             className="relative w-full mx-auto"
-            style={{ aspectRatio: isMobile ? '412/640' : '16/9' }}
+            style={{ aspectRatio: isMobile ? "412/640" : "16/9" }}
           >
             <AnimatePresence>
               <motion.div
@@ -124,7 +128,7 @@ const ContactCard: React.FC<ContactCardProps> = ({
                 initial={{ opacity: 0, scale: 0.84, rotate: randomRotateY() }}
                 animate={{ opacity: 1, scale: 1, rotate: 0, zIndex: 30, y: 0 }}
                 exit={{ opacity: 0, scale: 0.84, rotate: randomRotateY() }}
-                transition={{ duration: 0.4, ease: 'easeInOut' }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
                 className="absolute inset-0 origin-center cursor-pointer"
                 onHoverStart={() => setHoveredCard(1)}
                 onHoverEnd={() => setHoveredCard(null)}
@@ -133,21 +137,21 @@ const ContactCard: React.FC<ContactCardProps> = ({
                   <div className="absolute inset-0 overflow-hidden">
                     <div
                       ref={cardRef}
-                      style={{ maxWidth: '100%', width: '100%' }}
+                      style={{ maxWidth: "100%", width: "100%" }}
                       data-component-id="card-2"
                       onClick={() => onCardClick(1)}
                     >
                       <div
                         style={{
                           borderRadius: outerRounding,
-                          padding: '1px',
+                          padding: "1px",
                           background: isHovered
-                            ? 'var(--background-adjacent-color)'
-                            : 'var(--refresh-inscription-color)',
-                          display: 'inline-block',
-                          width: '100%',
-                          aspectRatio: isMobile ? '412/640' : '16/9',
-                          transition: 'background 0.3s ease-in-out',
+                            ? "var(--background-adjacent-color)"
+                            : "var(--refresh-inscription-color)",
+                          display: "inline-block",
+                          width: "100%",
+                          aspectRatio: isMobile ? "412/640" : "16/9",
+                          transition: "background 0.3s ease-in-out",
                         }}
                         onMouseEnter={() => setIsHovered(true)}
                         onMouseLeave={() => setIsHovered(false)}
@@ -155,24 +159,24 @@ const ContactCard: React.FC<ContactCardProps> = ({
                         <div
                           style={{
                             backgroundColor: isHovered
-                              ? 'var(--background)'
-                              : 'var(--foreground)',
-                            padding: '16px',
+                              ? "var(--background)"
+                              : "var(--foreground)",
+                            padding: "16px",
                             borderRadius: innerRounding,
-                            width: '100%',
-                            height: '100%',
-                            display: 'flex',
-                            flexDirection: isMobile ? 'column' : 'row',
-                            color: 'var(--foreground)',
-                            position: 'relative',
-                            overflow: 'hidden',
-                            transition: 'background-color 0.3s ease-in-out',
+                            width: "100%",
+                            height: "100%",
+                            display: "flex",
+                            flexDirection: isMobile ? "column" : "row",
+                            color: "var(--foreground)",
+                            position: "relative",
+                            overflow: "hidden",
+                            transition: "background-color 0.3s ease-in-out",
                           }}
                         >
-                          {(
+                          {
                             <div
                               className={`absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none transition-opacity duration-3000 ${
-                                isHovered ? 'opacity-100' : 'opacity-0'
+                                isHovered ? "opacity-100" : "opacity-0"
                               }`}
                               style={{
                                 borderRadius: innerRounding,
@@ -180,22 +184,22 @@ const ContactCard: React.FC<ContactCardProps> = ({
                             >
                               <Aurora />
                             </div>
-                          )}
+                          }
                           <div
                             id="card-2-text"
                             style={{
-                              position: 'absolute',
-                              top: '10px',
-                              right: '17px',
-                              display: 'flex',
-                              flexDirection: 'row',
+                              position: "absolute",
+                              top: "10px",
+                              right: "17px",
+                              display: "flex",
+                              flexDirection: "row",
                               zIndex: 2,
                               color: isHovered
-                                ? 'var(--foreground)'
-                                : 'var(--background)',
-                              fontWeight: 'bold',
+                                ? "var(--foreground)"
+                                : "var(--background)",
+                              fontWeight: "bold",
                               fontSize: `${textSize}px`,
-                              transition: 'color 0.3s ease-in-out',
+                              transition: "color 0.3s ease-in-out",
                             }}
                           >
                             {secondCardText.map((letter, index) => (
@@ -205,11 +209,11 @@ const ContactCard: React.FC<ContactCardProps> = ({
                                   transform:
                                     letterSpacing < 0 && index > 0
                                       ? `translateX(${letterSpacing * index}px)`
-                                      : 'none',
+                                      : "none",
                                   marginLeft:
                                     letterSpacing >= 0
                                       ? `${Math.abs(letterSpacing)}px`
-                                      : '0',
+                                      : "0",
                                   letterSpacing: `${letterSpacing}px`,
                                 }}
                               >
@@ -220,19 +224,19 @@ const ContactCard: React.FC<ContactCardProps> = ({
                           <div
                             id="card-2-mirror"
                             style={{
-                              position: 'absolute',
-                              bottom: '10px',
-                              left: '17px',
-                              display: 'flex',
-                              flexDirection: 'row',
-                              transform: 'scale(-1, -1)',
+                              position: "absolute",
+                              bottom: "10px",
+                              left: "17px",
+                              display: "flex",
+                              flexDirection: "row",
+                              transform: "scale(-1, -1)",
                               zIndex: 2,
                               color: isHovered
-                                ? 'var(--foreground)'
-                                : 'var(--background)',
-                              fontWeight: 'bold',
+                                ? "var(--foreground)"
+                                : "var(--background)",
+                              fontWeight: "bold",
                               fontSize: `${textSize}px`,
-                              transition: 'color 0.3s ease-in-out',
+                              transition: "color 0.3s ease-in-out",
                             }}
                           >
                             {secondCardText.map((letter, index) => (
@@ -242,11 +246,11 @@ const ContactCard: React.FC<ContactCardProps> = ({
                                   transform:
                                     letterSpacing < 0 && index > 0
                                       ? `translateX(${letterSpacing * index}px)`
-                                      : 'none',
+                                      : "none",
                                   marginLeft:
                                     letterSpacing >= 0
                                       ? `${Math.abs(letterSpacing)}px`
-                                      : '0',
+                                      : "0",
                                   letterSpacing: `${letterSpacing}px`,
                                 }}
                               >
@@ -257,23 +261,23 @@ const ContactCard: React.FC<ContactCardProps> = ({
                           <div
                             style={{
                               flex: 1,
-                              display: 'flex',
-                              flexDirection: isMobile ? 'column' : 'row',
-                              alignItems: 'center',
-                              position: 'relative',
-                              width: '100%',
+                              display: "flex",
+                              flexDirection: isMobile ? "column" : "row",
+                              alignItems: "center",
+                              position: "relative",
+                              width: "100%",
                             }}
                           >
                             <div
                               style={{
                                 transform: !isMobile
-                                  ? 'translateX(-23px)'
-                                  : 'none',
-                                position: 'relative',
-                                height: isMobile ? 'auto' : '100%',
-                                width: isMobile ? '100%' : '50%',
-                                aspectRatio: '1/1',
-                                padding: '15px',
+                                  ? "translateX(-23px)"
+                                  : "none",
+                                position: "relative",
+                                height: isMobile ? "auto" : "100%",
+                                width: isMobile ? "100%" : "50%",
+                                aspectRatio: "1/1",
+                                padding: "15px",
                               }}
                             >
                               <Image
@@ -281,8 +285,8 @@ const ContactCard: React.FC<ContactCardProps> = ({
                                 alt=""
                                 fill
                                 style={{
-                                  objectFit: 'contain',
-                                  objectPosition: 'center',
+                                  objectFit: "contain",
+                                  objectPosition: "center",
                                 }}
                                 priority
                                 sizes="412px 16 9"
@@ -291,26 +295,26 @@ const ContactCard: React.FC<ContactCardProps> = ({
                             <div
                               style={{
                                 transform: !isMobile
-                                  ? 'translateX(-52px)'
-                                  : 'none',
-                                display: isMobile ? '' : 'flex',
-                                textAlign: isMobile ? 'center' : 'left',
-                                flexDirection: 'column',
-                                alignItems: 'flex-start',
-                                width: isMobile ? '100%' : '50%',
-                                padding: '15px',
+                                  ? "translateX(-52px)"
+                                  : "none",
+                                display: isMobile ? "" : "flex",
+                                textAlign: isMobile ? "center" : "left",
+                                flexDirection: "column",
+                                alignItems: "flex-start",
+                                width: isMobile ? "100%" : "50%",
+                                padding: "15px",
                               }}
                             >
                               {emails.map((email, index) => (
                                 <div
                                   key={`email-${index}`}
                                   style={{
-                                    marginBottom: '9px',
+                                    marginBottom: "9px",
                                     fontSize: `${textSize}px`,
-                                    fontWeight: 'bold',
+                                    fontWeight: "bold",
                                     color: isHovered
-                                      ? 'var(--foreground)'
-                                      : 'var(--background)',
+                                      ? "var(--foreground)"
+                                      : "var(--background)",
                                   }}
                                 >
                                   {email}

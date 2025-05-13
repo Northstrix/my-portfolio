@@ -1,25 +1,28 @@
 import styled, { css } from "styled-components";
 
-export const maxSectionWidth = '1536px';
+export const maxSectionWidth = "1536px";
 
 export const Container = styled.div<{ isRTL: boolean }>`
   display: flex;
-  flex-direction: ${props => (props.isRTL ? 'row-reverse' : 'row')};
+  flex-direction: ${(props) => (props.isRTL ? "row-reverse" : "row")};
   height: 100vh;
 `;
 
 export const ContentArea = styled.div<{ isRTL: boolean; isMobile: boolean }>`
   flex: 1;
-  height: ${props => (props.isMobile ? 'calc(100vh - 56px)' : '100vh')};
+  height: ${(props) => (props.isMobile ? "calc(100vh - 56px)" : "100vh")};
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
   ${({ isRTL }) =>
     isRTL
-      ? css`direction: rtl;`
-      : css`direction: ltr;`
-  }
+      ? css`
+          direction: rtl;
+        `
+      : css`
+          direction: ltr;
+        `}
 `;
 
 export const Section1 = styled.div<{}>`

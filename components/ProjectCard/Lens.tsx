@@ -47,9 +47,9 @@ export const Lens: React.FC<LensProps> = ({
       {children}
 
       {isStatic ? (
-        <StaticLensContent 
-          position={position} 
-          lensSize={lensSize} 
+        <StaticLensContent
+          position={position}
+          lensSize={lensSize}
           zoomFactor={zoomFactor}
         >
           {children}
@@ -57,9 +57,9 @@ export const Lens: React.FC<LensProps> = ({
       ) : (
         <AnimatePresence>
           {localHovering && (
-            <DynamicLensContent 
-              mousePosition={mousePosition} 
-              lensSize={lensSize} 
+            <DynamicLensContent
+              mousePosition={mousePosition}
+              lensSize={lensSize}
               zoomFactor={zoomFactor}
             >
               {children}
@@ -71,15 +71,20 @@ export const Lens: React.FC<LensProps> = ({
   );
 };
 
-const StaticLensContent = ({ position, lensSize, zoomFactor, children }: any) => (
+const StaticLensContent = ({
+  position,
+  lensSize,
+  zoomFactor,
+  children,
+}: any) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.58 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.3, ease: "easeOut" }}
     className="absolute inset-0 overflow-hidden"
     style={{
-      maskImage: `radial-gradient(circle ${lensSize/2}px at ${position.x}px ${position.y}px, black 100%, transparent 100%)`,
-      WebkitMaskImage: `radial-gradient(circle ${lensSize/2}px at ${position.x}px ${position.y}px, black 100%, transparent 100%)`,
+      maskImage: `radial-gradient(circle ${lensSize / 2}px at ${position.x}px ${position.y}px, black 100%, transparent 100%)`,
+      WebkitMaskImage: `radial-gradient(circle ${lensSize / 2}px at ${position.x}px ${position.y}px, black 100%, transparent 100%)`,
       transformOrigin: `${position.x}px ${position.y}px`,
       zIndex: 20,
     }}
@@ -96,7 +101,12 @@ const StaticLensContent = ({ position, lensSize, zoomFactor, children }: any) =>
   </motion.div>
 );
 
-const DynamicLensContent = ({ mousePosition, lensSize, zoomFactor, children }: any) => (
+const DynamicLensContent = ({
+  mousePosition,
+  lensSize,
+  zoomFactor,
+  children,
+}: any) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.58 }}
     animate={{ opacity: 1, scale: 1 }}
@@ -104,8 +114,8 @@ const DynamicLensContent = ({ mousePosition, lensSize, zoomFactor, children }: a
     transition={{ duration: 0.3, ease: "easeOut" }}
     className="absolute inset-0 overflow-hidden"
     style={{
-      maskImage: `radial-gradient(circle ${lensSize/2}px at ${mousePosition.x}px ${mousePosition.y}px, black 100%, transparent 100%)`,
-      WebkitMaskImage: `radial-gradient(circle ${lensSize/2}px at ${mousePosition.x}px ${mousePosition.y}px, black 100%, transparent 100%)`,
+      maskImage: `radial-gradient(circle ${lensSize / 2}px at ${mousePosition.x}px ${mousePosition.y}px, black 100%, transparent 100%)`,
+      WebkitMaskImage: `radial-gradient(circle ${lensSize / 2}px at ${mousePosition.x}px ${mousePosition.y}px, black 100%, transparent 100%)`,
       transformOrigin: `${mousePosition.x}px ${mousePosition.y}px`,
       zIndex: 1,
     }}

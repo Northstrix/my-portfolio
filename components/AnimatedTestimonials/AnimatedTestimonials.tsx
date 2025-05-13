@@ -3,8 +3,8 @@ import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState, useCallback, useRef } from "react";
-import HalomotButton from '@/components/HalomotButton/HalomotButton';
-import { useTranslation } from 'react-i18next';
+import HalomotButton from "@/components/HalomotButton/HalomotButton";
+import { useTranslation } from "react-i18next";
 
 type Testimonial = {
   quote: string;
@@ -120,13 +120,16 @@ export const AnimatedTestimonials = ({
 }: AnimatedTestimonialsProps) => {
   const [active, setActive] = useState(0);
   const [isMobileView, setIsMobileView] = useState(false);
-  const [hoveredArrow, setHoveredArrow] = useState<"prev" | "next" | null>(null);
+  const [hoveredArrow, setHoveredArrow] = useState<"prev" | "next" | null>(
+    null,
+  );
   const [componentWidth, setComponentWidth] = useState(0);
   const componentRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
 
   // Use Mobile Config (with defaults)
-  const currentFontSizes = isMobileView && mobile.fontSizes ? mobile.fontSizes : fontSizes;
+  const currentFontSizes =
+    isMobileView && mobile.fontSizes ? mobile.fontSizes : fontSizes;
   const currentSpacing = {
     ...spacing,
     ...(isMobileView && mobile.spacing ? mobile.spacing : {}),
@@ -154,7 +157,9 @@ export const AnimatedTestimonials = ({
   const handleResize = useCallback(() => {
     if (componentRef.current) {
       setComponentWidth(componentRef.current.offsetWidth);
-      setIsMobileView(componentRef.current.offsetWidth < desktopVersionBottomThreshold);
+      setIsMobileView(
+        componentRef.current.offsetWidth < desktopVersionBottomThreshold,
+      );
     }
   }, [desktopVersionBottomThreshold]);
 
@@ -180,9 +185,12 @@ export const AnimatedTestimonials = ({
   });
 
   const iconArrowStyle = (arrowType: "prev" | "next") => ({
-    color: hoveredArrow === arrowType ? colors.arrowHoverForeground : colors.arrowForeground,
-    height: '49px',
-    width: '49px',
+    color:
+      hoveredArrow === arrowType
+        ? colors.arrowHoverForeground
+        : colors.arrowForeground,
+    height: "49px",
+    width: "49px",
   });
 
   const calculateGap = (width: number) => {
@@ -191,28 +199,68 @@ export const AnimatedTestimonials = ({
     const minGap = 60;
     const maxGap = 86;
     if (width <= minWidth) return minGap;
-    if (width >= maxWidth) return Math.max(minGap, maxGap + 0.06018 * (width - maxWidth));
-    return minGap + (maxGap - minGap) * ((width - minWidth) / (maxWidth - minWidth));
+    if (width >= maxWidth)
+      return Math.max(minGap, maxGap + 0.06018 * (width - maxWidth));
+    return (
+      minGap + (maxGap - minGap) * ((width - minWidth) / (maxWidth - minWidth))
+    );
   };
 
   return (
     <div
       ref={componentRef}
       className={`w-full mx-auto antialiased font-sans py-${currentSpacing.top} pb-${currentSpacing.bottom}`}
-      style={{ lineHeight: currentSpacing.lineHeight, backgroundColor: "transparent", direction: isRTL ? 'rtl' : 'ltr' }}
+      style={{
+        lineHeight: currentSpacing.lineHeight,
+        backgroundColor: "transparent",
+        direction: isRTL ? "rtl" : "ltr",
+      }}
     >
-      <div className="relative" style={{ display: 'grid', gridTemplateColumns: isMobileView ? '1fr' : (isRTL ? '1fr 1fr' : '1fr 1fr'), gap: `${calculateGap(componentWidth)}px` }}>
+      <div
+        className="relative"
+        style={{
+          display: "grid",
+          gridTemplateColumns: isMobileView
+            ? "1fr"
+            : isRTL
+              ? "1fr 1fr"
+              : "1fr 1fr",
+          gap: `${calculateGap(componentWidth)}px`,
+        }}
+      >
         {isRTL && !isMobileView ? (
           <>
             <div className="w-full">
-              <div className="relative" style={{ paddingTop: `${(1 / imageAspectRatio) * 100}%` }}>
+              <div
+                className="relative"
+                style={{ paddingTop: `${(1 / imageAspectRatio) * 100}%` }}
+              >
                 <AnimatePresence>
                   {testimonials.map((testimonial, index) => (
                     <motion.div
                       key={testimonial.src}
-                      initial={{ opacity: 0, scale: 0.9, z: -100, rotate: randomRotateY() }}
-                      animate={{ opacity: isActive(index) ? 1 : 0.7, scale: isActive(index) ? 1 : 0.95, z: isActive(index) ? 0 : -100, rotate: isActive(index) ? 0 : randomRotateY(), zIndex: isActive(index) ? 999 : testimonials.length + 2 - index, y: isActive(index) ? [0, -80, 0] : 0, }}
-                      exit={{ opacity: 0, scale: 0.9, z: 100, rotate: randomRotateY() }}
+                      initial={{
+                        opacity: 0,
+                        scale: 0.9,
+                        z: -100,
+                        rotate: randomRotateY(),
+                      }}
+                      animate={{
+                        opacity: isActive(index) ? 1 : 0.7,
+                        scale: isActive(index) ? 1 : 0.95,
+                        z: isActive(index) ? 0 : -100,
+                        rotate: isActive(index) ? 0 : randomRotateY(),
+                        zIndex: isActive(index)
+                          ? 999
+                          : testimonials.length + 2 - index,
+                        y: isActive(index) ? [0, -80, 0] : 0,
+                      }}
+                      exit={{
+                        opacity: 0,
+                        scale: 0.9,
+                        z: 100,
+                        rotate: randomRotateY(),
+                      }}
                       transition={{ duration: 0.4, ease: "easeInOut" }}
                       className="absolute inset-0 origin-bottom"
                     >
@@ -230,25 +278,98 @@ export const AnimatedTestimonials = ({
               </div>
             </div>
             <div className="flex justify-between flex-col py-4 w-full">
-              <motion.div key={active} initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -20, opacity: 0 }} transition={{ duration: 0.2, ease: "easeInOut" }}>
-                <h3 className={`font-bold`} style={{ fontSize: currentFontSizes.name, color: colors.name, marginTop: currentSpacing.nameTop, marginBottom: currentSpacing.nameBottom, textAlign: 'right', }}>
+              <motion.div
+                key={active}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+              >
+                <h3
+                  className={`font-bold`}
+                  style={{
+                    fontSize: currentFontSizes.name,
+                    color: colors.name,
+                    marginTop: currentSpacing.nameTop,
+                    marginBottom: currentSpacing.nameBottom,
+                    textAlign: "right",
+                  }}
+                >
                   {testimonials[active].name}
                 </h3>
-                <p style={{ fontSize: currentFontSizes.position, color: colors.position, marginTop: currentSpacing.positionTop, marginBottom: currentSpacing.positionBottom, textAlign: 'right', }}>
+                <p
+                  style={{
+                    fontSize: currentFontSizes.position,
+                    color: colors.position,
+                    marginTop: currentSpacing.positionTop,
+                    marginBottom: currentSpacing.positionBottom,
+                    textAlign: "right",
+                  }}
+                >
                   {testimonials[active].designation}
                 </p>
-                <motion.p style={{ fontSize: currentFontSizes.testimony, color: colors.testimony, marginTop: currentSpacing.testimonyTop, marginBottom: currentSpacing.testimonyBottom, textAlign: 'right', }}>
+                <motion.p
+                  style={{
+                    fontSize: currentFontSizes.testimony,
+                    color: colors.testimony,
+                    marginTop: currentSpacing.testimonyTop,
+                    marginBottom: currentSpacing.testimonyBottom,
+                    textAlign: "right",
+                  }}
+                >
                   {testimonials[active].quote.split(" ").map((word, index) => (
-                    <motion.span key={index} initial={{ filter: "blur(10px)", opacity: 0, y: 5 }} animate={{ filter: "blur(0px)", opacity: 1, y: 0 }} transition={{ duration: 0.2, ease: "easeInOut", delay: 0.02 * index }} className="inline-block">
+                    <motion.span
+                      key={index}
+                      initial={{ filter: "blur(10px)", opacity: 0, y: 5 }}
+                      animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.2,
+                        ease: "easeInOut",
+                        delay: 0.02 * index,
+                      }}
+                      className="inline-block"
+                    >
                       {word}&nbsp;
                     </motion.span>
                   ))}
                 </motion.p>
               </motion.div>
-              <div className={`flex gap-4 ${isMobileView ? 'pt-12' : 'md:pt-0'} w-full`} style={{ justifyContent: 'flex-start' }}>
-                <HalomotButton text={buttonInscriptions.previousButton} onClick={handlePrev} fixedWidth="172px" gradient={isRTL ? 'linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))' : 'linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))'} />
-                <HalomotButton text={buttonInscriptions.nextButton} onClick={handleNext} fixedWidth="172px" gradient={isRTL ? 'linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))' : 'linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))'} />
-                <HalomotButton text={buttonInscriptions.openWebAppButton} onClick={() => onItemClick && onItemClick(testimonials[active].link || '')} fillWidth gradient={isRTL ? 'linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))' : 'linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))'} href={testimonials[active].link} // Set the href attribute
+              <div
+                className={`flex gap-4 ${isMobileView ? "pt-12" : "md:pt-0"} w-full`}
+                style={{ justifyContent: "flex-start" }}
+              >
+                <HalomotButton
+                  text={buttonInscriptions.previousButton}
+                  onClick={handlePrev}
+                  fixedWidth="172px"
+                  gradient={
+                    isRTL
+                      ? "linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))"
+                      : "linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))"
+                  }
+                />
+                <HalomotButton
+                  text={buttonInscriptions.nextButton}
+                  onClick={handleNext}
+                  fixedWidth="172px"
+                  gradient={
+                    isRTL
+                      ? "linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))"
+                      : "linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))"
+                  }
+                />
+                <HalomotButton
+                  text={buttonInscriptions.openWebAppButton}
+                  onClick={() =>
+                    onItemClick && onItemClick(testimonials[active].link || "")
+                  }
+                  fillWidth
+                  gradient={
+                    isRTL
+                      ? "linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))"
+                      : "linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))"
+                  }
+                  href={testimonials[active].link} // Set the href attribute
                 />
               </div>
             </div>
@@ -256,14 +377,36 @@ export const AnimatedTestimonials = ({
         ) : (
           <>
             <div className="w-full">
-              <div className="relative" style={{ paddingTop: `${(1 / imageAspectRatio) * 100}%` }}>
+              <div
+                className="relative"
+                style={{ paddingTop: `${(1 / imageAspectRatio) * 100}%` }}
+              >
                 <AnimatePresence>
                   {testimonials.map((testimonial, index) => (
                     <motion.div
                       key={testimonial.src}
-                      initial={{ opacity: 0, scale: 0.9, z: -100, rotate: randomRotateY() }}
-                      animate={{ opacity: isActive(index) ? 1 : 0.7, scale: isActive(index) ? 1 : 0.95, z: isActive(index) ? 0 : -100, rotate: isActive(index) ? 0 : randomRotateY(), zIndex: isActive(index) ? 999 : testimonials.length + 2 - index, y: isActive(index) ? [0, -80, 0] : 0, }}
-                      exit={{ opacity: 0, scale: 0.9, z: 100, rotate: randomRotateY() }}
+                      initial={{
+                        opacity: 0,
+                        scale: 0.9,
+                        z: -100,
+                        rotate: randomRotateY(),
+                      }}
+                      animate={{
+                        opacity: isActive(index) ? 1 : 0.7,
+                        scale: isActive(index) ? 1 : 0.95,
+                        z: isActive(index) ? 0 : -100,
+                        rotate: isActive(index) ? 0 : randomRotateY(),
+                        zIndex: isActive(index)
+                          ? 999
+                          : testimonials.length + 2 - index,
+                        y: isActive(index) ? [0, -80, 0] : 0,
+                      }}
+                      exit={{
+                        opacity: 0,
+                        scale: 0.9,
+                        z: 100,
+                        rotate: randomRotateY(),
+                      }}
                       transition={{ duration: 0.4, ease: "easeInOut" }}
                       className="absolute inset-0 origin-bottom"
                     >
@@ -281,35 +424,139 @@ export const AnimatedTestimonials = ({
               </div>
             </div>
             <div className="flex justify-between flex-col py-4 w-full">
-              <motion.div key={active} initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -20, opacity: 0 }} transition={{ duration: 0.2, ease: "easeInOut" }}>
-                <h3 className={`font-bold`} style={{ fontSize: currentFontSizes.name, color: colors.name, marginTop: currentSpacing.nameTop, marginBottom: currentSpacing.nameBottom, }}>
+              <motion.div
+                key={active}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+              >
+                <h3
+                  className={`font-bold`}
+                  style={{
+                    fontSize: currentFontSizes.name,
+                    color: colors.name,
+                    marginTop: currentSpacing.nameTop,
+                    marginBottom: currentSpacing.nameBottom,
+                  }}
+                >
                   {testimonials[active].name}
                 </h3>
-                <p style={{ fontSize: currentFontSizes.position, color: colors.position, marginTop: currentSpacing.positionTop, marginBottom: currentSpacing.positionBottom, }}>
+                <p
+                  style={{
+                    fontSize: currentFontSizes.position,
+                    color: colors.position,
+                    marginTop: currentSpacing.positionTop,
+                    marginBottom: currentSpacing.positionBottom,
+                  }}
+                >
                   {testimonials[active].designation}
                 </p>
-                <motion.p style={{ fontSize: currentFontSizes.testimony, color: colors.testimony, marginTop: currentSpacing.testimonyTop, marginBottom: currentSpacing.testimonyBottom, }}>
+                <motion.p
+                  style={{
+                    fontSize: currentFontSizes.testimony,
+                    color: colors.testimony,
+                    marginTop: currentSpacing.testimonyTop,
+                    marginBottom: currentSpacing.testimonyBottom,
+                  }}
+                >
                   {testimonials[active].quote.split(" ").map((word, index) => (
-                    <motion.span key={index} initial={{ filter: "blur(10px)", opacity: 0, y: 5 }} animate={{ filter: "blur(0px)", opacity: 1, y: 0 }} transition={{ duration: 0.2, ease: "easeInOut", delay: 0.02 * index }} className="inline-block">
+                    <motion.span
+                      key={index}
+                      initial={{ filter: "blur(10px)", opacity: 0, y: 5 }}
+                      animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.2,
+                        ease: "easeInOut",
+                        delay: 0.02 * index,
+                      }}
+                      className="inline-block"
+                    >
                       {word}&nbsp;
                     </motion.span>
                   ))}
                 </motion.p>
               </motion.div>
               {isRTL ? (
-                <div className={`flex gap-4 ${isMobileView ? 'pt-12' : 'md:pt-0'} w-full`}>
-                  <button onClick={handlePrev} className="h-[32px] w-[32px] rounded-full flex items-center justify-center" style={arrowStyle()} onMouseEnter={() => setHoveredArrow("prev")} onMouseLeave={() => setHoveredArrow(null)}>
-                    <IconArrowRight className="transition-transform duration-300" style={{ ...iconArrowStyle("prev"), transform: hoveredArrow === "prev" ? 'rotate(-12deg)' : 'rotate(0deg)', transition: 'color 0.3s, transform 0.3s' }} />
+                <div
+                  className={`flex gap-4 ${isMobileView ? "pt-12" : "md:pt-0"} w-full`}
+                >
+                  <button
+                    onClick={handlePrev}
+                    className="h-[32px] w-[32px] rounded-full flex items-center justify-center"
+                    style={arrowStyle()}
+                    onMouseEnter={() => setHoveredArrow("prev")}
+                    onMouseLeave={() => setHoveredArrow(null)}
+                  >
+                    <IconArrowRight
+                      className="transition-transform duration-300"
+                      style={{
+                        ...iconArrowStyle("prev"),
+                        transform:
+                          hoveredArrow === "prev"
+                            ? "rotate(-12deg)"
+                            : "rotate(0deg)",
+                        transition: "color 0.3s, transform 0.3s",
+                      }}
+                    />
                   </button>
-                  <button onClick={handleNext} className="h-[32px] w-[32px] rounded-full flex items-center justify-center" style={arrowStyle()} onMouseEnter={() => setHoveredArrow("next")} onMouseLeave={() => setHoveredArrow(null)}>
-                    <IconArrowLeft className="transition-transform duration-300" style={{ ...iconArrowStyle("next"), transform: hoveredArrow === "next" ? 'rotate(12deg)' : 'rotate(0deg)', transition: 'color 0.3s, transform 0.3s' }} />
+                  <button
+                    onClick={handleNext}
+                    className="h-[32px] w-[32px] rounded-full flex items-center justify-center"
+                    style={arrowStyle()}
+                    onMouseEnter={() => setHoveredArrow("next")}
+                    onMouseLeave={() => setHoveredArrow(null)}
+                  >
+                    <IconArrowLeft
+                      className="transition-transform duration-300"
+                      style={{
+                        ...iconArrowStyle("next"),
+                        transform:
+                          hoveredArrow === "next"
+                            ? "rotate(12deg)"
+                            : "rotate(0deg)",
+                        transition: "color 0.3s, transform 0.3s",
+                      }}
+                    />
                   </button>
                 </div>
               ) : (
-                <div className={`flex gap-4 ${isMobileView ? 'pt-12' : 'md:pt-0'} w-full`}>
-                  <HalomotButton text={buttonInscriptions.previousButton} onClick={handlePrev} fixedWidth="172px" gradient={isRTL ? 'linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))' : 'linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))'} />
-                  <HalomotButton text={buttonInscriptions.nextButton} onClick={handleNext} fixedWidth="172px" gradient={isRTL ? 'linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))' : 'linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))'} />
-                  <HalomotButton text={buttonInscriptions.openWebAppButton} onClick={() => onItemClick && onItemClick(testimonials[active].link || '')} fillWidth gradient={isRTL ? 'linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))' : 'linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))'} href={testimonials[active].link} // Set the href attribute
+                <div
+                  className={`flex gap-4 ${isMobileView ? "pt-12" : "md:pt-0"} w-full`}
+                >
+                  <HalomotButton
+                    text={buttonInscriptions.previousButton}
+                    onClick={handlePrev}
+                    fixedWidth="172px"
+                    gradient={
+                      isRTL
+                        ? "linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))"
+                        : "linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))"
+                    }
+                  />
+                  <HalomotButton
+                    text={buttonInscriptions.nextButton}
+                    onClick={handleNext}
+                    fixedWidth="172px"
+                    gradient={
+                      isRTL
+                        ? "linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))"
+                        : "linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))"
+                    }
+                  />
+                  <HalomotButton
+                    text={buttonInscriptions.openWebAppButton}
+                    onClick={() =>
+                      onItemClick &&
+                      onItemClick(testimonials[active].link || "")
+                    }
+                    fillWidth
+                    gradient={
+                      isRTL
+                        ? "linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))"
+                        : "linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))"
+                    }
+                    href={testimonials[active].link} // Set the href attribute
                   />
                 </div>
               )}
@@ -342,9 +589,9 @@ const ImageContainer = ({
     className="relative h-full w-full"
     style={{
       borderRadius: outerRounding,
-      padding: '1px',
+      padding: "1px",
       backgroundColor: outlineColor,
-      transition: 'background-color 0.3s ease-in-out'
+      transition: "background-color 0.3s ease-in-out",
     }}
   >
     <div
@@ -369,6 +616,5 @@ const ImageContainer = ({
     `}</style>
   </div>
 );
-
 
 export default AnimatedTestimonials;
