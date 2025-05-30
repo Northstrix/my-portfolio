@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGithub,
   faMedium,
+  faXTwitter,
   faFacebook,
 } from "@fortawesome/free-brands-svg-icons";
 import { faTools } from "@fortawesome/free-solid-svg-icons";
@@ -61,6 +62,10 @@ const SOCIAL_LINKS = [
   {
     url: "https://www.instructables.com/member/Northstrix/instructables/",
     icon: faTools,
+  },
+  {
+    url: "https://www.x.com/maxim_bortnikov",
+    icon: faXTwitter,
   },
   {
     url: "https://www.facebook.com/profile.php?id=61550751306759",
@@ -232,7 +237,7 @@ const SalesPitchCardContent: React.FC<SalesPitchCardContentProps> = ({
             alignItems: align,
             gap: "12px",
             justifyContent: align,
-            width: "244px",
+            width: "305px",
             direction: textDirection,
           }}
           // After first render or language change, stop animation for future rerenders
