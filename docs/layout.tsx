@@ -6,7 +6,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     <div className="min-h-screen flex flex-col">
       {/* Navbar */}
       <nav className="flex items-center justify-center gap-2 py-4 shadow font-semibold text-sm bg-white">
-        <Image src="/logo.webp" alt="Plum Cave" width={17} height={17} />
+        <Image src="/logo.webp" alt="Maxim Bortnikov" width={17} height={17} />
         Maxim Bortnikov
       </nav>
       {/* Main Content */}
