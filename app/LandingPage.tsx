@@ -59,6 +59,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ isMobile, className }) => {
     return () => clearTimeout(timer);
   }, [className]);
 
+  useEffect(() => {
+    // Preload all flag SVGs when LandingPage mounts
+    languages.forEach(lang => {
+      const img = new window.Image();
+      img.src = lang.flag;
+    });
+  }, []);
+
   const handleProjectClick = async (link: string) => {
     incrementLinkCount(i18n.language, link, "linkCounts");
   };

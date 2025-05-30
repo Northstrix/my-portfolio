@@ -12,6 +12,7 @@ const imageUrls = [
   "/logo.webp",
   "/plum-cave.webp",
   "/namer-ui.webp",
+  "/namer-ui-for-vue.webp",
   "/rct.webp",
   "/pha5e-inspired-hero-section.webp",
   "/bwlt.webp",

@@ -231,7 +231,7 @@ const FooterContent = styled.div<{ isRTL: boolean; isMobile: boolean }>`
   flex-direction: ${({ isMobile }) => (isMobile ? "column" : "row")};
   justify-content: ${({ isMobile }) => (isMobile ? "center" : "space-between")};
   align-items: center;
-  padding: 16px 0;
+  padding: 16px 0 96px 0;
   width: 100%;
   gap: ${({ isMobile }) => (isMobile ? "12px" : "0")};
 `;

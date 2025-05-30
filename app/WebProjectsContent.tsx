@@ -76,6 +76,13 @@ const WebProjectsContent: React.FC<WebProjectsContentProps> = ({
       link: t("web-project-6-link"),
       designation: t("web-project-6-designation"),
     },
+    {
+      name: t("web-project-7-name"),
+      description: t("web-project-7-description"),
+      image: t("web-project-7-image"),
+      link: t("web-project-7-link"),
+      designation: t("web-project-7-designation"),
+    },
   ];
 
   const handleItemClick = async (link: string) => {

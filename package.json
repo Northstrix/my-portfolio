@@ -1,5 +1,5 @@
 {
-  "name": "plum-cave",
+  "name": "maxim-bortnikov",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -58,7 +58,6 @@
     "embla-carousel-react": "^8.5.1",
     "firebase": "^11.5.0",
     "framer-motion": "^11.18.2",
-    "fumadocs": "^0.0.0",
     "fumadocs-core": "14.6.8",
     "fumadocs-mdx": "11.2.1",
     "fumadocs-typescript": "^3.0.2",
@@ -101,6 +100,7 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@react-three/drei": "^10.1.2",
     "@react-three/fiber": "^9.1.2",
     "@types/node": "22.10.4",
     "@types/react": "^18.0.2",
