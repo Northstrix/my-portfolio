@@ -82,10 +82,8 @@ const ContactCard: React.FC<ContactCardProps> = ({
     <motion.div
       ref={containerRef}
       style={{
-        backgroundColor: isCardHovered
-          ? "var(--lightened-background-adjacent-color)"
-          : "var(--background-adjacent-color)",
-        padding: "1px",
+        backgroundColor: "transparent",
+        padding: "0px",
         borderRadius: outerRounding,
         transition:
           "background-color 0.3s ease-in-out, border 0.3s ease-in-out",

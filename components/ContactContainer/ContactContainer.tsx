@@ -4,16 +4,14 @@ import { useTranslation } from "react-i18next";
 import StructuredBlock from "@/components/StructuredBlock/StructuredBlock";
 import {
   addRTLProps,
-  headlineProps,
-  textProps,
   contentProps,
-  maxSectionWidth,
 } from "@/app/LandingPage.styles";
 import ContactCard from "./ContactCard";
 
 const ContactContainer = () => {
   const { t, i18n } = useTranslation();
   const isRTL = false;
+  const [isCardHovered, setIsCardHovered] = useState(false);
   const [dynamicHeight, setDynamicHeight] = useState("auto");
   const [dynamicPadding, setDynamicPadding] = useState("24px");
   const [isMobile, setIsMobile] = useState(false);
@@ -67,10 +65,6 @@ const ContactContainer = () => {
     };
   }, []);
 
-  const gradientStyle = isRTL
-    ? "linear-gradient(to right, var(--second-theme-color), var(--first-theme-color))"
-    : "linear-gradient(to right, var(--first-theme-color), var(--second-theme-color))";
-
   return (
     <>
       <StructuredBlock {...addRTLProps(contentProps, isRTL)}>
@@ -78,10 +72,15 @@ const ContactContainer = () => {
           style={{
             borderRadius: "var(--outer-moderate-rounding)",
             padding: "1px",
-            background: "var(--background-adjacent-color)",
             width: "100%",
             display: "inline-block",
+            background: isCardHovered
+              ? "var(--lightened-background-adjacent-color)"
+              : "var(--background-adjacent-color)",
+            transition: "background 0.3s ease-in-out",
           }}
+          onMouseEnter={() => setIsCardHovered(true)}
+          onMouseLeave={() => setIsCardHovered(false)}
         >
           <div
             style={{

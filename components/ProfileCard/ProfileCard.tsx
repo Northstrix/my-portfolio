@@ -4,6 +4,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import LetterGlitch from "@/components/LetterGlitch/LetterGlitch";
 import DecryptedText from "@/components/DecryptedText/DecryptedText";
+import Silk from "@/components/Silk/Silk";
+import { useTranslation } from "react-i18next";
 
 interface ProfileCardProps {
   photo: string;
@@ -36,6 +38,10 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
 }) => {
   const [isCardHovered, setIsCardHovered] = useState(false);
   const [isImageHovered, setIsImageHovered] = useState(false);
+  const { i18n } = useTranslation();
+
+  // Determine RTL only if language is Hebrew
+  const isRTL = i18n.language === "he";
 
   // Calculate width based on fixed height and aspect ratio
   let containerHeightPx = 0;
@@ -52,8 +58,8 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   const calculatedWidth = isMobile
     ? "100%"
     : containerHeightPx
-      ? `${containerHeightPx * aspectRatio}px`
-      : "auto";
+    ? `${containerHeightPx * aspectRatio}px`
+    : "auto";
 
   return (
     <motion.div
@@ -96,8 +102,34 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
           flexDirection: "column",
           flex: 1,
           minHeight: 0,
+          position: "relative", // Needed for Silk overlay positioning
         }}
       >
+        {/* Silk overlay, fades in/out immediately on hover */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 0,
+            borderRadius: "var(--mild-rounding)",
+            overflow: "hidden",
+            pointerEvents: "none",
+            opacity: isCardHovered ? 1 : 0,
+            transition: "opacity 1s",
+            background: "transparent",
+          }}
+        >
+          <Silk
+            speed={5}
+            scale={1}
+            color="#26252e"
+            noiseIntensity={0.5}
+            rotation={0}
+            isRTL={isRTL}
+          />
+        </div>
+
         {/* Image & Glitch Section with proper border radius clipping */}
         <div
           style={{
@@ -114,6 +146,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
             transition:
               "background-color 0.3s ease-in-out, border 0.3s ease-in-out",
             flexShrink: 0,
+            zIndex: 1,
           }}
           onMouseEnter={() => setIsImageHovered(true)}
           onMouseLeave={() => setIsImageHovered(false)}
@@ -140,6 +173,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
             priority
           />
         </div>
+
         {/* Content Section */}
         <div
           className="transition duration-200 flex-grow"
@@ -153,6 +187,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
             flexDirection: "column",
             flex: 1,
             minHeight: 0,
+            zIndex: 1,
           }}
         >
           <div

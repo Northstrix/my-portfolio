@@ -349,6 +349,25 @@ const CreditModal: React.FC<CreditModalProps> = ({ isOpen, onClose }) => {
               <li>
                 <a
                   className="hover-link1"
+                  href="https://github.com/pmndrs/react-three-fiber"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  react-three-fiber
+                </a>{" "}
+                by{" "}
+                <a
+                  className="hover-link2"
+                  href="https://github.com/pmndrs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Poimandres
+                </a>
+              </li>
+              <li>
+                <a
+                  className="hover-link1"
                   href="https://codepen.io/haja-ran/pen/xxWRKNm"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -696,6 +715,25 @@ const CreditModal: React.FC<CreditModalProps> = ({ isOpen, onClose }) => {
                   rel="noopener noreferrer"
                 >
                   Click Spark
+                </a>{" "}
+                by{" "}
+                <a
+                  className="hover-link2"
+                  href="https://www.reactbits.dev/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  React Bits
+                </a>
+              </li>
+              <li>
+                <a
+                  className="hover-link1"
+                  href="https://www.reactbits.dev/backgrounds/silk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Silk
                 </a>{" "}
                 by{" "}
                 <a
