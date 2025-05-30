@@ -166,6 +166,8 @@ The existence of this portfolio (at least in its current form) wouldn't've been 
 
 [GSAP](https://github.com/greensock/GSAP) by [greensock](https://github.com/greensock)
 
+[react-three-fiber](https://github.com/pmndrs/react-three-fiber) by [Poimandres](https://github.com/pmndrs)
+
 [Bouncing Cube Loader](https://codepen.io/haja-ran/pen/xxWRKNm) by [Haja Randriakoto](https://codepen.io/haja-ran)
 
 [JTB studios - Link](https://codepen.io/zzznicob/pen/GRPgKLM) by [Nico](https://codepen.io/zzznicob)
@@ -203,6 +205,8 @@ The existence of this portfolio (at least in its current form) wouldn't've been 
 [animate-css](https://github.com/animate-css/animate.css) by [animate-css](https://github.com/animate-css)
 
 [Click Spark](https://www.reactbits.dev/text-animations/blur-text) by [React Bits](https://www.reactbits.dev/)
+
+[Silk](https://www.reactbits.dev/backgrounds/silk) by [React Bits](https://www.reactbits.dev/)
 
 [Perplexity](https://www.perplexity.ai/)
 
