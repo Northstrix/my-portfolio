@@ -43,11 +43,11 @@
   "web-projects-block": "Web Projects",
   "web-projects-section-text": "Here are several projects I've developed using five different tech stacks.",
 
-  "web-project-1-name": "Plum Cave",
-  "web-project-1-description": "A cloud backup solution that employs the \"ChaCha20 + Serpent-256 CBC + HMAC-SHA3-512\" authenticated encryption scheme for data encryption and ML-KEM-1024 for quantum-resistant key exchange.",
+  "web-project-1-name": "Blueberry Loom",
+  "web-project-1-description": "A cryptographically reinforced form builder that utilizes ML-KEM-1024, as well as the \"ChaCha20 + Serpent-256 CBC + HMAC-SHA3-512\" authenticated encryption scheme to enable end-to-end encryption for enhanced data protection.",
   "web-project-1-designation": "Next.js Project",
-  "web-project-1-image": "/plum-cave.webp",
-  "web-project-1-link": "https://plum-cave.netlify.app/",
+  "web-project-1-image": "/blueberry-loom.webp",
+  "web-project-1-link": "https://blueberry-loom.netlify.app/",
 
   "web-project-2-name": "Namer UI",
   "web-project-2-description": "A comprehensive collection of modern, attractive, and unique reusable TypeScript components crafted specifically for Next.js.",
@@ -84,6 +84,12 @@
   "web-project-7-designation": "Vanilla HTML/CSS/JS Project",
   "web-project-7-image": "/in-browser-file-encrypter.webp",
   "web-project-7-link": "https://codepen.io/Northstrix/full/xxvXvJL",
+
+  "web-project-8-name": "Plum Cave",
+  "web-project-8-description": "A cloud backup solution that employs the \"ChaCha20 + Serpent-256 CBC + HMAC-SHA3-512\" authenticated encryption scheme for data encryption and ML-KEM-1024 for quantum-resistant key exchange.",
+  "web-project-8-designation": "Next.js Project",
+  "web-project-8-image": "/plum-cave.webp",
+  "web-project-8-link": "https://plum-cave.netlify.app/",
 
   "nextjs-templates-block": "Next.js Templates",
   "nextjs-templates-section-text": "These aren't flashy web apps, but simple websites focused on delivering practical solutions to businesses.",

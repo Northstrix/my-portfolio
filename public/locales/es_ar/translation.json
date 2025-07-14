@@ -43,11 +43,11 @@
   "web-projects-block": "Proyectos Web",
   "web-projects-section-text": "Acá tenés varios proyectos que desarrollé usando cinco stacks tecnológicos diferentes.",
 
-  "web-project-1-name": "Plum Cave",
-  "web-project-1-description": "Una solución de backup en la nube que utiliza el esquema de cifrado autenticado \"ChaCha20 + Serpent-256 CBC + HMAC-SHA3-512\" para cifrar los datos y ML-KEM-1024 para el intercambio de claves resistente a la computación cuántica.",
+  "web-project-1-name": "Blueberry Loom",
+  "web-project-1-description": "Un generador de formularios reforzado criptográficamente que utiliza ML-KEM-1024 y el esquema de cifrado autenticado \"ChaCha20 + Serpent-256 CBC + HMAC-SHA3-512\" para habilitar cifrado de extremo a extremo y así mejorar la protección de los datos.",
   "web-project-1-designation": "Proyecto Next.js",
-  "web-project-1-image": "/plum-cave.webp",
-  "web-project-1-link": "https://plum-cave.netlify.app/",
+  "web-project-1-image": "/blueberry-loom.webp",
+  "web-project-1-link": "https://blueberry-loom.netlify.app/",
 
   "web-project-2-name": "Namer UI",
   "web-project-2-description": "Una colección completa de componentes TypeScript modernos, atractivos y únicos, reutilizables y diseñados específicamente para Next.js.",
@@ -84,6 +84,12 @@
   "web-project-7-designation": "Proyecto HTML/CSS/JS puro",
   "web-project-7-image": "/in-browser-file-encrypter.webp",
   "web-project-7-link": "https://codepen.io/Northstrix/full/xxvXvJL",
+
+  "web-project-8-name": "Plum Cave",
+  "web-project-8-description": "Una solución de backup en la nube que utiliza el esquema de cifrado autenticado \"ChaCha20 + Serpent-256 CBC + HMAC-SHA3-512\" para cifrar los datos y ML-KEM-1024 para el intercambio de claves resistente a la computación cuántica.",
+  "web-project-8-designation": "Proyecto Next.js",
+  "web-project-8-image": "/plum-cave.webp",
+  "web-project-8-link": "https://plum-cave.netlify.app/",
 
   "nextjs-templates-block": "Plantillas Next.js",
   "nextjs-templates-section-text": "Estas no son aplicaciones web llamativas, sino sitios simples pensados para brindar soluciones prácticas a empresas.",

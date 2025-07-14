@@ -43,11 +43,11 @@
   "web-projects-block": "Веб-проекты",
   "web-projects-section-text": "Вот несколько проектов, которые я разработал с использованием пяти разных технологических стеков.",
   
-  "web-project-1-name": "Plum Cave",
-  "web-project-1-description": "Облачное решение для резервного копирования, использующее схему аутентифицированного шифрования \"ChaCha20 + Serpent-256 CBC + HMAC-SHA3-512\" для шифрования данных и ML-KEM-1024 для квантово-устойчивого обмена ключами.",
+  "web-project-1-name": "Blueberry Loom",
+  "web-project-1-description": "Криптографически усиленный конструктор форм, использующий ML-KEM-1024, а также схему аутентифицированного шифрования \"ChaCha20 + Serpent-256 CBC + HMAC-SHA3-512\" для обеспечения сквозного шифрования и повышения защиты данных.",
   "web-project-1-designation": "Проект на Next.js",
-  "web-project-1-image": "/plum-cave.webp",
-  "web-project-1-link": "https://plum-cave.netlify.app/",
+  "web-project-1-image": "/blueberry-loom.webp",
+  "web-project-1-link": "https://blueberry-loom.netlify.app/",
 
   "web-project-2-name": "Namer UI",
   "web-project-2-description": "Обширная коллекция современных, привлекательных и уникальных переиспользуемых компонентов на TypeScript, созданных специально для Next.js.",
@@ -84,6 +84,12 @@
   "web-project-7-designation": "Проект на чистом HTML/CSS/JS",
   "web-project-7-image": "/in-browser-file-encrypter.webp",
   "web-project-7-link": "https://codepen.io/Northstrix/full/xxvXvJL",
+
+  "web-project-8-name": "Plum Cave",
+  "web-project-8-description": "Облачное решение для резервного копирования, использующее схему аутентифицированного шифрования \"ChaCha20 + Serpent-256 CBC + HMAC-SHA3-512\" для шифрования данных и ML-KEM-1024 для квантово-устойчивого обмена ключами.",
+  "web-project-8-designation": "Проект на Next.js",
+  "web-project-8-image": "/plum-cave.webp",
+  "web-project-8-link": "https://plum-cave.netlify.app/",
 
   "nextjs-templates-block": "Шаблоны Next.js",
   "nextjs-templates-section-text": "Это не яркие веб-приложения, а простые сайты, ориентированные на предоставление практических решений для бизнеса.",
