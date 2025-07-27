@@ -45,7 +45,7 @@
 
   "web-project-1-name": "Blueberry Loom",
   "web-project-1-description": "A cryptographically reinforced form builder that utilizes ML-KEM-1024, as well as the \"ChaCha20 + Serpent-256 CBC + HMAC-SHA3-512\" authenticated encryption scheme to enable end-to-end encryption for enhanced data protection.",
-  "web-project-1-designation": "Next.js Project",
+  "web-project-1-designation": "Next.js + Vue.js Project",
   "web-project-1-image": "/blueberry-loom.webp",
   "web-project-1-link": "https://blueberry-loom.netlify.app/",
 

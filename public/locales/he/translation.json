@@ -45,7 +45,7 @@
 
   "web-project-1-name": "בלוברי לום",
   "web-project-1-description": "בונה טפסים מחוזק קריפטוגרפית המשתמש ב-ML-KEM-1024 ובסכימת ההצפנה המאומתת \"ChaCha20 + Serpent-256 CBC + HMAC-SHA3-512\" כדי לאפשר הצפנה מקצה לקצה להגנה משופרת על נתונים.",
-  "web-project-1-designation": "פרויקט Next.js",
+  "web-project-1-designation": "פרויקט Next.js ו-Vue.js",
   "web-project-1-image": "/blueberry-loom.webp",
   "web-project-1-link": "https://blueberry-loom.netlify.app/",
 

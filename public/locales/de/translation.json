@@ -45,7 +45,7 @@
   
   "web-project-1-name": "Blueberry Loom",
   "web-project-1-description": "Ein kryptographisch verstärkter Formular-Builder, der ML-KEM-1024 sowie das authentifizierte Verschlüsselungsschema \"ChaCha20 + Serpent-256 CBC + HMAC-SHA3-512\" verwendet, um Ende-zu-Ende-Verschlüsselung für verbesserten Datenschutz zu ermöglichen.",
-  "web-project-1-designation": "Next.js-Projekt",
+  "web-project-1-designation": "Next.js- und Vue.js-Projekt",
   "web-project-1-image": "/blueberry-loom.webp",
   "web-project-1-link": "https://blueberry-loom.netlify.app/",
 

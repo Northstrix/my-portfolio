@@ -51,7 +51,7 @@
 
   "web-project-2-name": "Namer UI",
   "web-project-2-description": "Обширная коллекция современных, привлекательных и уникальных переиспользуемых компонентов на TypeScript, созданных специально для Next.js.",
-  "web-project-2-designation": "Проект на Next.js",
+  "web-project-2-designation": "Проект на Next.js и Vue.js",
   "web-project-2-image": "/namer-ui.webp",
   "web-project-2-link": "https://namer-ui.netlify.app/",
 

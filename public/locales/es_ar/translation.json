@@ -45,7 +45,7 @@
 
   "web-project-1-name": "Blueberry Loom",
   "web-project-1-description": "Un generador de formularios reforzado criptográficamente que utiliza ML-KEM-1024 y el esquema de cifrado autenticado \"ChaCha20 + Serpent-256 CBC + HMAC-SHA3-512\" para habilitar cifrado de extremo a extremo y así mejorar la protección de los datos.",
-  "web-project-1-designation": "Proyecto Next.js",
+  "web-project-1-designation": "Proyecto Next.js + Vue.js",
   "web-project-1-image": "/blueberry-loom.webp",
   "web-project-1-link": "https://blueberry-loom.netlify.app/",
 
