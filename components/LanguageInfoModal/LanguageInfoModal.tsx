@@ -109,6 +109,32 @@ const DEFAULT_INSCRIPTIONS: Inscription[] = [
     ),
   },
   {
+    code: "it",
+    text: (inlineIconSize, onIconClick) => (
+      <>
+        Clicca sull'icona{" "}
+        <span
+          className="language-icon-inline"
+          onClick={onIconClick}
+          tabIndex={0}
+          role="button"
+          aria-label="Apri il selettore della lingua"
+          style={{
+            cursor: "pointer",
+            display: "inline-flex",
+            verticalAlign: "middle",
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") onIconClick();
+          }}
+        >
+          <LanguageIcon width={inlineIconSize} />
+        </span>{" "}
+        per aprire il selettore della lingua.
+      </>
+    ),
+  },
+  {
     code: "de",
     text: (inlineIconSize, onIconClick) => (
       <>
@@ -175,7 +201,7 @@ const LanguageInfoModal: React.FC<LanguageInfoModalProps> = ({
   fontSizeMobile = "9.6px",
   fontSizeDesktop = "18px",
   modalWidthMobile = 336,
-  modalWidthDesktop = 544,
+  modalWidthDesktop = 550,
   inlineIconSizeMobile = INLINE_ICON_SIZE_MOBILE,
   inlineIconSizeDesktop = INLINE_ICON_SIZE_DESKTOP,
 }) => {

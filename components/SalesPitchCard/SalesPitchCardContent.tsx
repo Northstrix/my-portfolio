@@ -38,6 +38,14 @@ const TEXT_SIZES = {
     minDescriptionSize: 14,
     maxDescriptionSize: 20,
   },
+  it: {
+    minWidth: 402,
+    maxWidth: 1132,
+    minTitleSize: 40,
+    maxTitleSize: 72,
+    minDescriptionSize: 14,
+    maxDescriptionSize: 20,
+  },
   de: {
     minWidth: 402,
     maxWidth: 1132,

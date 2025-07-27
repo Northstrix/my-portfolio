@@ -12,6 +12,9 @@ i18n.use(initReactI18next).init({
     es_ar: {
       translation: require("./public/locales/es_ar/translation.json"), // Argentinian Spanish
     },
+    it: {
+      translation: require("./public/locales/it/translation.json"), // Italian
+    },
     de: {
       translation: require("./public/locales/de/translation.json"), // German
     },

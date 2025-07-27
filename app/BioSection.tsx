@@ -55,6 +55,10 @@ const BioSection: React.FC<BioSectionProps> = ({
       profileCardWidth = "376px";
       cardHeight = "493px";
       break;
+    case "it":
+      profileCardWidth = "376px";
+      cardHeight = "493px";
+      break;
     case "de":
       profileCardWidth = "376px";
       cardHeight = "493px";

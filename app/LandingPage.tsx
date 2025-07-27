@@ -32,6 +32,7 @@ const languages = [
   { code: "en", name: "English", flag: "/Flag_of_the_United_States.svg" },
   { code: "he", name: "עברית", flag: "/Flag_of_Israel.svg" },
   { code: "es_ar", name: "Español", flag: "/Flag_of_Argentina.svg" },
+  { code: "it", name: "Italiano", flag: "/Flag_of_Italy.svg" },
   { code: "de", name: "Deutsch", flag: "/Flag_of_Germany.svg" },
   { code: "ru", name: "Русский", flag: "/Flag_of_Russia.svg" },
 ];

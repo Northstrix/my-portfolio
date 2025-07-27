@@ -80,7 +80,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
             padding: "20px",
             borderRadius: "var(--moderate-rounding)",
             width: componentWidth,
-            maxHeight: "90vh",
+            maxHeight: "calc(100vh - 20px)",
             display: "flex",
             flexDirection: "column",
             color: "var(--foreground)",
