@@ -1,0 +1,38 @@
+{
+  "name": "maxim-bortnikov",
+  "version": "3.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@ncdai/react-wheel-picker": "^1.0.19",
+    "@react-three/fiber": "^9.4.0",
+    "clsx": "^2.1.1",
+    "firebase": "^12.6.0",
+    "framer-motion": "^12.23.24",
+    "gsap": "^3.13.0",
+    "i18next": "^25.7.1",
+    "next": "16.0.7",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-i18next": "^16.2.4",
+    "styled-components": "^6.1.19",
+    "tailwind-merge": "^3.4.0",
+    "three": "^0.181.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/three": "^0.181.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
