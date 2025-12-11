@@ -1,6 +1,6 @@
 # My Portfolio
 
-A statically-compiled web app built using Next.js 16 that employs components from [Aceternity UI](https://ui.aceternity.com/), [Namer UI](https://namer-ui.netlify.app/), [Codepen](https://codepen.io/), [21st.dev](https://21st.dev/community/components), and [React Bits](https://www.reactbits.dev/).
+A statically-compiled web app built using Next.js 16 that employs components from [Aceternity UI](https://ui.aceternity.com/), [Namer UI](https://namer-ui.vercel.app/), [Codepen](https://codepen.io/), [21st.dev](https://21st.dev/community/components), and [React Bits](https://www.reactbits.dev/).
 
 Check it out at https://maxim-bortnikov.netlify.app/
 
