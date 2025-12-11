@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+body {
+  font-family: var(--font-open-sans), sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: #000;
+    --footer-background: #0a0a0a;
+    --hovered-footer-badge-background: #111;
+    --foreground: #fafafa;
+    --middle-foreground: #e1e1e1;
+    --sub-foreground: #aaa;
+    --subtle-foreground: #646464;
+    --accent: #802EE9;
+    --reveal-mask: rgba(182,182,182,0.25);
+    --scroll-element-foreground: #444;
+    --language-selector-list-bg: #0e0e0e;
+    --language-selector-center-line-bg: #222;
+    --border-color: #242424;
+    --hovered-footer-badge-border-color: #303030;
+    --scrolbar-track-color: #262626;
+    --inactive-floating-label-input-outline-color: #303030;
+    --floating-label-input-muted-foreground: #999;
+    --border-radius: 6px;
+    --outer-border-radius: 6.34px;
+    --smooth-border-radius: 12px;
+    --outer-smooth-border-radius: 12.56px;
+    --playing-card-rounding: 18px;
+    --outer-playing-card-rounding: 18.2px;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrolbar-track-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+  opacity: 0.8; /* emulate 0.8 opacity on hover */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--scrolbar-track-color);
+}
