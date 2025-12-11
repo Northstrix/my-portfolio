@@ -4,6 +4,8 @@ A statically-compiled web app built using Next.js 16 that employs components fro
 
 Check it out at https://maxim-bortnikov.netlify.app/
 
+![Alt Preview](https://raw.githubusercontent.com/Northstrix/my-portfolio/refs/heads/main/preview.gif)
+
 # Firestore Rules:
 If you decide to use this as a template for your own portfolio and want the metrics to work, please follow these steps:
 
