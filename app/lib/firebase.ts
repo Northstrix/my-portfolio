@@ -8,7 +8,7 @@ const firebaseConfig = {
   apiKey: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
   authDomain: "database-name-default-rtdb.firebaseapp.com",
   projectId: "database-name-default-rtdb",
-  storageBucket: "databaseforplumcave.appspot.com",
+  storageBucket: "databaseforportfolio.appspot.com",
   messagingSenderId: "111111111111",
   appId: "1:111111111111:web:abcdefghjklmnopqrstuvw"
 };
