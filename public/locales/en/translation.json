@@ -30,7 +30,7 @@
   "project7_description": "A web app that’s capable of encrypting user data, hashing strings, and calculating tags using the available HMAC algorithms. Please don’t judge me too harshly for it; this is the first React app I ever made.",
   "project7_tech": "React Project",
   "project8_name": "Clandestine",
-  "project8_description": "A clean andd modern beauty salon landing page template made using Next.js, Perplexity, and Firebase Studio.",
+  "project8_description": "A clean, modern beauty salon landing page template made using Next.js, Perplexity, and Firebase Studio.",
   "project8_tech": "Next.js Project",
   "previous_button": "Previous",
   "next_button": "Next",
