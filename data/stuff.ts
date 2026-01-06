@@ -51,9 +51,9 @@ export const projects = [
     descriptionKey: "project7_description",
     nameKey: "project7_name",
     techKey: "project7_tech",
-    image: "/react-cryptographic-toolkit.webp",
-    id: "react-cryptographic-toolkit",
-    link: "https://northstrix.github.io/React-Cryptographic-Toolkit/",
+    image: "/kerach-tempo.webp",
+    id: "kerach-tempo",
+    link: "https://kerach-tempo.netlify.app/",
   },
   {
     descriptionKey: "project8_description",

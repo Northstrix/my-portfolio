@@ -77,27 +77,34 @@ export default function ProjectsSection({
           scrollContainerRef={scrollContainerRef}
           isRTL={isRTL}
         />
-
+      </LimitedWidthWrapper>
         {isMobile ? (
-          <div
-            className="grid"
-            style={{
-              display: "grid",
-              gridTemplateColumns: `repeat(${columns}, 1fr)`,
-              gap: "16px",
-              width: "100%",
-            }}
+          <LimitedWidthWrapper
+            expandToFull={false}
+            maxWidth={maxWidth}
+            paddingDesktop={paddingDesktop}
+            paddingMobile={paddingMobile}
           >
-            {translatedProjects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                onCardClick={(metric) => {
-                  metricEvent(metric);
-                }}
-              />
-            ))}
-          </div>
+            <div
+              className="grid"
+              style={{
+                display: "grid",
+                gridTemplateColumns: `repeat(${columns}, 1fr)`,
+                gap: "16px",
+                width: "100%",
+              }}
+            >
+              {translatedProjects.map((project) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  onCardClick={(metric) => {
+                    metricEvent(metric);
+                  }}
+                />
+              ))}
+            </div>
+          </LimitedWidthWrapper>
         ) : (
           <div
             style={{
@@ -153,7 +160,6 @@ export default function ProjectsSection({
             </div>
           </div>
         )}
-      </LimitedWidthWrapper>
     </section>
   );
 }

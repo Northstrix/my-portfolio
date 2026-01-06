@@ -25,12 +25,6 @@ export const componentsMetadata: ComponentMetadata[] = [
     isPreviewImage: true,
   },
   {
-    id: 'slider-hero-section',
-    title: 'slider_hero_title',
-    description: 'slider_hero_desc',
-    isPreviewImage: true,
-  },
-  {
     id: "project-showcase",
     title: "project_showcase_title",
     description: "project_showcase_desc",
@@ -82,6 +76,12 @@ export const componentsMetadata: ComponentMetadata[] = [
     id: "login-form",
     title: "login_form_title",
     description: "login_form_desc",
+    isPreviewImage: true,
+  },
+  {
+    id: "holographic-card",
+    title: "holographic_card_title",
+    description: "holographic_card_desc",
     isPreviewImage: true,
   },
 ];
