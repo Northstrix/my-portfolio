@@ -1,4 +1,5 @@
 "use client";
+import React from 'react';
 import HalomotButton from "@/components/HalomotButton";
 import { GithubIcon } from "./GitHubIcon";
 import useIsRTL from "@/hooks/useIsRTL";
@@ -80,7 +81,7 @@ export default function FooterBadgesGroup({
             }}
             onDragStart={() => handleInteraction(b.id, "dragged", b.suffix)}
             onMouseEnter={() => handleInteraction(b.id, "hovered", b.suffix)}
-            className={`flex flex-col justify-between rounded-[var(--border-radius)] select-none cursor-pointer border border-[var(--border-color)] bg-[var(--footer-background)] hover:bg-[var(--hovered-footer-badge-background)] hover:border-[var(--hovered-footer-badge-border-color)] transition-all duration-300 ease-in-out px-6 pt-4 pb-6 w-full min-h-[${
+            className={`badge-card flex flex-col justify-between rounded-[var(--border-radius)] select-none cursor-pointer border border-[var(--border-color)] bg-[var(--footer-background)] hover:bg-[var(--hovered-footer-badge-background)] hover:border-[var(--hovered-footer-badge-border-color)] transition-all duration-300 ease-in-out px-6 pt-4 pb-6 w-full min-h-[${
               mobileButtonHeight ? "2.75rem" : "2.875rem"
             }]`}
           >
@@ -93,21 +94,101 @@ export default function FooterBadgesGroup({
                 justifyContent: isRTL ? "flex-end" : "flex-start",
               }}
             >
-              <img
-                src={b.image}
-                alt={b.topText}
-                width={32}
-                height={32}
-                style={{ objectFit: "contain", display: "inline-block" }}
-                draggable={false}
-              />
-              <span className="font-bold text-base text-[var(--foreground)] select-none whitespace-nowrap">
-                {b.topText}
+              <span
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  minWidth: '32px',
+                  minHeight: '32px',
+                  boxSizing: 'border-box',
+                  background: b.id === 'namer-ui-badge' ? 'linear-gradient(135deg, #4776cb, #a19fe5, #6cc606)' : b.id === 'merucav-badge' ? '#fafafa' : 'transparent',
+                  borderRadius: 'var(--border-radius)',
+                  padding: '0px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                  overflow: 'hidden',
+                }}
+              >
+                <img
+                  src={b.image}
+                  alt={b.topText}
+                  width={32}
+                  height={32}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
+                  draggable={false}
+                />
+              </span>
+
+              {/* Flip Animation Text Wrapper */}
+              <span className="flip-wrapper">
+                <span>
+                  <em className="flip-text">
+                    <span className="font-bold text-base text-[var(--foreground)] select-none whitespace-nowrap">
+                      {b.topText}
+                    </span>
+                  </em>
+                </span>
+                <span>
+                  <em className="flip-text">
+                    <span className="font-bold text-base text-[var(--foreground)] select-none whitespace-nowrap">
+                      {b.topText}
+                    </span>
+                  </em>
+                </span>
               </span>
             </div>
           </a>
         ))}
       </div>
+
+      {/* Styled JSX scoped flip animations */}
+      <style jsx>{`
+        .flip-wrapper {
+          position: relative;
+          display: block;
+          perspective: 108px;
+        }
+        .flip-wrapper span {
+          display: block;
+        }
+        .flip-wrapper span:nth-of-type(2) {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        .flip-text {
+          font-style: normal;
+          display: inline-block;
+          font-size: inherit;
+          font-weight: inherit;
+          line-height: inherit;
+          will-change: transform, opacity;
+          transition: transform 0.55s cubic-bezier(0.645, 0.045, 0.355, 1),
+            opacity 0.35s linear 0.2s;
+        }
+        .flip-wrapper span:nth-of-type(1) .flip-text {
+          transform-origin: top;
+          opacity: 1;
+          transform: rotateX(0deg);
+        }
+        .flip-wrapper span:nth-of-type(2) .flip-text {
+          opacity: 0;
+          transform: rotateX(-90deg) scaleX(0.9) translate3d(0, 10px, 0);
+          transform-origin: bottom;
+        }
+        .badge-card:hover .flip-wrapper span:nth-of-type(1) .flip-text {
+          opacity: 0;
+          transform: rotateX(90deg) scaleX(0.9) translate3d(0, -10px, 0);
+        }
+        .badge-card:hover .flip-wrapper span:nth-of-type(2) .flip-text {
+          opacity: 1;
+          transform: rotateX(0deg) scaleX(1) translateZ(0);
+          transition: transform 0.75s cubic-bezier(0.645, 0.045, 0.355, 1),
+            opacity 0.35s linear 0.3s;
+        }
+      `}</style>
     </div>
   );
 }

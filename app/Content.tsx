@@ -253,7 +253,16 @@ export default function HomePage() {
       else if (buttonKey === "contact-info") targetId = "contact";
 
       const target = document.getElementById(targetId);
-      if (target) {
+      if (!target) return;
+
+      if (buttonKey === "contact-info" && scrollContainerRef.current) {
+        // Scroll exactly 2px lower than the top of the contact section
+        scrollContainerRef.current.scrollTo({
+          top: target.offsetTop + 2,
+          behavior: "smooth",
+        });
+      } else {
+        // Standard exploration scrolling (unaffected)
         target.scrollIntoView({
           behavior: "smooth",
           block: "start",
@@ -261,7 +270,7 @@ export default function HomePage() {
         });
       }
     },
-    []
+    [scrollContainerRef]
   );
 
   const handleMetricEvent = useCallback((metric: string) => {

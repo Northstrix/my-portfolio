@@ -110,6 +110,8 @@ const creditsMarkdown = `
 
 [Google AI Studio](https://aistudio.google.com/)
 
+[Google Gemini](https://gemini.google.com/)
+
 [Kippo Hover Card Effect](https://codepen.io/Hyperplexed/pen/zYWdYoo) by [Hyperplexed](https://codepen.io/Hyperplexed)
 
 [Color Picker](https://21st.dev/community/components/uplusion23/color-picker/color-picker-with-swatches-and-onchange) by [Trevor McIntire](https://21st.dev/community/uplusion23)

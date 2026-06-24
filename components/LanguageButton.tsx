@@ -30,24 +30,50 @@ export default function LanguageButton({
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const accent = getComputedStyle(document.documentElement)
-      .getPropertyValue("--accent")
-      .trim();
-    let rgba = "rgba(255,255,255,0.2)";
-    if (accent.startsWith("rgb")) {
-      const nums = accent.match(/\d+(\.\d+)?/g);
-      if (nums && nums.length >= 3) {
-        rgba = `rgba(${nums[0]}, ${nums[1]}, ${nums[2]}, 1)`;
+
+    const updateAccent = () => {
+      const accent = getComputedStyle(document.documentElement)
+        .getPropertyValue("--accent")
+        .trim();
+      
+      if (!accent) return;
+
+      let rgba = "rgba(255,255,255,0.2)";
+      if (accent.startsWith("rgb")) {
+        const nums = accent.match(/\d+(\.\d+)?/g);
+        if (nums && nums.length >= 3) {
+          rgba = `rgba(${nums[0]}, ${nums[1]}, ${nums[2]}, 1)`;
+        }
+      } else if (accent.startsWith("#")) {
+        const hex = accent.replace("#", "");
+        const bigint = parseInt(hex.length === 3 ? hex + hex : hex, 16);
+        const r = (bigint >> 16) & 255;
+        const g = (bigint >> 8) & 255;
+        const b = bigint & 255;
+        rgba = `rgba(${r}, ${g}, ${b}, 1)`;
       }
-    } else if (accent.startsWith("#")) {
-      const hex = accent.replace("#", "");
-      const bigint = parseInt(hex.length === 3 ? hex + hex : hex, 16);
-      const r = (bigint >> 16) & 255;
-      const g = (bigint >> 8) & 255;
-      const b = bigint & 255;
-      rgba = `rgba(${r}, ${g}, ${b}, 1)`;
-    }
-    setAccentRGBA(rgba);
+      setAccentRGBA(rgba);
+    };
+
+    // Run initially to catch current global style
+    updateAccent();
+
+    // Observe changes to the root document style attribute
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.attributeName === "style" || mutation.attributeName === "class") {
+          updateAccent();
+          break; // Stop loop once caught
+        }
+      }
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["style", "class"],
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   const supportsBackdropFilter =

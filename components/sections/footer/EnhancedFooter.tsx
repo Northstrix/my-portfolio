@@ -46,38 +46,11 @@ export default function EnhancedFooter({
   const columnProbeRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const [fontSize, setFontSize] = useState(`${15.2}em`);
   const [isVisible, setIsVisible] = useState(true);
   const [profileHovered, setProfileHovered] = useState(false);
   const [cardWidth, setCardWidth] = useState(360);
 
   const firstSectionId = navItems?.[0]?.targetId || "home-anchor";
-
-  // Font scaling logic (unchanged)
-  useEffect(() => {
-    function updateFontSize() {
-      if (!containerRef.current) return;
-      const width = containerRef.current.clientWidth;
-      if (width < 280) {
-        setIsVisible(false);
-        return;
-      }
-      setIsVisible(true);
-      if (width >= 1536) {
-        setFontSize(`${15.2}em`);
-        return;
-      }
-      const clampedWidth = Math.min(Math.max(width, 280), 1536);
-      const normalizedScale = (clampedWidth - 280) / (1536 - 280);
-      const nonLinearScale = Math.pow(normalizedScale, 0.8);
-      let fSize = 1.6 + nonLinearScale * (15.2 - 1.6);
-      fSize *= i18n.language === "he" ? 1.14 : 0.96;
-      setFontSize(`${fSize.toFixed(2)}em`);
-    }
-    updateFontSize();
-    window.addEventListener("resize", updateFontSize);
-    return () => window.removeEventListener("resize", updateFontSize);
-  }, [i18n.language]);
 
   // Measure available width for ContactCard on desktop, factoring wrapper padding and all gaps
   useEffect(() => {
@@ -324,21 +297,6 @@ export default function EnhancedFooter({
               >
                 <li style={{ maxWidth: "max-content" }}>
                   <a
-                    href="mailto:maxim.bortnikov_fvrr@outlook.com"
-                    className="hover:text-[var(--foreground)] transition-colors no-underline"
-                  >
-                    <HighlightHover
-                      as="span"
-                      barThickness={0.0}
-                      gapRatio={0.03}
-                      className={bioTextClass}
-                    >
-                      maxim.bortnikov_fvrr@outlook.com
-                    </HighlightHover>
-                  </a>
-                </li>
-                <li style={{ maxWidth: "max-content" }}>
-                  <a
                     href="mailto:maxim.bort.devel@gmail.com"
                     className="hover:text-[var(--foreground)] transition-colors no-underline"
                   >
@@ -349,21 +307,6 @@ export default function EnhancedFooter({
                       className={bioTextClass}
                     >
                       maxim.bort.devel@gmail.com
-                    </HighlightHover>
-                  </a>
-                </li>
-                <li style={{ maxWidth: "max-content" }}>
-                  <a
-                    href="mailto:Northstrix@emailthing.xyz"
-                    className="hover:text-[var(--foreground)] transition-colors no-underline"
-                  >
-                    <HighlightHover
-                      as="span"
-                      barThickness={0.0}
-                      gapRatio={0.03}
-                      className={bioTextClass}
-                    >
-                      Northstrix@emailthing.xyz
                     </HighlightHover>
                   </a>
                 </li>

@@ -208,7 +208,7 @@ export const footerBadges = [
   {
     id: "namer-ui-badge",
     link: "https://namer-ui.vercel.app/",
-    image: "/namer-ui-logo.png",
+    image: "/Namer.png",
     topTextKey: "namer_ui_name",
     subTextKey: "powered_by",
   },
